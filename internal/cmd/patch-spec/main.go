@@ -3,7 +3,6 @@ package main
 
 import (
 	"os"
-	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -47,35 +46,7 @@ func fixValueTags(node *yaml.Node) {
 		node.Style = yaml.DoubleQuotedStyle
 	}
 
-	fixDescriptions(node)
-
 	for _, child := range node.Content {
 		fixValueTags(child)
-	}
-}
-
-func fixDescriptions(node *yaml.Node) {
-	if node.Kind != yaml.MappingNode {
-		return
-	}
-
-	const mappingPairSize = 2
-
-	for index := 0; index < len(node.Content); index += mappingPairSize {
-		key, value := node.Content[index], node.Content[index+1]
-		if key.Value != "description" && key.Value != "summary" {
-			continue
-		}
-
-		if value.Kind != yaml.ScalarNode {
-			continue
-		}
-
-		// Keep generated comments in the repository's plain punctuation style.
-		value.Value = strings.NewReplacer(
-			" \u2014 ", ", ",
-			" \u2013 ", ", ",
-			" - ", ", ",
-		).Replace(value.Value)
 	}
 }

@@ -5236,7 +5236,7 @@ type AlertPublic struct {
 	Metadata      *map[string]string    `json:"metadata,omitempty"`
 	Name          *string               `json:"name,omitempty"`
 
-	// ProjectId Optional project scope for this alert. When set, the alert is scoped to the specified project. Do NOT also provide a 'scope:project' trigger config, the system will create it automatically from this field. Sending both project_id and a scope:project trigger config will result in an error.
+	// ProjectId Optional project scope for this alert. When set, the alert is scoped to the specified project. Do NOT also provide a 'scope:project' trigger config — the system will create it automatically from this field. Sending both project_id and a scope:project trigger config will result in an error.
 	ProjectId *openapi_types.UUID   `json:"project_id,omitempty"`
 	Triggers  *[]AlertTriggerPublic `json:"triggers,omitempty"`
 	Webhook   WebhookPublic         `json:"webhook"`
@@ -5253,7 +5253,7 @@ type AlertWrite struct {
 	Metadata  *map[string]string   `json:"metadata,omitempty"`
 	Name      *string              `json:"name,omitempty"`
 
-	// ProjectId Optional project scope for this alert. When set, the alert is scoped to the specified project. Do NOT also provide a 'scope:project' trigger config, the system will create it automatically from this field. Sending both project_id and a scope:project trigger config will result in an error.
+	// ProjectId Optional project scope for this alert. When set, the alert is scoped to the specified project. Do NOT also provide a 'scope:project' trigger config — the system will create it automatically from this field. Sending both project_id and a scope:project trigger config will result in an error.
 	ProjectId *openapi_types.UUID  `json:"project_id,omitempty"`
 	Triggers  *[]AlertTriggerWrite `json:"triggers,omitempty"`
 	Webhook   WebhookWrite         `json:"webhook"`
@@ -8295,7 +8295,7 @@ type PromptVariant struct {
 }
 
 // PromptVersionBatchUpdate Request to update one or more prompt versions.
-// Note: Prompt versions are immutable by design, only organizational properties (such as tags etc.) can be updated.
+// Note: Prompt versions are immutable by design - only organizational properties (such as tags etc.) can be updated.
 type PromptVersionBatchUpdate struct {
 	// Ids IDs of prompt versions to update
 	Ids []openapi_types.UUID `json:"ids"`
@@ -8570,7 +8570,7 @@ type ProviderApiKeyUpdate struct {
 	Headers       *map[string]string  `json:"headers,omitempty"`
 	Name          *string             `json:"name,omitempty"`
 
-	// ProviderName Provider name, can be set to migrate legacy custom LLM or Bedrock providers to the new multi-provider format. Once set, it cannot be changed. Should only be set for custom LLM and Bedrock providers.
+	// ProviderName Provider name - can be set to migrate legacy custom LLM or Bedrock providers to the new multi-provider format. Once set, it cannot be changed. Should only be set for custom LLM and Bedrock providers.
 	ProviderName *string `json:"provider_name,omitempty"`
 }
 
@@ -8591,7 +8591,7 @@ type ProviderApiKeyPublic struct {
 	Name          *string                      `json:"name,omitempty"`
 	Provider      ProviderApiKeyPublicProvider `json:"provider"`
 
-	// ProviderName Provider name, required for custom LLM and Bedrock providers to uniquely identify them (e.g., 'ollama', 'vllm', 'Bedrock us-east-1'). Must not be blank for custom and Bedrock providers. Should not be set for standard providers (OpenAI, Anthropic, etc.). This requirement is conditional and validation is enforced programmatically.
+	// ProviderName Provider name - required for custom LLM and Bedrock providers to uniquely identify them (e.g., 'ollama', 'vllm', 'Bedrock us-east-1'). Must not be blank for custom and Bedrock providers. Should not be set for standard providers (OpenAI, Anthropic, etc.). This requirement is conditional and validation is enforced programmatically.
 	ProviderName *string `json:"provider_name,omitempty"`
 
 	// ReadOnly If true, this provider is system-managed and cannot be edited or deleted
@@ -8613,7 +8613,7 @@ type ProviderApiKeyWrite struct {
 	Name          *string                     `json:"name,omitempty"`
 	Provider      ProviderApiKeyWriteProvider `json:"provider"`
 
-	// ProviderName Provider name, required for custom LLM and Bedrock providers to uniquely identify them (e.g., 'ollama', 'vllm', 'Bedrock us-east-1'). Must not be blank for custom and Bedrock providers. Should not be set for standard providers (OpenAI, Anthropic, etc.). This requirement is conditional and validation is enforced programmatically.
+	// ProviderName Provider name - required for custom LLM and Bedrock providers to uniquely identify them (e.g., 'ollama', 'vllm', 'Bedrock us-east-1'). Must not be blank for custom and Bedrock providers. Should not be set for standard providers (OpenAI, Anthropic, etc.). This requirement is conditional and validation is enforced programmatically.
 	ProviderName *string `json:"provider_name,omitempty"`
 }
 
@@ -12342,7 +12342,7 @@ type ClientInterface interface {
 
 	// SearchAnnotationQueueItemsWithBody Search annotation queue items
 	//
-	// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+	// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -12351,7 +12351,7 @@ type ClientInterface interface {
 
 	// SearchAnnotationQueueItems Search annotation queue items
 	//
-	// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+	// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -12602,7 +12602,7 @@ type ClientInterface interface {
 
 	// UpdateDashboardWithBody Update dashboard
 	//
-	// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+	// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -12611,7 +12611,7 @@ type ClientInterface interface {
 
 	// UpdateDashboard Update dashboard
 	//
-	// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+	// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -13126,7 +13126,7 @@ type ClientInterface interface {
 
 	// DeleteEnvironmentsBatchWithBody Delete environments
 	//
-	// Delete environments batch. Idempotent, missing ids are silently ignored.
+	// Delete environments batch. Idempotent — missing ids are silently ignored.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -13135,7 +13135,7 @@ type ClientInterface interface {
 
 	// DeleteEnvironmentsBatch Delete environments
 	//
-	// Delete environments batch. Idempotent, missing ids are silently ignored.
+	// Delete environments batch. Idempotent — missing ids are silently ignored.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -13505,7 +13505,7 @@ type ClientInterface interface {
 
 	// UpdateInsightsViewWithBody Update insights view
 	//
-	// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+	// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -13514,7 +13514,7 @@ type ClientInterface interface {
 
 	// UpdateInsightsView Update insights view
 	//
-	// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+	// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -14538,7 +14538,7 @@ type ClientInterface interface {
 
 	// CreateReportFailureWithBody Record a report/job failure
 	//
-	// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+	// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -14547,7 +14547,7 @@ type ClientInterface interface {
 
 	// CreateReportFailure Record a report/job failure
 	//
-	// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+	// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -16951,7 +16951,7 @@ func (c *Client) RemoveItemsFromAnnotationQueue(ctx context.Context, id openapi_
 
 // SearchAnnotationQueueItemsWithBody Search annotation queue items
 //
-// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 //
 // Takes any type of body and a specified content type.
 //
@@ -16970,7 +16970,7 @@ func (c *Client) SearchAnnotationQueueItemsWithBody(ctx context.Context, id open
 
 // SearchAnnotationQueueItems Search annotation queue items
 //
-// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -17571,7 +17571,7 @@ func (c *Client) GetDashboardById(ctx context.Context, dashboardId openapi_types
 
 // UpdateDashboardWithBody Update dashboard
 //
-// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes any type of body and a specified content type.
 //
@@ -17590,7 +17590,7 @@ func (c *Client) UpdateDashboardWithBody(ctx context.Context, dashboardId openap
 
 // UpdateDashboard Update dashboard
 //
-// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -18705,7 +18705,7 @@ func (c *Client) CreateEnvironment(ctx context.Context, body CreateEnvironmentJS
 
 // DeleteEnvironmentsBatchWithBody Delete environments
 //
-// Delete environments batch. Idempotent, missing ids are silently ignored.
+// Delete environments batch. Idempotent — missing ids are silently ignored.
 //
 // Takes any type of body and a specified content type.
 //
@@ -18724,7 +18724,7 @@ func (c *Client) DeleteEnvironmentsBatchWithBody(ctx context.Context, contentTyp
 
 // DeleteEnvironmentsBatch Delete environments
 //
-// Delete environments batch. Idempotent, missing ids are silently ignored.
+// Delete environments batch. Idempotent — missing ids are silently ignored.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -19594,7 +19594,7 @@ func (c *Client) GetInsightsViewById(ctx context.Context, insightsViewId openapi
 
 // UpdateInsightsViewWithBody Update insights view
 //
-// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes any type of body and a specified content type.
 //
@@ -19613,7 +19613,7 @@ func (c *Client) UpdateInsightsViewWithBody(ctx context.Context, insightsViewId 
 
 // UpdateInsightsView Update insights view
 //
-// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes a body of the `application/json` content type.
 //

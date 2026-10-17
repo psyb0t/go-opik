@@ -1,7 +1,6 @@
 #!/bin/bash
 # Quotes YAML value-tag scalars such as the unquoted = enum value.
 # Strict OpenAPI loaders reject that YAML 1.1 tag; its wire value is a string.
-# Normalizes description punctuation to keep generated comments in repo style.
 set -euo pipefail
 trap 'on_error "$?" "$LINENO"' ERR
 

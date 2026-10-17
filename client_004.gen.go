@@ -439,7 +439,7 @@ func (c *ClientWithResponses) GetDashboardByIdWithResponse(ctx context.Context, 
 
 // UpdateDashboardWithBodyWithResponse Update dashboard
 //
-// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -454,7 +454,7 @@ func (c *ClientWithResponses) UpdateDashboardWithBodyWithResponse(ctx context.Co
 
 // UpdateDashboardWithResponse Update dashboard
 //
-// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -1363,7 +1363,7 @@ func (c *ClientWithResponses) CreateEnvironmentWithResponse(ctx context.Context,
 
 // DeleteEnvironmentsBatchWithBodyWithResponse Delete environments
 //
-// Delete environments batch. Idempotent, missing ids are silently ignored.
+// Delete environments batch. Idempotent — missing ids are silently ignored.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -1378,7 +1378,7 @@ func (c *ClientWithResponses) DeleteEnvironmentsBatchWithBodyWithResponse(ctx co
 
 // DeleteEnvironmentsBatchWithResponse Delete environments
 //
-// Delete environments batch. Idempotent, missing ids are silently ignored.
+// Delete environments batch. Idempotent — missing ids are silently ignored.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -2074,7 +2074,7 @@ func (c *ClientWithResponses) GetInsightsViewByIdWithResponse(ctx context.Contex
 
 // UpdateInsightsViewWithBodyWithResponse Update insights view
 //
-// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -2089,7 +2089,7 @@ func (c *ClientWithResponses) UpdateInsightsViewWithBodyWithResponse(ctx context
 
 // UpdateInsightsViewWithResponse Update insights view
 //
-// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -3973,7 +3973,7 @@ func (c *ClientWithResponses) FindReportFailuresWithResponse(ctx context.Context
 
 // CreateReportFailureWithBodyWithResponse Record a report/job failure
 //
-// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -3988,7 +3988,7 @@ func (c *ClientWithResponses) CreateReportFailureWithBodyWithResponse(ctx contex
 
 // CreateReportFailureWithResponse Record a report/job failure
 //
-// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //

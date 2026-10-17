@@ -6,7 +6,7 @@ Unofficial Go client for the Opik REST API, generated from the OpenAPI document 
 
 One generated package, `opik`, at the module root, driven by `gen.go`:
 
-`scripts/fetch-spec.sh` downloads `https://raw.githubusercontent.com/comet-ml/opik/main/sdks/code_generation/fern/openapi/openapi.yaml` to `api/openapi.yaml` → `scripts/patch-spec.sh` invokes the Go YAML patch tool in `internal/cmd/patch-spec` and writes `api/openapi.fixed.yaml`, retagging bare `=` enum values as strings and normalizing description punctuation → oapi-codegen with `config.yaml` → `client_*.gen.go` through `scripts/split-gen.sh`.
+`scripts/fetch-spec.sh` downloads `https://raw.githubusercontent.com/comet-ml/opik/main/sdks/code_generation/fern/openapi/openapi.yaml` to `api/openapi.yaml` → `scripts/patch-spec.sh` invokes the Go YAML patch tool in `internal/cmd/patch-spec` and writes `api/openapi.fixed.yaml`, retagging bare `=` enum values as strings → oapi-codegen with `config.yaml` → `client_*.gen.go` through `scripts/split-gen.sh`.
 
 ## Stack
 

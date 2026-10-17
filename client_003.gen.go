@@ -1395,7 +1395,7 @@ type ClientWithResponsesInterface interface {
 
 	// SearchAnnotationQueueItemsWithBodyWithResponse Search annotation queue items
 	//
-	// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+	// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -1404,7 +1404,7 @@ type ClientWithResponsesInterface interface {
 
 	// SearchAnnotationQueueItemsWithResponse Search annotation queue items
 	//
-	// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+	// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -1677,7 +1677,7 @@ type ClientWithResponsesInterface interface {
 
 	// UpdateDashboardWithBodyWithResponse Update dashboard
 	//
-	// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+	// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -1686,7 +1686,7 @@ type ClientWithResponsesInterface interface {
 
 	// UpdateDashboardWithResponse Update dashboard
 	//
-	// Update dashboard by id. Partial updates are supported, only provided fields will be updated.
+	// Update dashboard by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -2235,7 +2235,7 @@ type ClientWithResponsesInterface interface {
 
 	// DeleteEnvironmentsBatchWithBodyWithResponse Delete environments
 	//
-	// Delete environments batch. Idempotent, missing ids are silently ignored.
+	// Delete environments batch. Idempotent — missing ids are silently ignored.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -2244,7 +2244,7 @@ type ClientWithResponsesInterface interface {
 
 	// DeleteEnvironmentsBatchWithResponse Delete environments
 	//
-	// Delete environments batch. Idempotent, missing ids are silently ignored.
+	// Delete environments batch. Idempotent — missing ids are silently ignored.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -2640,7 +2640,7 @@ type ClientWithResponsesInterface interface {
 
 	// UpdateInsightsViewWithBodyWithResponse Update insights view
 	//
-	// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+	// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -2649,7 +2649,7 @@ type ClientWithResponsesInterface interface {
 
 	// UpdateInsightsViewWithResponse Update insights view
 	//
-	// Update insights view by id. Partial updates are supported, only provided fields will be updated.
+	// Update insights view by id. Partial updates are supported - only provided fields will be updated.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -3759,7 +3759,7 @@ type ClientWithResponsesInterface interface {
 
 	// CreateReportFailureWithBodyWithResponse Record a report/job failure
 	//
-	// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+	// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -3768,7 +3768,7 @@ type ClientWithResponsesInterface interface {
 
 	// CreateReportFailureWithResponse Record a report/job failure
 	//
-	// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+	// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -19955,7 +19955,7 @@ func (c *ClientWithResponses) RemoveItemsFromAnnotationQueueWithResponse(ctx con
 
 // SearchAnnotationQueueItemsWithBodyWithResponse Search annotation queue items
 //
-// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -19970,7 +19970,7 @@ func (c *ClientWithResponses) SearchAnnotationQueueItemsWithBodyWithResponse(ctx
 
 // SearchAnnotationQueueItemsWithResponse Search annotation queue items
 //
-// Returns queue membership metadata, how each item got into the queue, for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
+// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //

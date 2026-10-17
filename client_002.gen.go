@@ -1918,7 +1918,7 @@ func (c *Client) FindReportFailures(ctx context.Context, params *FindReportFailu
 
 // CreateReportFailureWithBody Record a report/job failure
 //
-// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 //
 // Takes any type of body and a specified content type.
 //
@@ -1937,7 +1937,7 @@ func (c *Client) CreateReportFailureWithBody(ctx context.Context, contentType st
 
 // CreateReportFailure Record a report/job failure
 //
-// Appends a failure row keyed by (project_id, type). Append-only, never overwrites earlier failures.
+// Appends a failure row keyed by (project_id, type). Append-only — never overwrites earlier failures.
 //
 // Takes a body of the `application/json` content type.
 //

@@ -82,7 +82,7 @@ make generate
 `gen.go` declares the steps, so `make generate` is just `go generate ./...`:
 
 - `scripts/fetch-spec.sh` downloads `https://raw.githubusercontent.com/comet-ml/opik/main/sdks/code_generation/fern/openapi/openapi.yaml` to `api/openapi.yaml`.
-- `scripts/patch-spec.sh` runs the Go patch tool and writes `api/openapi.fixed.yaml`. It retags bare YAML `=` enum values as strings so strict loaders can read the document. It also replaces dash punctuation in descriptions and summaries with commas for generated comments.
+- `scripts/patch-spec.sh` runs the Go patch tool and writes `api/openapi.fixed.yaml`. It retags bare YAML `=` enum values as strings so strict loaders can read the document.
 - oapi-codegen runs with `config.yaml`. The config maps unformatted `number` fields to `float64`.
 - `scripts/split-gen.sh` splits the generated output at declaration boundaries into `client_*.gen.go` files and fixes their imports.
 

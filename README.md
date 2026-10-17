@@ -58,6 +58,8 @@ func main() {
 
 The same code is in `example_test.go`, so `make test` checks that it compiles.
 
+The full API is in the [Go reference](https://pkg.go.dev/github.com/psyb0t/go-opik); from inside your module, `go doc github.com/psyb0t/go-opik` prints the same.
+
 Check `StatusCode()` and the relevant decoded response field before using a response. HTTP error status codes do not produce a Go error by themselves. Method names come from the spec's operation IDs.
 
 ## Auth

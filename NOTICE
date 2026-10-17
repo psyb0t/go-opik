@@ -1,0 +1,11 @@
+The generated Opik REST API definitions and descriptions derive from the
+Opik OpenAPI specification published by Comet ML, Inc under Apache 2.0.
+Copyright (c) Comet ML, Inc.
+
+Source: https://raw.githubusercontent.com/comet-ml/opik/main/sdks/code_generation/fern/openapi/openapi.yaml
+Upstream license: LICENSE.opik
+
+The generation pipeline quotes YAML value-tag enum scalars and replaces dash
+punctuation in descriptions and summaries with commas before generating Go
+types and HTTP client methods. The downloaded specification is not shipped.
+The repository tooling and tests are licensed under LICENSE (MIT).

@@ -17,6 +17,44 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// AppendJobLogs Append local runner job logs
+//
+// Append log entries for a running local runner job.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/logs (the `AppendJobLogs` operationId).
+func (c *Client) AppendJobLogs(ctx context.Context, jobId openapi_types.UUID, body AppendJobLogsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAppendJobLogsRequest(c.Server, jobId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ReportJobResultWithBody Report local runner job result
+//
+// Report local runner job completion or failure.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/results (the `ReportJobResult` operationId).
+func (c *Client) ReportJobResultWithBody(ctx context.Context, jobId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReportJobResultRequestWithBody(c.Server, jobId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ReportJobResult Report local runner job result
 //
 // Report local runner job completion or failure.
@@ -9740,6 +9778,47 @@ func NewCompareDatasetVersionsRequest(server string, id openapi_types.UUID) (*ht
 	}
 
 	operationPath := fmt.Sprintf("/v1/private/datasets/%s/versions/diff", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetDatasetVersionByHashRequest constructs an http.Request for the GetDatasetVersionByHash method
+func NewGetDatasetVersionByHashRequest(server string, id openapi_types.UUID, versionHash string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "versionHash", versionHash, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/datasets/%s/versions/hash/%s", pathParam0, pathParam1)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -19941,87 +20020,6 @@ func NewSubmitWelcomeWizardRequestWithBody(server string, contentType string, bo
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewGetWorkspaceUserPermissionsRequest constructs an http.Request for the GetWorkspaceUserPermissions method
-func NewGetWorkspaceUserPermissionsRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/workspace-permissions")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewDeleteWorkspaceConfigurationRequest constructs an http.Request for the DeleteWorkspaceConfiguration method
-func NewDeleteWorkspaceConfigurationRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/workspaces/configurations")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetWorkspaceConfigurationRequest constructs an http.Request for the GetWorkspaceConfiguration method
-func NewGetWorkspaceConfigurationRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/workspaces/configurations")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }

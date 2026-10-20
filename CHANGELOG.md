@@ -2,6 +2,13 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.1.3, 2026-10-20
+
+- Added `GetDatasetVersionByHash` and `GetDatasetVersionByHashWithResponse` to `Client` and `ClientWithResponses`, and to `ClientInterface` and `ClientWithResponsesInterface`. They call `GET /v1/private/datasets/{id}/versions/hash/{versionHash}`.
+- Added `GetDatasetVersionByHashResponse`, `NewGetDatasetVersionByHashRequest` and `ParseGetDatasetVersionByHashResponse`. The response type exposes `DatasetVersionPublic` on 200 and `ErrorMessagePublic` on 404.
+- Added the optional field `ResetProjectIds` to `Response`, a list of project IDs whose automatic run never finished.
+- Code that implements `ClientInterface` or `ClientWithResponsesInterface` itself, for example a mock, must add the new methods.
+
 ## v0.1.2, 2026-10-17
 
 - Documentation only. The agent skill explains how to look up every endpoint, parameter and model with `go doc` or on pkg.go.dev, and declares its license.

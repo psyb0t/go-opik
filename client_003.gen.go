@@ -17,6 +17,87 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// NewGetWorkspaceUserPermissionsRequest constructs an http.Request for the GetWorkspaceUserPermissions method
+func NewGetWorkspaceUserPermissionsRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/workspace-permissions")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDeleteWorkspaceConfigurationRequest constructs an http.Request for the DeleteWorkspaceConfiguration method
+func NewDeleteWorkspaceConfigurationRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/workspaces/configurations")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetWorkspaceConfigurationRequest constructs an http.Request for the GetWorkspaceConfiguration method
+func NewGetWorkspaceConfigurationRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/workspaces/configurations")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUpsertWorkspaceConfigurationRequest calls the generic UpsertWorkspaceConfiguration builder with application/json body
 func NewUpsertWorkspaceConfigurationRequest(server string, body UpsertWorkspaceConfigurationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -2128,6 +2209,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /v1/private/datasets/{id}/versions/diff (the `CompareDatasetVersions` operationId).
 	CompareDatasetVersionsWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*CompareDatasetVersionsResponse, error)
+
+	// GetDatasetVersionByHashWithResponse Get dataset version by hash
+	//
+	// Get a specific version by its version hash.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /v1/private/datasets/{id}/versions/hash/{versionHash} (the `GetDatasetVersionByHash` operationId).
+	GetDatasetVersionByHashWithResponse(ctx context.Context, id openapi_types.UUID, versionHash string, reqEditors ...RequestEditorFn) (*GetDatasetVersionByHashResponse, error)
 
 	// UpdateDatasetVersionWithBodyWithResponse Update dataset version
 	//
@@ -9827,6 +9917,54 @@ func (r CompareDatasetVersionsResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r CompareDatasetVersionsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetDatasetVersionByHashResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *DatasetVersionPublic
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessagePublic
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetDatasetVersionByHashResponse) GetJSON200() *DatasetVersionPublic {
+	return r.JSON200
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r GetDatasetVersionByHashResponse) GetJSON404() *ErrorMessagePublic {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r GetDatasetVersionByHashResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetDatasetVersionByHashResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetDatasetVersionByHashResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetDatasetVersionByHashResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -19880,150 +20018,4 @@ func (c *ClientWithResponses) UpdateAnnotationQueueWithBodyWithResponse(ctx cont
 		return nil, err
 	}
 	return ParseUpdateAnnotationQueueResponse(rsp)
-}
-
-// UpdateAnnotationQueueWithResponse Update annotation queue
-//
-// Update annotation queue by id.
-//
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with PATCH /v1/private/annotation-queues/{id} (the `UpdateAnnotationQueue` operationId).
-func (c *ClientWithResponses) UpdateAnnotationQueueWithResponse(ctx context.Context, id openapi_types.UUID, body UpdateAnnotationQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateAnnotationQueueResponse, error) {
-	rsp, err := c.UpdateAnnotationQueue(ctx, id, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseUpdateAnnotationQueueResponse(rsp)
-}
-
-// AddItemsToAnnotationQueueWithBodyWithResponse Add items to annotation queue
-//
-// Add traces or threads to annotation queue.
-//
-// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /v1/private/annotation-queues/{id}/items/add (the `AddItemsToAnnotationQueue` operationId).
-func (c *ClientWithResponses) AddItemsToAnnotationQueueWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AddItemsToAnnotationQueueResponse, error) {
-	rsp, err := c.AddItemsToAnnotationQueueWithBody(ctx, id, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAddItemsToAnnotationQueueResponse(rsp)
-}
-
-// AddItemsToAnnotationQueueWithResponse Add items to annotation queue
-//
-// Add traces or threads to annotation queue.
-//
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /v1/private/annotation-queues/{id}/items/add (the `AddItemsToAnnotationQueue` operationId).
-func (c *ClientWithResponses) AddItemsToAnnotationQueueWithResponse(ctx context.Context, id openapi_types.UUID, body AddItemsToAnnotationQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*AddItemsToAnnotationQueueResponse, error) {
-	rsp, err := c.AddItemsToAnnotationQueue(ctx, id, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAddItemsToAnnotationQueueResponse(rsp)
-}
-
-// RemoveItemsFromAnnotationQueueWithBodyWithResponse Remove items from annotation queue
-//
-// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /v1/private/annotation-queues/{id}/items/delete (the `RemoveItemsFromAnnotationQueue` operationId).
-func (c *ClientWithResponses) RemoveItemsFromAnnotationQueueWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RemoveItemsFromAnnotationQueueResponse, error) {
-	rsp, err := c.RemoveItemsFromAnnotationQueueWithBody(ctx, id, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRemoveItemsFromAnnotationQueueResponse(rsp)
-}
-
-// RemoveItemsFromAnnotationQueueWithResponse Remove items from annotation queue
-//
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /v1/private/annotation-queues/{id}/items/delete (the `RemoveItemsFromAnnotationQueue` operationId).
-func (c *ClientWithResponses) RemoveItemsFromAnnotationQueueWithResponse(ctx context.Context, id openapi_types.UUID, body RemoveItemsFromAnnotationQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*RemoveItemsFromAnnotationQueueResponse, error) {
-	rsp, err := c.RemoveItemsFromAnnotationQueue(ctx, id, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRemoveItemsFromAnnotationQueueResponse(rsp)
-}
-
-// SearchAnnotationQueueItemsWithBodyWithResponse Search annotation queue items
-//
-// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
-//
-// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /v1/private/annotation-queues/{id}/items/search (the `SearchAnnotationQueueItems` operationId).
-func (c *ClientWithResponses) SearchAnnotationQueueItemsWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SearchAnnotationQueueItemsResponse, error) {
-	rsp, err := c.SearchAnnotationQueueItemsWithBody(ctx, id, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSearchAnnotationQueueItemsResponse(rsp)
-}
-
-// SearchAnnotationQueueItemsWithResponse Search annotation queue items
-//
-// Returns queue membership metadata — how each item got into the queue — for the given item ids. A lookup rather than a listing: the caller renders the items table from the traces or threads API with its own sort and filters, so it asks for exactly the ids it is displaying. Ids that are not in the queue are omitted.
-//
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /v1/private/annotation-queues/{id}/items/search (the `SearchAnnotationQueueItems` operationId).
-func (c *ClientWithResponses) SearchAnnotationQueueItemsWithResponse(ctx context.Context, id openapi_types.UUID, body SearchAnnotationQueueItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*SearchAnnotationQueueItemsResponse, error) {
-	rsp, err := c.SearchAnnotationQueueItems(ctx, id, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSearchAnnotationQueueItemsResponse(rsp)
-}
-
-// LockAnnotationQueueItemWithResponse Create or extend annotation queue item lock
-//
-// # Claim an annotation queue item for the current user, or extend an existing lock
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with PUT /v1/private/annotation-queues/{queueId}/items/{itemId}/lock (the `LockAnnotationQueueItem` operationId).
-func (c *ClientWithResponses) LockAnnotationQueueItemWithResponse(ctx context.Context, queueId openapi_types.UUID, itemId openapi_types.UUID, reqEditors ...RequestEditorFn) (*LockAnnotationQueueItemResponse, error) {
-	rsp, err := c.LockAnnotationQueueItem(ctx, queueId, itemId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseLockAnnotationQueueItemResponse(rsp)
-}
-
-// GetAnnotationQueueLocksWithResponse Get all active locks for an annotation queue
-//
-// Returns lock status for all actively locked items in the queue.
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with GET /v1/private/annotation-queues/{queueId}/locks (the `GetAnnotationQueueLocks` operationId).
-func (c *ClientWithResponses) GetAnnotationQueueLocksWithResponse(ctx context.Context, queueId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetAnnotationQueueLocksResponse, error) {
-	rsp, err := c.GetAnnotationQueueLocks(ctx, queueId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetAnnotationQueueLocksResponse(rsp)
-}
-
-// StoreAssertionsBatchWithBodyWithResponse Batch ingestion of assertion results
-//
-// Batch ingestion of assertion results for traces or spans.
-//
-// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with PUT /v1/private/assertion-results (the `StoreAssertionsBatch` operationId).
-func (c *ClientWithResponses) StoreAssertionsBatchWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StoreAssertionsBatchResponse, error) {
-	rsp, err := c.StoreAssertionsBatchWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseStoreAssertionsBatchResponse(rsp)
 }

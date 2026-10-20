@@ -8803,6 +8803,9 @@ type Response struct {
 	Cleared              *int32                `json:"cleared,omitempty"`
 	Enrolled             *int32                `json:"enrolled,omitempty"`
 
+	// ResetProjectIds Ids whose automatic run never finished, so clearing forgot it and enrolling them again gives it one more free run
+	ResetProjectIds *[]openapi_types.UUID `json:"reset_project_ids,omitempty"`
+
 	// UnknownProjectIds Ids that match no project
 	UnknownProjectIds *[]openapi_types.UUID `json:"unknown_project_ids,omitempty"`
 }
@@ -13023,6 +13026,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /v1/private/datasets/{id}/versions/diff (the `CompareDatasetVersions` operationId).
 	CompareDatasetVersions(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetDatasetVersionByHash Get dataset version by hash
+	//
+	// Get a specific version by its version hash.
+	//
+	// Corresponds with GET /v1/private/datasets/{id}/versions/hash/{versionHash} (the `GetDatasetVersionByHash` operationId).
+	GetDatasetVersionByHash(ctx context.Context, id openapi_types.UUID, versionHash string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateDatasetVersionWithBody Update dataset version
 	//
@@ -18483,6 +18493,23 @@ func (c *Client) CompareDatasetVersions(ctx context.Context, id openapi_types.UU
 	return c.Client.Do(req)
 }
 
+// GetDatasetVersionByHash Get dataset version by hash
+//
+// Get a specific version by its version hash.
+//
+// Corresponds with GET /v1/private/datasets/{id}/versions/hash/{versionHash} (the `GetDatasetVersionByHash` operationId).
+func (c *Client) GetDatasetVersionByHash(ctx context.Context, id openapi_types.UUID, versionHash string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDatasetVersionByHashRequest(c.Server, id, versionHash)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // UpdateDatasetVersionWithBody Update dataset version
 //
 // Update a dataset version's change_description and/or add new tags.
@@ -19978,44 +20005,6 @@ func (c *Client) GetJobLogs(ctx context.Context, jobId openapi_types.UUID, param
 // Corresponds with POST /v1/private/local-runners/jobs/{jobId}/logs (the `AppendJobLogs` operationId).
 func (c *Client) AppendJobLogsWithBody(ctx context.Context, jobId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAppendJobLogsRequestWithBody(c.Server, jobId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// AppendJobLogs Append local runner job logs
-//
-// Append log entries for a running local runner job.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/logs (the `AppendJobLogs` operationId).
-func (c *Client) AppendJobLogs(ctx context.Context, jobId openapi_types.UUID, body AppendJobLogsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAppendJobLogsRequest(c.Server, jobId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ReportJobResultWithBody Report local runner job result
-//
-// Report local runner job completion or failure.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/results (the `ReportJobResult` operationId).
-func (c *Client) ReportJobResultWithBody(ctx context.Context, jobId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReportJobResultRequestWithBody(c.Server, jobId, contentType, body)
 	if err != nil {
 		return nil, err
 	}

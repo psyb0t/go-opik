@@ -5226,15 +5226,18 @@ type AlertTriggerWriteEventType string
 
 // AlertPublic defines model for Alert_Public.
 type AlertPublic struct {
-	AlertType     *AlertPublicAlertType `json:"alert_type,omitempty"`
-	CreatedAt     *time.Time            `json:"created_at,omitempty"`
-	CreatedBy     *string               `json:"created_by,omitempty"`
-	Enabled       *bool                 `json:"enabled,omitempty"`
-	Id            *openapi_types.UUID   `json:"id,omitempty"`
-	LastUpdatedAt *time.Time            `json:"last_updated_at,omitempty"`
-	LastUpdatedBy *string               `json:"last_updated_by,omitempty"`
-	Metadata      *map[string]string    `json:"metadata,omitempty"`
-	Name          *string               `json:"name,omitempty"`
+	AlertType *AlertPublicAlertType `json:"alert_type,omitempty"`
+	CreatedAt *time.Time            `json:"created_at,omitempty"`
+	CreatedBy *string               `json:"created_by,omitempty"`
+
+	// CustomFields Optional user-defined key/value pairs, added as top-level keys of the alert's EventBridge event detail. Keys must not collide with the event's own keys.
+	CustomFields  *map[string]string  `json:"custom_fields,omitempty"`
+	Enabled       *bool               `json:"enabled,omitempty"`
+	Id            *openapi_types.UUID `json:"id,omitempty"`
+	LastUpdatedAt *time.Time          `json:"last_updated_at,omitempty"`
+	LastUpdatedBy *string             `json:"last_updated_by,omitempty"`
+	Metadata      *map[string]string  `json:"metadata,omitempty"`
+	Name          *string             `json:"name,omitempty"`
 
 	// ProjectId Optional project scope for this alert. When set, the alert is scoped to the specified project. Do NOT also provide a 'scope:project' trigger config — the system will create it automatically from this field. Sending both project_id and a scope:project trigger config will result in an error.
 	ProjectId *openapi_types.UUID   `json:"project_id,omitempty"`
@@ -5248,10 +5251,13 @@ type AlertPublicAlertType string
 // AlertWrite defines model for Alert_Write.
 type AlertWrite struct {
 	AlertType *AlertWriteAlertType `json:"alert_type,omitempty"`
-	Enabled   *bool                `json:"enabled,omitempty"`
-	Id        *openapi_types.UUID  `json:"id,omitempty"`
-	Metadata  *map[string]string   `json:"metadata,omitempty"`
-	Name      *string              `json:"name,omitempty"`
+
+	// CustomFields Optional user-defined key/value pairs, added as top-level keys of the alert's EventBridge event detail. Keys must not collide with the event's own keys.
+	CustomFields *map[string]string  `json:"custom_fields,omitempty"`
+	Enabled      *bool               `json:"enabled,omitempty"`
+	Id           *openapi_types.UUID `json:"id,omitempty"`
+	Metadata     *map[string]string  `json:"metadata,omitempty"`
+	Name         *string             `json:"name,omitempty"`
 
 	// ProjectId Optional project scope for this alert. When set, the alert is scoped to the specified project. Do NOT also provide a 'scope:project' trigger config — the system will create it automatically from this field. Sending both project_id and a scope:project trigger config will result in an error.
 	ProjectId *openapi_types.UUID  `json:"project_id,omitempty"`
@@ -13115,7 +13121,7 @@ type ClientInterface interface {
 
 	// FindEnvironments Find environments
 	//
-	// Find environments for the workspace. Capped at the workspace limit (default 20).
+	// Find environments for the workspace. Capped at the workspace limit (default 100).
 	//
 	// Corresponds with GET /v1/private/environments (the `FindEnvironments` operationId).
 	FindEnvironments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -18681,7 +18687,7 @@ func (c *Client) DeleteVersionTag(ctx context.Context, id openapi_types.UUID, ve
 
 // FindEnvironments Find environments
 //
-// Find environments for the workspace. Capped at the workspace limit (default 20).
+// Find environments for the workspace. Capped at the workspace limit (default 100).
 //
 // Corresponds with GET /v1/private/environments (the `FindEnvironments` operationId).
 func (c *Client) FindEnvironments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {

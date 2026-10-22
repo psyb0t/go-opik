@@ -2,6 +2,12 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.1.4, 2026-10-22
+
+- Added the optional field `CustomFields` (`*map[string]string`) to `AlertPublic` and `AlertWrite`. It holds user-defined key/value pairs added as top-level keys of the alert's EventBridge event detail.
+- Updated the doc comments of `FindEnvironments` and `FindEnvironmentsWithResponse` on the client and interface types: the workspace limit default is now documented as 100, not 20.
+- The development image `Dockerfile.dev` uses Go 1.26.10, which fixes the `crypto/x509` vulnerability GO-2026-6809 reported by `make sec`, and `ca-certificates` 20261020-r0.
+
 ## v0.1.3, 2026-10-20
 
 - Added `GetDatasetVersionByHash` and `GetDatasetVersionByHashWithResponse` to `Client` and `ClientWithResponses`, and to `ClientInterface` and `ClientWithResponsesInterface`. They call `GET /v1/private/datasets/{id}/versions/hash/{versionHash}`.

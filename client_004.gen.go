@@ -1483,7 +1483,7 @@ func (c *ClientWithResponses) DeleteVersionTagWithResponse(ctx context.Context, 
 
 // FindEnvironmentsWithResponse Find environments
 //
-// Find environments for the workspace. Capped at the workspace limit (default 20).
+// Find environments for the workspace. Capped at the workspace limit (default 100).
 //
 // Returns a wrapper object for the known response body format(s).
 //

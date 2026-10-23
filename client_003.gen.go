@@ -10620,11 +10620,18 @@ type ExecuteExperimentResponse struct {
 	HTTPResponse *http.Response
 	// JSON202 the response for an HTTP 202 `application/json` response
 	JSON202 *ExperimentExecutionResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
 }
 
 // GetJSON202 returns the response for an HTTP 202 `application/json` response
 func (r ExecuteExperimentResponse) GetJSON202() *ExperimentExecutionResponse {
 	return r.JSON202
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r ExecuteExperimentResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
 }
 
 // GetBody returns the raw response body bytes

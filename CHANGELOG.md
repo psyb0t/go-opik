@@ -2,6 +2,10 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.1.5, 2026-10-23
+
+- Added the field `JSON400` (`*ErrorMessage`) and the method `GetJSON400` to `ExecuteExperimentResponse`. `ParseExecuteExperimentResponse` now decodes an HTTP 400 JSON body into `JSON400`.
+
 ## v0.1.4, 2026-10-22
 
 - Added the optional field `CustomFields` (`*map[string]string`) to `AlertPublic` and `AlertWrite`. It holds user-defined key/value pairs added as top-level keys of the alert's EventBridge event detail.

@@ -1906,6 +1906,7 @@ func (e ExperimentRunSummaryPublicStatus) Valid() bool {
 const (
 	ExperimentUpdateStatusCancelled ExperimentUpdateStatus = "cancelled"
 	ExperimentUpdateStatusCompleted ExperimentUpdateStatus = "completed"
+	ExperimentUpdateStatusFailed    ExperimentUpdateStatus = "failed"
 	ExperimentUpdateStatusRunning   ExperimentUpdateStatus = "running"
 )
 
@@ -1915,6 +1916,8 @@ func (e ExperimentUpdateStatus) Valid() bool {
 	case ExperimentUpdateStatusCancelled:
 		return true
 	case ExperimentUpdateStatusCompleted:
+		return true
+	case ExperimentUpdateStatusFailed:
 		return true
 	case ExperimentUpdateStatusRunning:
 		return true
@@ -1969,6 +1972,7 @@ func (e ExperimentPublicEvaluationMethod) Valid() bool {
 const (
 	ExperimentPublicStatusCancelled ExperimentPublicStatus = "cancelled"
 	ExperimentPublicStatusCompleted ExperimentPublicStatus = "completed"
+	ExperimentPublicStatusFailed    ExperimentPublicStatus = "failed"
 	ExperimentPublicStatusRunning   ExperimentPublicStatus = "running"
 )
 
@@ -1978,6 +1982,8 @@ func (e ExperimentPublicStatus) Valid() bool {
 	case ExperimentPublicStatusCancelled:
 		return true
 	case ExperimentPublicStatusCompleted:
+		return true
+	case ExperimentPublicStatusFailed:
 		return true
 	case ExperimentPublicStatusRunning:
 		return true
@@ -2032,6 +2038,7 @@ func (e ExperimentWriteEvaluationMethod) Valid() bool {
 const (
 	ExperimentWriteStatusCancelled ExperimentWriteStatus = "cancelled"
 	ExperimentWriteStatusCompleted ExperimentWriteStatus = "completed"
+	ExperimentWriteStatusFailed    ExperimentWriteStatus = "failed"
 	ExperimentWriteStatusRunning   ExperimentWriteStatus = "running"
 )
 
@@ -2041,6 +2048,8 @@ func (e ExperimentWriteStatus) Valid() bool {
 	case ExperimentWriteStatusCancelled:
 		return true
 	case ExperimentWriteStatusCompleted:
+		return true
+	case ExperimentWriteStatusFailed:
 		return true
 	case ExperimentWriteStatusRunning:
 		return true
@@ -5279,6 +5288,42 @@ type AnalyticsQueryResponse struct {
 	Results *[]JsonNode `json:"results,omitempty"`
 }
 
+// AnnotationQueueAnnotatorView defines model for AnnotationQueueAnnotatorView.
+type AnnotationQueueAnnotatorView struct {
+	// Html A custom HTML view rendered in a sandboxed iframe instead of the default trace blocks or conversation
+	Html *string `json:"html,omitempty"`
+
+	// KitVersion Version of the view kit the html was written for
+	KitVersion *int32 `json:"kit_version,omitempty"`
+
+	// Summary What annotators see in the view, in one or two sentences
+	Summary *string `json:"summary,omitempty"`
+}
+
+// AnnotationQueueAnnotatorViewPublic defines model for AnnotationQueueAnnotatorView_Public.
+type AnnotationQueueAnnotatorViewPublic struct {
+	// Html A custom HTML view rendered in a sandboxed iframe instead of the default trace blocks or conversation
+	Html *string `json:"html,omitempty"`
+
+	// KitVersion Version of the view kit the html was written for
+	KitVersion *int32 `json:"kit_version,omitempty"`
+
+	// Summary What annotators see in the view, in one or two sentences
+	Summary *string `json:"summary,omitempty"`
+}
+
+// AnnotationQueueAnnotatorViewWrite defines model for AnnotationQueueAnnotatorView_Write.
+type AnnotationQueueAnnotatorViewWrite struct {
+	// Html A custom HTML view rendered in a sandboxed iframe instead of the default trace blocks or conversation
+	Html *string `json:"html,omitempty"`
+
+	// KitVersion Version of the view kit the html was written for
+	KitVersion *int32 `json:"kit_version,omitempty"`
+
+	// Summary What annotators see in the view, in one or two sentences
+	Summary *string `json:"summary,omitempty"`
+}
+
 // AnnotationQueueAutomation defines model for AnnotationQueueAutomation.
 type AnnotationQueueAutomation struct {
 	// ClearMaxItemsInQueue When true, removes the item ceiling so automation adds without bound
@@ -5369,37 +5414,39 @@ type AnnotationQueueReviewerPublic struct {
 
 // AnnotationQueueUpdate defines model for AnnotationQueueUpdate.
 type AnnotationQueueUpdate struct {
-	AnnotatorsPerItem       *int32                     `json:"annotators_per_item,omitempty"`
-	Automation              *AnnotationQueueAutomation `json:"automation,omitempty"`
-	CommentsEnabled         *bool                      `json:"comments_enabled,omitempty"`
-	Description             *string                    `json:"description,omitempty"`
-	FeedbackDefinitionNames *[]string                  `json:"feedback_definition_names,omitempty"`
-	Instructions            *string                    `json:"instructions,omitempty"`
-	LockTimeoutSeconds      *int32                     `json:"lock_timeout_seconds,omitempty"`
-	Name                    *string                    `json:"name,omitempty"`
+	AnnotatorView           *AnnotationQueueAnnotatorView `json:"annotator_view,omitempty"`
+	AnnotatorsPerItem       *int32                        `json:"annotators_per_item,omitempty"`
+	Automation              *AnnotationQueueAutomation    `json:"automation,omitempty"`
+	CommentsEnabled         *bool                         `json:"comments_enabled,omitempty"`
+	Description             *string                       `json:"description,omitempty"`
+	FeedbackDefinitionNames *[]string                     `json:"feedback_definition_names,omitempty"`
+	Instructions            *string                       `json:"instructions,omitempty"`
+	LockTimeoutSeconds      *int32                        `json:"lock_timeout_seconds,omitempty"`
+	Name                    *string                       `json:"name,omitempty"`
 }
 
 // AnnotationQueuePublic defines model for AnnotationQueue_Public.
 type AnnotationQueuePublic struct {
-	AnnotatorsPerItem       *int32                           `json:"annotators_per_item,omitempty"`
-	Automation              *AnnotationQueueAutomationPublic `json:"automation,omitempty"`
-	CommentsEnabled         *bool                            `json:"comments_enabled,omitempty"`
-	CreatedAt               *time.Time                       `json:"created_at,omitempty"`
-	CreatedBy               *string                          `json:"created_by,omitempty"`
-	Description             *string                          `json:"description,omitempty"`
-	FeedbackDefinitionNames *[]string                        `json:"feedback_definition_names,omitempty"`
-	FeedbackScores          *[]FeedbackScoreAveragePublic    `json:"feedback_scores,omitempty"`
-	Id                      *openapi_types.UUID              `json:"id,omitempty"`
-	Instructions            *string                          `json:"instructions,omitempty"`
-	ItemsCount              *int64                           `json:"items_count,omitempty"`
-	LastUpdatedAt           *time.Time                       `json:"last_updated_at,omitempty"`
-	LastUpdatedBy           *string                          `json:"last_updated_by,omitempty"`
-	LockTimeoutSeconds      *int32                           `json:"lock_timeout_seconds,omitempty"`
-	Name                    string                           `json:"name"`
-	ProjectId               openapi_types.UUID               `json:"project_id"`
-	ProjectName             *string                          `json:"project_name,omitempty"`
-	Reviewers               *[]AnnotationQueueReviewerPublic `json:"reviewers,omitempty"`
-	Scope                   AnnotationQueuePublicScope       `json:"scope"`
+	AnnotatorView           *AnnotationQueueAnnotatorViewPublic `json:"annotator_view,omitempty"`
+	AnnotatorsPerItem       *int32                              `json:"annotators_per_item,omitempty"`
+	Automation              *AnnotationQueueAutomationPublic    `json:"automation,omitempty"`
+	CommentsEnabled         *bool                               `json:"comments_enabled,omitempty"`
+	CreatedAt               *time.Time                          `json:"created_at,omitempty"`
+	CreatedBy               *string                             `json:"created_by,omitempty"`
+	Description             *string                             `json:"description,omitempty"`
+	FeedbackDefinitionNames *[]string                           `json:"feedback_definition_names,omitempty"`
+	FeedbackScores          *[]FeedbackScoreAveragePublic       `json:"feedback_scores,omitempty"`
+	Id                      *openapi_types.UUID                 `json:"id,omitempty"`
+	Instructions            *string                             `json:"instructions,omitempty"`
+	ItemsCount              *int64                              `json:"items_count,omitempty"`
+	LastUpdatedAt           *time.Time                          `json:"last_updated_at,omitempty"`
+	LastUpdatedBy           *string                             `json:"last_updated_by,omitempty"`
+	LockTimeoutSeconds      *int32                              `json:"lock_timeout_seconds,omitempty"`
+	Name                    string                              `json:"name"`
+	ProjectId               openapi_types.UUID                  `json:"project_id"`
+	ProjectName             *string                             `json:"project_name,omitempty"`
+	Reviewers               *[]AnnotationQueueReviewerPublic    `json:"reviewers,omitempty"`
+	Scope                   AnnotationQueuePublicScope          `json:"scope"`
 }
 
 // AnnotationQueuePublicScope defines model for AnnotationQueuePublic.Scope.
@@ -5407,17 +5454,18 @@ type AnnotationQueuePublicScope string
 
 // AnnotationQueueWrite List of annotation queues to create
 type AnnotationQueueWrite struct {
-	AnnotatorsPerItem       *int32                          `json:"annotators_per_item,omitempty"`
-	Automation              *AnnotationQueueAutomationWrite `json:"automation,omitempty"`
-	CommentsEnabled         *bool                           `json:"comments_enabled,omitempty"`
-	Description             *string                         `json:"description,omitempty"`
-	FeedbackDefinitionNames *[]string                       `json:"feedback_definition_names,omitempty"`
-	Id                      *openapi_types.UUID             `json:"id,omitempty"`
-	Instructions            *string                         `json:"instructions,omitempty"`
-	LockTimeoutSeconds      *int32                          `json:"lock_timeout_seconds,omitempty"`
-	Name                    string                          `json:"name"`
-	ProjectId               openapi_types.UUID              `json:"project_id"`
-	Scope                   AnnotationQueueWriteScope       `json:"scope"`
+	AnnotatorView           *AnnotationQueueAnnotatorViewWrite `json:"annotator_view,omitempty"`
+	AnnotatorsPerItem       *int32                             `json:"annotators_per_item,omitempty"`
+	Automation              *AnnotationQueueAutomationWrite    `json:"automation,omitempty"`
+	CommentsEnabled         *bool                              `json:"comments_enabled,omitempty"`
+	Description             *string                            `json:"description,omitempty"`
+	FeedbackDefinitionNames *[]string                          `json:"feedback_definition_names,omitempty"`
+	Id                      *openapi_types.UUID                `json:"id,omitempty"`
+	Instructions            *string                            `json:"instructions,omitempty"`
+	LockTimeoutSeconds      *int32                             `json:"lock_timeout_seconds,omitempty"`
+	Name                    string                             `json:"name"`
+	ProjectId               openapi_types.UUID                 `json:"project_id"`
+	Scope                   AnnotationQueueWriteScope          `json:"scope"`
 }
 
 // AnnotationQueueWriteScope defines model for AnnotationQueueWrite.Scope.
@@ -6957,13 +7005,16 @@ type ExperimentBatchUpdate struct {
 
 // ExperimentExecutionRequest defines model for ExperimentExecutionRequest.
 type ExperimentExecutionRequest struct {
-	DatasetId        openapi_types.UUID   `json:"dataset_id"`
-	DatasetName      string               `json:"dataset_name"`
-	DatasetVersionId *openapi_types.UUID  `json:"dataset_version_id,omitempty"`
-	ProjectName      *string              `json:"project_name,omitempty"`
-	PromptVersions   *[]PromptVersionLink `json:"prompt_versions,omitempty"`
-	Prompts          []PromptVariant      `json:"prompts"`
-	VersionHash      *string              `json:"version_hash,omitempty"`
+	DatasetId        openapi_types.UUID    `json:"dataset_id"`
+	DatasetName      string                `json:"dataset_name"`
+	DatasetVersionId *openapi_types.UUID   `json:"dataset_version_id,omitempty"`
+	Filters          *string               `json:"filters,omitempty"`
+	ProjectId        *openapi_types.UUID   `json:"project_id,omitempty"`
+	ProjectName      *string               `json:"project_name,omitempty"`
+	PromptVersions   *[]PromptVersionLink  `json:"prompt_versions,omitempty"`
+	Prompts          []PromptVariant       `json:"prompts"`
+	SelectedRuleIds  *[]openapi_types.UUID `json:"selected_rule_ids,omitempty"`
+	VersionHash      *string               `json:"version_hash,omitempty"`
 }
 
 // ExperimentExecutionResponse defines model for ExperimentExecutionResponse.
@@ -6987,6 +7038,7 @@ type ExperimentGroupResponse struct {
 type ExperimentInfo struct {
 	ExperimentId *openapi_types.UUID `json:"experiment_id,omitempty"`
 	PromptIndex  *int32              `json:"prompt_index,omitempty"`
+	TotalItems   *int32              `json:"total_items,omitempty"`
 }
 
 // ExperimentItem defines model for ExperimentItem.
@@ -7242,12 +7294,15 @@ type ExperimentPublic struct {
 	EvaluationMethod      *ExperimentPublicEvaluationMethod `json:"evaluation_method,omitempty"`
 	ExperimentScores      *[]ExperimentScorePublic          `json:"experiment_scores,omitempty"`
 	FeedbackScores        *[]FeedbackScoreAveragePublic     `json:"feedback_scores,omitempty"`
-	Id                    *openapi_types.UUID               `json:"id,omitempty"`
-	LastUpdatedAt         *time.Time                        `json:"last_updated_at,omitempty"`
-	LastUpdatedBy         *string                           `json:"last_updated_by,omitempty"`
-	Metadata              *JsonListStringPublic             `json:"metadata,omitempty"`
-	Name                  *string                           `json:"name,omitempty"`
-	OptimizationId        *openapi_types.UUID               `json:"optimization_id,omitempty"`
+
+	// FinishedAt When the run stopped producing items. Unset while it may still produce more, whatever its status
+	FinishedAt     *time.Time            `json:"finished_at,omitempty"`
+	Id             *openapi_types.UUID   `json:"id,omitempty"`
+	LastUpdatedAt  *time.Time            `json:"last_updated_at,omitempty"`
+	LastUpdatedBy  *string               `json:"last_updated_by,omitempty"`
+	Metadata       *JsonListStringPublic `json:"metadata,omitempty"`
+	Name           *string               `json:"name,omitempty"`
+	OptimizationId *openapi_types.UUID   `json:"optimization_id,omitempty"`
 
 	// PassRate Pass rate for test suite experiments (0.0-1.0). Null for regular experiments.
 	PassRate *float64 `json:"pass_rate,omitempty"`
@@ -7600,6 +7655,11 @@ type GuardrailWriteResult string
 type GuardrailsValidationPublic struct {
 	Checks *[]CheckPublic      `json:"checks,omitempty"`
 	SpanId *openapi_types.UUID `json:"span_id,omitempty"`
+}
+
+// IdsHolder defines model for IdsHolder.
+type IdsHolder struct {
+	Ids []openapi_types.UUID `json:"ids"`
 }
 
 // ItemLockInfo defines model for ItemLockInfo.
@@ -10830,6 +10890,9 @@ type CreateExperimentJSONRequestBody = ExperimentWrite
 // BatchUpdateExperimentsJSONRequestBody defines body for BatchUpdateExperiments for application/json ContentType.
 type BatchUpdateExperimentsJSONRequestBody = ExperimentBatchUpdate
 
+// CancelExperimentsJSONRequestBody defines body for CancelExperiments for application/json ContentType.
+type CancelExperimentsJSONRequestBody = IdsHolder
+
 // DeleteExperimentsByIdJSONRequestBody defines body for DeleteExperimentsById for application/json ContentType.
 type DeleteExperimentsByIdJSONRequestBody = DeleteIdsHolder
 
@@ -13213,6 +13276,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with PATCH /v1/private/experiments/batch (the `BatchUpdateExperiments` operationId).
 	BatchUpdateExperiments(ctx context.Context, body BatchUpdateExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CancelExperimentsWithBody Cancel running experiments
+	//
+	// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+	CancelExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CancelExperiments Cancel running experiments
+	//
+	// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+	CancelExperiments(ctx context.Context, body CancelExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteExperimentsByIdWithBody Delete experiments by id
 	//
@@ -18910,6 +18991,44 @@ func (c *Client) BatchUpdateExperiments(ctx context.Context, body BatchUpdateExp
 	return c.Client.Do(req)
 }
 
+// CancelExperimentsWithBody Cancel running experiments
+//
+// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+func (c *Client) CancelExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelExperimentsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CancelExperiments Cancel running experiments
+//
+// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+func (c *Client) CancelExperiments(ctx context.Context, body CancelExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelExperimentsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // DeleteExperimentsByIdWithBody Delete experiments by id
 //
 // Takes any type of body and a specified content type.
@@ -19886,131 +20005,6 @@ func (c *Client) UpdateLlmProviderApiKey(ctx context.Context, id openapi_types.U
 // Corresponds with GET /v1/private/llm/models (the `GetLlmModels` operationId).
 func (c *Client) GetLlmModels(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetLlmModelsRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ListRunners List local runners
-//
-// List local runners owned by the current user in the workspace.
-//
-// Corresponds with GET /v1/private/local-runners (the `ListRunners` operationId).
-func (c *Client) ListRunners(ctx context.Context, params *ListRunnersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListRunnersRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateJobWithBody Create local runner job
-//
-// Create a local runner job and enqueue it for execution.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/local-runners/jobs (the `CreateJob` operationId).
-func (c *Client) CreateJobWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateJobRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateJob Create local runner job
-//
-// Create a local runner job and enqueue it for execution.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/local-runners/jobs (the `CreateJob` operationId).
-func (c *Client) CreateJob(ctx context.Context, body CreateJobJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateJobRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetJob Get local runner job
-//
-// Get a single local runner job's status and results.
-//
-// Corresponds with GET /v1/private/local-runners/jobs/{jobId} (the `GetJob` operationId).
-func (c *Client) GetJob(ctx context.Context, jobId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetJobRequest(c.Server, jobId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CancelJob Cancel local runner job
-//
-// Cancel a pending or running local runner job.
-//
-// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/cancel (the `CancelJob` operationId).
-func (c *Client) CancelJob(ctx context.Context, jobId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelJobRequest(c.Server, jobId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetJobLogs Get local runner job logs
-//
-// Get log entries for a local runner job.
-//
-// Corresponds with GET /v1/private/local-runners/jobs/{jobId}/logs (the `GetJobLogs` operationId).
-func (c *Client) GetJobLogs(ctx context.Context, jobId openapi_types.UUID, params *GetJobLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetJobLogsRequest(c.Server, jobId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// AppendJobLogsWithBody Append local runner job logs
-//
-// Append log entries for a running local runner job.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/logs (the `AppendJobLogs` operationId).
-func (c *Client) AppendJobLogsWithBody(ctx context.Context, jobId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAppendJobLogsRequestWithBody(c.Server, jobId, contentType, body)
 	if err != nil {
 		return nil, err
 	}

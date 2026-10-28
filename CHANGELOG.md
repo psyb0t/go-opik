@@ -2,6 +2,16 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.2.0, 2026-10-28
+
+- Added `CancelExperiments`, `CancelExperimentsWithBody`, `CancelExperimentsWithResponse` and `CancelExperimentsWithBodyWithResponse` to `Client` and `ClientWithResponses`. They call `PUT /v1/private/experiments/cancel`.
+- Added `CancelExperimentsResponse` (with `JSON403` and `JSON429` fields), `CancelExperimentsJSONRequestBody`, `IdsHolder`, `NewCancelExperimentsRequest`, `NewCancelExperimentsRequestWithBody` and `ParseCancelExperimentsResponse`.
+- Migration: the four new methods are also on `ClientInterface` and `ClientWithResponsesInterface`. Code that implements either interface itself, for example a mock, must add them.
+- Added `JSON403`, `JSON429`, `GetJSON403` and `GetJSON429` to `ExecuteExperimentResponse`.
+- Added the optional fields `Filters`, `ProjectId` and `SelectedRuleIds` to `ExperimentExecutionRequest`, `TotalItems` to `ExperimentInfo` and `FinishedAt` to `ExperimentPublic`.
+- Added the status value `failed`: `ExperimentPublicStatusFailed`, `ExperimentUpdateStatusFailed` and `ExperimentWriteStatusFailed`.
+- Added the types `AnnotationQueueAnnotatorView`, `AnnotationQueueAnnotatorViewPublic` and `AnnotationQueueAnnotatorViewWrite`, and the optional field `AnnotatorView` on `AnnotationQueuePublic`, `AnnotationQueueUpdate` and `AnnotationQueueWrite`.
+
 ## v0.1.7, 2026-10-28
 
 - Updated Semgrep in the development image to 1.182.1 and refreshed its locked dependencies. certifi 2026.10.23 drops the emSign root CAs whose intermediate keys were compromised (GHSA-6q48-6c7w-9gw2).

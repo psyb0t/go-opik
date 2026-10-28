@@ -17,6 +17,131 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// ListRunners List local runners
+//
+// List local runners owned by the current user in the workspace.
+//
+// Corresponds with GET /v1/private/local-runners (the `ListRunners` operationId).
+func (c *Client) ListRunners(ctx context.Context, params *ListRunnersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListRunnersRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateJobWithBody Create local runner job
+//
+// Create a local runner job and enqueue it for execution.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/local-runners/jobs (the `CreateJob` operationId).
+func (c *Client) CreateJobWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateJobRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateJob Create local runner job
+//
+// Create a local runner job and enqueue it for execution.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/local-runners/jobs (the `CreateJob` operationId).
+func (c *Client) CreateJob(ctx context.Context, body CreateJobJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateJobRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetJob Get local runner job
+//
+// Get a single local runner job's status and results.
+//
+// Corresponds with GET /v1/private/local-runners/jobs/{jobId} (the `GetJob` operationId).
+func (c *Client) GetJob(ctx context.Context, jobId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetJobRequest(c.Server, jobId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CancelJob Cancel local runner job
+//
+// Cancel a pending or running local runner job.
+//
+// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/cancel (the `CancelJob` operationId).
+func (c *Client) CancelJob(ctx context.Context, jobId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelJobRequest(c.Server, jobId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetJobLogs Get local runner job logs
+//
+// Get log entries for a local runner job.
+//
+// Corresponds with GET /v1/private/local-runners/jobs/{jobId}/logs (the `GetJobLogs` operationId).
+func (c *Client) GetJobLogs(ctx context.Context, jobId openapi_types.UUID, params *GetJobLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetJobLogsRequest(c.Server, jobId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// AppendJobLogsWithBody Append local runner job logs
+//
+// Append log entries for a running local runner job.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/local-runners/jobs/{jobId}/logs (the `AppendJobLogs` operationId).
+func (c *Client) AppendJobLogsWithBody(ctx context.Context, jobId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAppendJobLogsRequestWithBody(c.Server, jobId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // AppendJobLogs Append local runner job logs
 //
 // Append log entries for a running local runner job.
@@ -10564,6 +10689,46 @@ func NewBatchUpdateExperimentsRequestWithBody(server string, contentType string,
 	return req, nil
 }
 
+// NewCancelExperimentsRequest calls the generic CancelExperiments builder with application/json body
+func NewCancelExperimentsRequest(server string, body CancelExperimentsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCancelExperimentsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCancelExperimentsRequestWithBody constructs an http.Request for the CancelExperiments method, with any body, and a specified content type
+func NewCancelExperimentsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/experiments/cancel")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewDeleteExperimentsByIdRequest calls the generic DeleteExperimentsById builder with application/json body
 func NewDeleteExperimentsByIdRequest(server string, body DeleteExperimentsByIdJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -19860,161 +20025,6 @@ func NewAddTraceFeedbackScoreRequestWithBody(server string, id openapi_types.UUI
 	}
 
 	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTraceFeedbackScoreRequest calls the generic DeleteTraceFeedbackScore builder with application/json body
-func NewDeleteTraceFeedbackScoreRequest(server string, id openapi_types.UUID, body DeleteTraceFeedbackScoreJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteTraceFeedbackScoreRequestWithBody(server, id, "application/json", bodyReader)
-}
-
-// NewDeleteTraceFeedbackScoreRequestWithBody constructs an http.Request for the DeleteTraceFeedbackScore method, with any body, and a specified content type
-func NewDeleteTraceFeedbackScoreRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/%s/feedback-scores/delete", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewGetTraceCommentRequest constructs an http.Request for the GetTraceComment method
-func NewGetTraceCommentRequest(server string, traceId openapi_types.UUID, commentId openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "traceId", traceId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	var pathParam1 string
-
-	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "commentId", commentId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/%s/comments/%s", pathParam0, pathParam1)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetWelcomeWizardStatusRequest constructs an http.Request for the GetWelcomeWizardStatus method
-func NewGetWelcomeWizardStatusRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/welcome-wizard")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSubmitWelcomeWizardRequest calls the generic SubmitWelcomeWizard builder with application/json body
-func NewSubmitWelcomeWizardRequest(server string, body SubmitWelcomeWizardJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSubmitWelcomeWizardRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewSubmitWelcomeWizardRequestWithBody constructs an http.Request for the SubmitWelcomeWizard method, with any body, and a specified content type
-func NewSubmitWelcomeWizardRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/welcome-wizard")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}

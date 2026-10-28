@@ -14,6 +14,249 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// DeleteAlertBatchWithBodyWithResponse Delete alert batch
+//
+// Delete multiple alerts by their IDs.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/alerts/delete (the `DeleteAlertBatch` operationId).
+func (c *ClientWithResponses) DeleteAlertBatchWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteAlertBatchResponse, error) {
+	rsp, err := c.DeleteAlertBatchWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteAlertBatchResponse(rsp)
+}
+
+// DeleteAlertBatchWithResponse Delete alert batch
+//
+// Delete multiple alerts by their IDs.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/alerts/delete (the `DeleteAlertBatch` operationId).
+func (c *ClientWithResponses) DeleteAlertBatchWithResponse(ctx context.Context, body DeleteAlertBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteAlertBatchResponse, error) {
+	rsp, err := c.DeleteAlertBatch(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteAlertBatchResponse(rsp)
+}
+
+// GetWebhookExamplesWithResponse Get webhook payload examples
+//
+// # Get webhook payload examples for all alert event types, optionally filtered by alert type
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/alerts/webhooks/examples (the `GetWebhookExamples` operationId).
+func (c *ClientWithResponses) GetWebhookExamplesWithResponse(ctx context.Context, params *GetWebhookExamplesParams, reqEditors ...RequestEditorFn) (*GetWebhookExamplesResponse, error) {
+	rsp, err := c.GetWebhookExamples(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetWebhookExamplesResponse(rsp)
+}
+
+// TestWebhookWithBodyWithResponse Test alert webhook
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/alerts/webhooks/tests (the `TestWebhook` operationId).
+func (c *ClientWithResponses) TestWebhookWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*TestWebhookResponse, error) {
+	rsp, err := c.TestWebhookWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseTestWebhookResponse(rsp)
+}
+
+// TestWebhookWithResponse Test alert webhook
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/alerts/webhooks/tests (the `TestWebhook` operationId).
+func (c *ClientWithResponses) TestWebhookWithResponse(ctx context.Context, body TestWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*TestWebhookResponse, error) {
+	rsp, err := c.TestWebhook(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseTestWebhookResponse(rsp)
+}
+
+// GetAlertByIdWithResponse Get Alert by id
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/alerts/{id} (the `GetAlertById` operationId).
+func (c *ClientWithResponses) GetAlertByIdWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetAlertByIdResponse, error) {
+	rsp, err := c.GetAlertById(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAlertByIdResponse(rsp)
+}
+
+// UpdateAlertWithBodyWithResponse Update alert
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/alerts/{id} (the `UpdateAlert` operationId).
+func (c *ClientWithResponses) UpdateAlertWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateAlertResponse, error) {
+	rsp, err := c.UpdateAlertWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAlertResponse(rsp)
+}
+
+// UpdateAlertWithResponse Update alert
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/alerts/{id} (the `UpdateAlert` operationId).
+func (c *ClientWithResponses) UpdateAlertWithResponse(ctx context.Context, id openapi_types.UUID, body UpdateAlertJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateAlertResponse, error) {
+	rsp, err := c.UpdateAlert(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAlertResponse(rsp)
+}
+
+// FindAnnotationQueuesWithResponse Find annotation queues
+//
+// Find annotation queues with filtering and sorting.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/annotation-queues (the `FindAnnotationQueues` operationId).
+func (c *ClientWithResponses) FindAnnotationQueuesWithResponse(ctx context.Context, params *FindAnnotationQueuesParams, reqEditors ...RequestEditorFn) (*FindAnnotationQueuesResponse, error) {
+	rsp, err := c.FindAnnotationQueues(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFindAnnotationQueuesResponse(rsp)
+}
+
+// CreateAnnotationQueueWithBodyWithResponse Create annotation queue
+//
+// Create annotation queue for human annotation workflows.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/annotation-queues (the `CreateAnnotationQueue` operationId).
+func (c *ClientWithResponses) CreateAnnotationQueueWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAnnotationQueueResponse, error) {
+	rsp, err := c.CreateAnnotationQueueWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAnnotationQueueResponse(rsp)
+}
+
+// CreateAnnotationQueueWithResponse Create annotation queue
+//
+// Create annotation queue for human annotation workflows.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/annotation-queues (the `CreateAnnotationQueue` operationId).
+func (c *ClientWithResponses) CreateAnnotationQueueWithResponse(ctx context.Context, body CreateAnnotationQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAnnotationQueueResponse, error) {
+	rsp, err := c.CreateAnnotationQueue(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAnnotationQueueResponse(rsp)
+}
+
+// CreateAnnotationQueueBatchWithBodyWithResponse Create annotation queue batch
+//
+// Create multiple annotation queues for human annotation workflows.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/annotation-queues/batch (the `CreateAnnotationQueueBatch` operationId).
+func (c *ClientWithResponses) CreateAnnotationQueueBatchWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAnnotationQueueBatchResponse, error) {
+	rsp, err := c.CreateAnnotationQueueBatchWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAnnotationQueueBatchResponse(rsp)
+}
+
+// CreateAnnotationQueueBatchWithResponse Create annotation queue batch
+//
+// Create multiple annotation queues for human annotation workflows.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/annotation-queues/batch (the `CreateAnnotationQueueBatch` operationId).
+func (c *ClientWithResponses) CreateAnnotationQueueBatchWithResponse(ctx context.Context, body CreateAnnotationQueueBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAnnotationQueueBatchResponse, error) {
+	rsp, err := c.CreateAnnotationQueueBatch(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAnnotationQueueBatchResponse(rsp)
+}
+
+// DeleteAnnotationQueueBatchWithBodyWithResponse Delete annotation queue batch
+//
+// Delete multiple annotation queues by their IDs.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/annotation-queues/delete (the `DeleteAnnotationQueueBatch` operationId).
+func (c *ClientWithResponses) DeleteAnnotationQueueBatchWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteAnnotationQueueBatchResponse, error) {
+	rsp, err := c.DeleteAnnotationQueueBatchWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteAnnotationQueueBatchResponse(rsp)
+}
+
+// DeleteAnnotationQueueBatchWithResponse Delete annotation queue batch
+//
+// Delete multiple annotation queues by their IDs.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/annotation-queues/delete (the `DeleteAnnotationQueueBatch` operationId).
+func (c *ClientWithResponses) DeleteAnnotationQueueBatchWithResponse(ctx context.Context, body DeleteAnnotationQueueBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteAnnotationQueueBatchResponse, error) {
+	rsp, err := c.DeleteAnnotationQueueBatch(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteAnnotationQueueBatchResponse(rsp)
+}
+
+// GetAnnotationQueueByIdWithResponse Get annotation queue by id
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/annotation-queues/{id} (the `GetAnnotationQueueById` operationId).
+func (c *ClientWithResponses) GetAnnotationQueueByIdWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetAnnotationQueueByIdResponse, error) {
+	rsp, err := c.GetAnnotationQueueById(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAnnotationQueueByIdResponse(rsp)
+}
+
+// UpdateAnnotationQueueWithBodyWithResponse Update annotation queue
+//
+// Update annotation queue by id.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/annotation-queues/{id} (the `UpdateAnnotationQueue` operationId).
+func (c *ClientWithResponses) UpdateAnnotationQueueWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateAnnotationQueueResponse, error) {
+	rsp, err := c.UpdateAnnotationQueueWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAnnotationQueueResponse(rsp)
+}
+
 // UpdateAnnotationQueueWithResponse Update annotation queue
 //
 // Update annotation queue by id.
@@ -1658,6 +1901,36 @@ func (c *ClientWithResponses) BatchUpdateExperimentsWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseBatchUpdateExperimentsResponse(rsp)
+}
+
+// CancelExperimentsWithBodyWithResponse Cancel running experiments
+//
+// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+func (c *ClientWithResponses) CancelExperimentsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelExperimentsResponse, error) {
+	rsp, err := c.CancelExperimentsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCancelExperimentsResponse(rsp)
+}
+
+// CancelExperimentsWithResponse Cancel running experiments
+//
+// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+func (c *ClientWithResponses) CancelExperimentsWithResponse(ctx context.Context, body CancelExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelExperimentsResponse, error) {
+	rsp, err := c.CancelExperiments(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCancelExperimentsResponse(rsp)
 }
 
 // DeleteExperimentsByIdWithBodyWithResponse Delete experiments by id
@@ -9759,6 +10032,42 @@ func ParseBatchUpdateExperimentsResponse(rsp *http.Response) (*BatchUpdateExperi
 	return response, nil
 }
 
+// ParseCancelExperimentsResponse parses an HTTP response from a CancelExperimentsWithResponse call
+func ParseCancelExperimentsResponse(rsp *http.Response) (*CancelExperimentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CancelExperimentsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseDeleteExperimentsByIdResponse parses an HTTP response from a DeleteExperimentsByIdWithResponse call
 func ParseDeleteExperimentsByIdResponse(rsp *http.Response) (*DeleteExperimentsByIdResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -9802,6 +10111,20 @@ func ParseExecuteExperimentResponse(rsp *http.Response) (*ExecuteExperimentRespo
 			return nil, err
 		}
 		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
 
 	}
 

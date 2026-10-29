@@ -2,6 +2,13 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.3.0, 2026-10-29
+
+- Added `GetLlmModelProfiles` to `Client` and `GetLlmModelProfilesWithResponse` to `ClientWithResponses`. They call `GET /v1/private/llm/models/profiles`.
+- Added `GetLlmModelProfilesResponse`, `NewGetLlmModelProfilesRequest` and `ParseGetLlmModelProfilesResponse`. The response type exposes a `map[string]ModelParams` in `JSON200`.
+- Added the types `ModelParams`, `EffortParam`, `FlagParam`, `NumberParam`, `ToolsParam` and `ToolsParamChatCompletions`, with the values `ToolsParamChatCompletionsEffortNoneOnly` and `ToolsParamChatCompletionsRefused`.
+- Migration: the two new methods are also on `ClientInterface` and `ClientWithResponsesInterface`. Code that implements either interface itself, for example a mock, must add them.
+
 ## v0.2.0, 2026-10-28
 
 - Added `CancelExperiments`, `CancelExperimentsWithBody`, `CancelExperimentsWithResponse` and `CancelExperimentsWithBodyWithResponse` to `Client` and `ClientWithResponses`. They call `PUT /v1/private/experiments/cancel`.

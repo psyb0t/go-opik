@@ -17,6 +17,93 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// GetLlmProviderApiKeyById Get LLM Provider's ApiKey by id
+//
+// Corresponds with GET /v1/private/llm-provider-key/{id} (the `GetLlmProviderApiKeyById` operationId).
+func (c *Client) GetLlmProviderApiKeyById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetLlmProviderApiKeyByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateLlmProviderApiKeyWithBody Update LLM Provider's ApiKey
+//
+// Update LLM Provider's ApiKey. api_key and auth_config are mutually exclusive: setting a valid auth_config on a provider that holds a static api_key clears the stored key; send auth_config as an empty object to clear the recipe and switch back to a static key
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PATCH /v1/private/llm-provider-key/{id} (the `UpdateLlmProviderApiKey` operationId).
+func (c *Client) UpdateLlmProviderApiKeyWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateLlmProviderApiKeyRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateLlmProviderApiKey Update LLM Provider's ApiKey
+//
+// Update LLM Provider's ApiKey. api_key and auth_config are mutually exclusive: setting a valid auth_config on a provider that holds a static api_key clears the stored key; send auth_config as an empty object to clear the recipe and switch back to a static key
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PATCH /v1/private/llm-provider-key/{id} (the `UpdateLlmProviderApiKey` operationId).
+func (c *Client) UpdateLlmProviderApiKey(ctx context.Context, id openapi_types.UUID, body UpdateLlmProviderApiKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateLlmProviderApiKeyRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetLlmModels Get LLM models
+//
+// Get the list of supported LLM models grouped by provider.
+//
+// Corresponds with GET /v1/private/llm/models (the `GetLlmModels` operationId).
+func (c *Client) GetLlmModels(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetLlmModelsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetLlmModelProfiles Get LLM model profiles
+//
+// # Get the params each provider's unlisted models take, keyed by provider
+//
+// Corresponds with GET /v1/private/llm/models/profiles (the `GetLlmModelProfiles` operationId).
+func (c *Client) GetLlmModelProfiles(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetLlmModelProfilesRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ListRunners List local runners
 //
 // List local runners owned by the current user in the workspace.
@@ -12401,6 +12488,33 @@ func NewGetLlmModelsRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewGetLlmModelProfilesRequest constructs an http.Request for the GetLlmModelProfiles method
+func NewGetLlmModelProfilesRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/llm/models/profiles")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewListRunnersRequest constructs an http.Request for the ListRunners method
 func NewListRunnersRequest(server string, params *ListRunnersParams) (*http.Request, error) {
 	var err error
@@ -19902,134 +20016,4 @@ func NewUpdateTraceRequest(server string, id openapi_types.UUID, body UpdateTrac
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewUpdateTraceRequestWithBody(server, id, "application/json", bodyReader)
-}
-
-// NewUpdateTraceRequestWithBody constructs an http.Request for the UpdateTrace method, with any body, and a specified content type
-func NewUpdateTraceRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewAddTraceCommentRequest calls the generic AddTraceComment builder with application/json body
-func NewAddTraceCommentRequest(server string, id openapi_types.UUID, body AddTraceCommentJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewAddTraceCommentRequestWithBody(server, id, "application/json", bodyReader)
-}
-
-// NewAddTraceCommentRequestWithBody constructs an http.Request for the AddTraceComment method, with any body, and a specified content type
-func NewAddTraceCommentRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/%s/comments", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewAddTraceFeedbackScoreRequest calls the generic AddTraceFeedbackScore builder with application/json body
-func NewAddTraceFeedbackScoreRequest(server string, id openapi_types.UUID, body AddTraceFeedbackScoreJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewAddTraceFeedbackScoreRequestWithBody(server, id, "application/json", bodyReader)
-}
-
-// NewAddTraceFeedbackScoreRequestWithBody constructs an http.Request for the AddTraceFeedbackScore method, with any body, and a specified content type
-func NewAddTraceFeedbackScoreRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/%s/feedback-scores", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
 }

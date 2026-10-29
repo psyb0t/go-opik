@@ -14,6 +14,180 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// UpdateAgentInsightsIssueWithBodyWithResponse Update agent insights issue status
+//
+// Moves an issue through its lifecycle: open, resolved or closed. close_note is kept only with closed; any other status clears it
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/agent-insights/issues/{issue_id} (the `UpdateAgentInsightsIssue` operationId).
+func (c *ClientWithResponses) UpdateAgentInsightsIssueWithBodyWithResponse(ctx context.Context, issueId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateAgentInsightsIssueResponse, error) {
+	rsp, err := c.UpdateAgentInsightsIssueWithBody(ctx, issueId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentInsightsIssueResponse(rsp)
+}
+
+// UpdateAgentInsightsIssueWithResponse Update agent insights issue status
+//
+// Moves an issue through its lifecycle: open, resolved or closed. close_note is kept only with closed; any other status clears it
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/agent-insights/issues/{issue_id} (the `UpdateAgentInsightsIssue` operationId).
+func (c *ClientWithResponses) UpdateAgentInsightsIssueWithResponse(ctx context.Context, issueId openapi_types.UUID, body UpdateAgentInsightsIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateAgentInsightsIssueResponse, error) {
+	rsp, err := c.UpdateAgentInsightsIssue(ctx, issueId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentInsightsIssueResponse(rsp)
+}
+
+// GetAgentInsightsJobWithResponse Get Agent Insights job
+//
+// Returns the Agent Insights job for the (workspace, project), or 404 if none exists.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-insights/jobs/{projectId} (the `GetAgentInsightsJob` operationId).
+func (c *ClientWithResponses) GetAgentInsightsJobWithResponse(ctx context.Context, projectId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetAgentInsightsJobResponse, error) {
+	rsp, err := c.GetAgentInsightsJob(ctx, projectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAgentInsightsJobResponse(rsp)
+}
+
+// UpdateAgentInsightsJobWithBodyWithResponse Update Agent Insights job
+//
+// Partially updates the Agent Insights job for a project (e.g. status; never deletes). Returns the updated job, or 404 if none exists.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/agent-insights/jobs/{projectId} (the `UpdateAgentInsightsJob` operationId).
+func (c *ClientWithResponses) UpdateAgentInsightsJobWithBodyWithResponse(ctx context.Context, projectId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateAgentInsightsJobResponse, error) {
+	rsp, err := c.UpdateAgentInsightsJobWithBody(ctx, projectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentInsightsJobResponse(rsp)
+}
+
+// UpdateAgentInsightsJobWithResponse Update Agent Insights job
+//
+// Partially updates the Agent Insights job for a project (e.g. status; never deletes). Returns the updated job, or 404 if none exists.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/agent-insights/jobs/{projectId} (the `UpdateAgentInsightsJob` operationId).
+func (c *ClientWithResponses) UpdateAgentInsightsJobWithResponse(ctx context.Context, projectId openapi_types.UUID, body UpdateAgentInsightsJobJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateAgentInsightsJobResponse, error) {
+	rsp, err := c.UpdateAgentInsightsJob(ctx, projectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentInsightsJobResponse(rsp)
+}
+
+// CreateAgentInsightsJobWithResponse Create Agent Insights job
+//
+// Creates the Agent Insights job for a project, disabled: the daily schedule stays off until the job is enabled with PATCH. 409 if one already exists.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-insights/jobs/{projectId} (the `CreateAgentInsightsJob` operationId).
+func (c *ClientWithResponses) CreateAgentInsightsJobWithResponse(ctx context.Context, projectId openapi_types.UUID, reqEditors ...RequestEditorFn) (*CreateAgentInsightsJobResponse, error) {
+	rsp, err := c.CreateAgentInsightsJob(ctx, projectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAgentInsightsJobResponse(rsp)
+}
+
+// UpdateAgentInsightsGuidanceWithBodyWithResponse Update Agent Insights project guidance
+//
+// Saves the project guidance sent to every Agent Insights run, creating the job (disabled) if the project has none. Empty or whitespace-only clears it. The guidance version is bumped only when the text changes. 404 while guidance is not enabled.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/agent-insights/jobs/{projectId}/guidance (the `UpdateAgentInsightsGuidance` operationId).
+func (c *ClientWithResponses) UpdateAgentInsightsGuidanceWithBodyWithResponse(ctx context.Context, projectId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateAgentInsightsGuidanceResponse, error) {
+	rsp, err := c.UpdateAgentInsightsGuidanceWithBody(ctx, projectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentInsightsGuidanceResponse(rsp)
+}
+
+// UpdateAgentInsightsGuidanceWithResponse Update Agent Insights project guidance
+//
+// Saves the project guidance sent to every Agent Insights run, creating the job (disabled) if the project has none. Empty or whitespace-only clears it. The guidance version is bumped only when the text changes. 404 while guidance is not enabled.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/agent-insights/jobs/{projectId}/guidance (the `UpdateAgentInsightsGuidance` operationId).
+func (c *ClientWithResponses) UpdateAgentInsightsGuidanceWithResponse(ctx context.Context, projectId openapi_types.UUID, body UpdateAgentInsightsGuidanceJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateAgentInsightsGuidanceResponse, error) {
+	rsp, err := c.UpdateAgentInsightsGuidance(ctx, projectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentInsightsGuidanceResponse(rsp)
+}
+
+// TriggerAgentInsightsJobWithResponse Trigger Agent Insights job
+//
+// Triggers an immediate report run for an existing job (over the last 24h). Fire-and-forget; returns 202. 404 if none exists.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-insights/jobs/{projectId}/trigger (the `TriggerAgentInsightsJob` operationId).
+func (c *ClientWithResponses) TriggerAgentInsightsJobWithResponse(ctx context.Context, projectId openapi_types.UUID, reqEditors ...RequestEditorFn) (*TriggerAgentInsightsJobResponse, error) {
+	rsp, err := c.TriggerAgentInsightsJob(ctx, projectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseTriggerAgentInsightsJobResponse(rsp)
+}
+
+// FindAlertsWithResponse Find alerts
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/alerts (the `FindAlerts` operationId).
+func (c *ClientWithResponses) FindAlertsWithResponse(ctx context.Context, params *FindAlertsParams, reqEditors ...RequestEditorFn) (*FindAlertsResponse, error) {
+	rsp, err := c.FindAlerts(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFindAlertsResponse(rsp)
+}
+
+// CreateAlertWithBodyWithResponse Create alert
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/alerts (the `CreateAlert` operationId).
+func (c *ClientWithResponses) CreateAlertWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAlertResponse, error) {
+	rsp, err := c.CreateAlertWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAlertResponse(rsp)
+}
+
+// CreateAlertWithResponse Create alert
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/alerts (the `CreateAlert` operationId).
+func (c *ClientWithResponses) CreateAlertWithResponse(ctx context.Context, body CreateAlertJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAlertResponse, error) {
+	rsp, err := c.CreateAlert(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAlertResponse(rsp)
+}
+
 // DeleteAlertBatchWithBodyWithResponse Delete alert batch
 //
 // Delete multiple alerts by their IDs.
@@ -2721,6 +2895,21 @@ func (c *ClientWithResponses) GetLlmModelsWithResponse(ctx context.Context, reqE
 		return nil, err
 	}
 	return ParseGetLlmModelsResponse(rsp)
+}
+
+// GetLlmModelProfilesWithResponse Get LLM model profiles
+//
+// # Get the params each provider's unlisted models take, keyed by provider
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/llm/models/profiles (the `GetLlmModelProfiles` operationId).
+func (c *ClientWithResponses) GetLlmModelProfilesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetLlmModelProfilesResponse, error) {
+	rsp, err := c.GetLlmModelProfiles(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetLlmModelProfilesResponse(rsp)
 }
 
 // ListRunnersWithResponse List local runners
@@ -11080,6 +11269,32 @@ func ParseGetLlmModelsResponse(rsp *http.Response) (*GetLlmModelsResponse, error
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetLlmModelProfilesResponse parses an HTTP response from a GetLlmModelProfilesWithResponse call
+func ParseGetLlmModelProfilesResponse(rsp *http.Response) (*GetLlmModelProfilesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetLlmModelProfilesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]ModelParams
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

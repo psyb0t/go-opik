@@ -3969,6 +3969,24 @@ func (e ToolCallType) Valid() bool {
 	}
 }
 
+// Defines values for ToolsParamChatCompletions.
+const (
+	ToolsParamChatCompletionsEffortNoneOnly ToolsParamChatCompletions = "effortNoneOnly"
+	ToolsParamChatCompletionsRefused        ToolsParamChatCompletions = "refused"
+)
+
+// Valid indicates whether the value is a known member of the ToolsParamChatCompletions enum.
+func (e ToolsParamChatCompletions) Valid() bool {
+	switch e {
+	case ToolsParamChatCompletionsEffortNoneOnly:
+		return true
+	case ToolsParamChatCompletionsRefused:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for TraceFilterPublicOperator.
 const (
 	TraceFilterPublicOperatorContains         TraceFilterPublicOperator = "contains"
@@ -6808,6 +6826,13 @@ type Delta struct {
 	ToolCalls        *[]ToolCall   `json:"toolCalls,omitempty"`
 }
 
+// EffortParam defines model for EffortParam.
+type EffortParam struct {
+	Accepted *bool     `json:"accepted,omitempty"`
+	Default  *string   `json:"default,omitempty"`
+	Levels   *[]string `json:"levels,omitempty"`
+}
+
 // EnvironmentPagePublic defines model for EnvironmentPage_Public.
 type EnvironmentPagePublic struct {
 	Content    *[]EnvironmentPublic `json:"content,omitempty"`
@@ -7586,6 +7611,11 @@ type FeedbackUpdate struct {
 // FeedbackUpdateType defines model for FeedbackUpdate.Type.
 type FeedbackUpdateType string
 
+// FlagParam defines model for FlagParam.
+type FlagParam struct {
+	Accepted *bool `json:"accepted,omitempty"`
+}
+
 // Function defines model for Function.
 type Function struct {
 	Description *string                            `json:"description,omitempty"`
@@ -7966,10 +7996,35 @@ type Message struct {
 	Role    string   `json:"role"`
 }
 
+// ModelParams defines model for ModelParams.
+type ModelParams struct {
+	Effort            *EffortParam            `json:"effort,omitempty"`
+	FrequencyPenalty  *NumberParam            `json:"frequencyPenalty,omitempty"`
+	MaxOutputTokens   *NumberParam            `json:"maxOutputTokens,omitempty"`
+	PresencePenalty   *NumberParam            `json:"presencePenalty,omitempty"`
+	Routes            *map[string]ModelParams `json:"routes,omitempty"`
+	SamplingExclusive *bool                   `json:"samplingExclusive,omitempty"`
+	Seed              *FlagParam              `json:"seed,omitempty"`
+	Stop              *FlagParam              `json:"stop,omitempty"`
+	Temperature       *NumberParam            `json:"temperature,omitempty"`
+	ThinksByDefault   *bool                   `json:"thinksByDefault,omitempty"`
+	Tools             *ToolsParam             `json:"tools,omitempty"`
+	TopK              *NumberParam            `json:"topK,omitempty"`
+	TopP              *NumberParam            `json:"topP,omitempty"`
+}
+
 // MultipartUploadPart defines model for MultipartUploadPart.
 type MultipartUploadPart struct {
 	ETag       string `json:"e_tag"`
 	PartNumber int32  `json:"part_number"`
+}
+
+// NumberParam defines model for NumberParam.
+type NumberParam struct {
+	Accepted *bool    `json:"accepted,omitempty"`
+	Default  *float64 `json:"default,omitempty"`
+	Max      *float64 `json:"max,omitempty"`
+	Min      *float64 `json:"min,omitempty"`
 }
 
 // OAuthError defines model for OAuthError.
@@ -9407,6 +9462,15 @@ type ToolCall struct {
 
 // ToolCallType defines model for ToolCall.Type.
 type ToolCallType string
+
+// ToolsParam defines model for ToolsParam.
+type ToolsParam struct {
+	ChatCompletions *ToolsParamChatCompletions `json:"chatCompletions,omitempty"`
+	ForcedChoice    *FlagParam                 `json:"forcedChoice,omitempty"`
+}
+
+// ToolsParamChatCompletions defines model for ToolsParam.ChatCompletions.
+type ToolsParamChatCompletions string
 
 // TraceBatchUpdate Request to batch update multiple traces
 type TraceBatchUpdate struct {
@@ -13720,6 +13784,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /v1/private/llm/models (the `GetLlmModels` operationId).
 	GetLlmModels(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetLlmModelProfiles Get LLM model profiles
+	//
+	// Get the params each provider's unlisted models take, keyed by provider
+	//
+	// Corresponds with GET /v1/private/llm/models/profiles (the `GetLlmModelProfiles` operationId).
+	GetLlmModelProfiles(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListRunners List local runners
 	//
@@ -19935,76 +20006,6 @@ func (c *Client) DeleteLlmProviderApiKeysBatchWithBody(ctx context.Context, cont
 // Corresponds with POST /v1/private/llm-provider-key/delete (the `DeleteLlmProviderApiKeysBatch` operationId).
 func (c *Client) DeleteLlmProviderApiKeysBatch(ctx context.Context, body DeleteLlmProviderApiKeysBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteLlmProviderApiKeysBatchRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetLlmProviderApiKeyById Get LLM Provider's ApiKey by id
-//
-// Corresponds with GET /v1/private/llm-provider-key/{id} (the `GetLlmProviderApiKeyById` operationId).
-func (c *Client) GetLlmProviderApiKeyById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetLlmProviderApiKeyByIdRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateLlmProviderApiKeyWithBody Update LLM Provider's ApiKey
-//
-// Update LLM Provider's ApiKey. api_key and auth_config are mutually exclusive: setting a valid auth_config on a provider that holds a static api_key clears the stored key; send auth_config as an empty object to clear the recipe and switch back to a static key
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PATCH /v1/private/llm-provider-key/{id} (the `UpdateLlmProviderApiKey` operationId).
-func (c *Client) UpdateLlmProviderApiKeyWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateLlmProviderApiKeyRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateLlmProviderApiKey Update LLM Provider's ApiKey
-//
-// Update LLM Provider's ApiKey. api_key and auth_config are mutually exclusive: setting a valid auth_config on a provider that holds a static api_key clears the stored key; send auth_config as an empty object to clear the recipe and switch back to a static key
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PATCH /v1/private/llm-provider-key/{id} (the `UpdateLlmProviderApiKey` operationId).
-func (c *Client) UpdateLlmProviderApiKey(ctx context.Context, id openapi_types.UUID, body UpdateLlmProviderApiKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateLlmProviderApiKeyRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetLlmModels Get LLM models
-//
-// Get the list of supported LLM models grouped by provider.
-//
-// Corresponds with GET /v1/private/llm/models (the `GetLlmModels` operationId).
-func (c *Client) GetLlmModels(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetLlmModelsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}

@@ -1,6 +1,6 @@
 {
   "name": "go-opik",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Unofficial Go client for the Opik REST API: projects, traces, spans, datasets, experiments and prompts, generated from the specification Comet publishes.",
   "author": {
     "name": "psyb0t",

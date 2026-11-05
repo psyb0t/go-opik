@@ -9700,12 +9700,28 @@ func NewFindDatasetItemsWithExperimentItemsRequest(server string, id openapi_typ
 
 		}
 
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "experiment_ids", params.ExperimentIds, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
+		if params.ExperimentIds != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "experiment_ids", *params.ExperimentIds, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
 			}
+
+		}
+
+		if params.DatasetVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "dataset_version", *params.DatasetVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
 		}
 
 		if params.Filters != nil {
@@ -20005,15 +20021,4 @@ func NewGetTraceByIdRequest(server string, id openapi_types.UUID, params *GetTra
 	}
 
 	return req, nil
-}
-
-// NewUpdateTraceRequest calls the generic UpdateTrace builder with application/json body
-func NewUpdateTraceRequest(server string, id openapi_types.UUID, body UpdateTraceJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewUpdateTraceRequestWithBody(server, id, "application/json", bodyReader)
 }

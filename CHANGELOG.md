@@ -2,6 +2,14 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.4.0, 2026-11-05
+
+- Changed `FindDatasetItemsWithExperimentItemsParams.ExperimentIds` from `string` to `*string`. The `experiment_ids` query parameter is now optional, and `NewFindDatasetItemsWithExperimentItemsRequest` omits it when the pointer is nil. Callers must pass a pointer.
+- Added the optional field `DatasetVersion` (`*string`) to `FindDatasetItemsWithExperimentItemsParams`. It sets the `dataset_version` query parameter.
+- Added the optional field `OnlyRoute` (`*string`) to `ModelParams`.
+- Updated the doc comments of `BreakdownConfig.Field`, `BreakdownConfigField`, `BreakdownConfigPublic.Field` and `BreakdownConfigPublicField`. They now say that tags are overlapping groups and that adding tag groups can exceed actual cost.
+- Migration: change `ExperimentIds: "a,b"` to `ExperimentIds: &ids` in `FindDatasetItemsWithExperimentItemsParams`.
+
 ## v0.3.0, 2026-10-29
 
 - Added `GetLlmModelProfiles` to `Client` and `GetLlmModelProfilesWithResponse` to `ClientWithResponses`. They call `GET /v1/private/llm/models/profiles`.

@@ -5767,22 +5767,24 @@ type BlueprintPageHistory struct {
 
 // BreakdownConfig defines model for BreakdownConfig.
 type BreakdownConfig struct {
+	// Field Field to group by. Tags are overlapping groups: each tag receives the full metric value. For cost, adding tag groups can exceed actual spend; use provider or model for additive span cost totals.
 	Field       *BreakdownConfigField `json:"field,omitempty"`
 	MetadataKey *string               `json:"metadata_key,omitempty"`
 	SubMetric   *string               `json:"sub_metric,omitempty"`
 }
 
-// BreakdownConfigField defines model for BreakdownConfig.Field.
+// BreakdownConfigField Field to group by. Tags are overlapping groups: each tag receives the full metric value. For cost, adding tag groups can exceed actual spend; use provider or model for additive span cost totals.
 type BreakdownConfigField string
 
 // BreakdownConfigPublic defines model for BreakdownConfig_Public.
 type BreakdownConfigPublic struct {
+	// Field Field to group by. Tags are overlapping groups: each tag receives the full metric value. For cost, adding tag groups can exceed actual spend; use provider or model for additive span cost totals.
 	Field       *BreakdownConfigPublicField `json:"field,omitempty"`
 	MetadataKey *string                     `json:"metadata_key,omitempty"`
 	SubMetric   *string                     `json:"sub_metric,omitempty"`
 }
 
-// BreakdownConfigPublicField defines model for BreakdownConfigPublic.Field.
+// BreakdownConfigPublicField Field to group by. Tags are overlapping groups: each tag receives the full metric value. For cost, adding tag groups can exceed actual spend; use provider or model for additive span cost totals.
 type BreakdownConfigPublicField string
 
 // BridgeCommand defines model for BridgeCommand.
@@ -8001,6 +8003,7 @@ type ModelParams struct {
 	Effort            *EffortParam            `json:"effort,omitempty"`
 	FrequencyPenalty  *NumberParam            `json:"frequencyPenalty,omitempty"`
 	MaxOutputTokens   *NumberParam            `json:"maxOutputTokens,omitempty"`
+	OnlyRoute         *string                 `json:"onlyRoute,omitempty"`
 	PresencePenalty   *NumberParam            `json:"presencePenalty,omitempty"`
 	Routes            *map[string]ModelParams `json:"routes,omitempty"`
 	SamplingExclusive *bool                   `json:"samplingExclusive,omitempty"`
@@ -10295,13 +10298,14 @@ type ApplyDatasetItemChangesParams struct {
 
 // FindDatasetItemsWithExperimentItemsParams defines parameters for FindDatasetItemsWithExperimentItems.
 type FindDatasetItemsWithExperimentItemsParams struct {
-	Page          *int32  `form:"page,omitempty" json:"page,omitempty"`
-	Size          *int32  `form:"size,omitempty" json:"size,omitempty"`
-	ExperimentIds string  `form:"experiment_ids" json:"experiment_ids"`
-	Filters       *string `form:"filters,omitempty" json:"filters,omitempty"`
-	Sorting       *string `form:"sorting,omitempty" json:"sorting,omitempty"`
-	Search        *string `form:"search,omitempty" json:"search,omitempty"`
-	Truncate      *bool   `form:"truncate,omitempty" json:"truncate,omitempty"`
+	Page           *int32  `form:"page,omitempty" json:"page,omitempty"`
+	Size           *int32  `form:"size,omitempty" json:"size,omitempty"`
+	ExperimentIds  *string `form:"experiment_ids,omitempty" json:"experiment_ids,omitempty"`
+	DatasetVersion *string `form:"dataset_version,omitempty" json:"dataset_version,omitempty"`
+	Filters        *string `form:"filters,omitempty" json:"filters,omitempty"`
+	Sorting        *string `form:"sorting,omitempty" json:"sorting,omitempty"`
+	Search         *string `form:"search,omitempty" json:"search,omitempty"`
+	Truncate       *bool   `form:"truncate,omitempty" json:"truncate,omitempty"`
 }
 
 // GetDatasetItemsOutputColumnsParams defines parameters for GetDatasetItemsOutputColumns.

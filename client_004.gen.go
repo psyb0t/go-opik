@@ -14,6 +14,21 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// GetAgentInsightsIssueByIdWithResponse Get agent insights issue by id
+//
+// Returns the issue together with its per-day breakdown within the requested time window.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-insights/issues/{issue_id} (the `GetAgentInsightsIssueById` operationId).
+func (c *ClientWithResponses) GetAgentInsightsIssueByIdWithResponse(ctx context.Context, issueId openapi_types.UUID, params *GetAgentInsightsIssueByIdParams, reqEditors ...RequestEditorFn) (*GetAgentInsightsIssueByIdResponse, error) {
+	rsp, err := c.GetAgentInsightsIssueById(ctx, issueId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAgentInsightsIssueByIdResponse(rsp)
+}
+
 // UpdateAgentInsightsIssueWithBodyWithResponse Update agent insights issue status
 //
 // Moves an issue through its lifecycle: open, resolved or closed. close_note is kept only with closed; any other status clears it

@@ -8764,17 +8764,17 @@ type ProviderAuthConfig struct {
 	// FallbackTtlSeconds Lifetime in seconds assumed when the reply doesn't state one, capped at one year; 0 disables caching for such replies. A reply-stated lifetime always wins
 	FallbackTtlSeconds *int64 `json:"fallback_ttl_seconds,omitempty"`
 
-	// SendAs How credentials are sent: form body (default), JSON body, or basic auth (id/secret in an HTTP Basic header, remaining fields in the form body)
+	// SendAs How credentials are sent: form body (default), JSON body, or basic auth (client_id/client_secret, or username/password, in an HTTP Basic header; remaining fields in the form body)
 	SendAs *ProviderAuthConfigSendAs `json:"send_as,omitempty"`
 
-	// TokenField Field holding the token in the reply; dot-path for nested replies
+	// TokenField Field holding the token in the reply; dot-path for nested replies. A reply that is the bare token itself (plain text or a JSON string) is used as-is and needs fallback_ttl_seconds
 	TokenField *string `json:"token_field,omitempty"`
 
 	// TokenUrl Auth service URL the credentials are sent to
 	TokenUrl *string `json:"token_url,omitempty"`
 }
 
-// ProviderAuthConfigSendAs How credentials are sent: form body (default), JSON body, or basic auth (id/secret in an HTTP Basic header, remaining fields in the form body)
+// ProviderAuthConfigSendAs How credentials are sent: form body (default), JSON body, or basic auth (client_id/client_secret, or username/password, in an HTTP Basic header; remaining fields in the form body)
 type ProviderAuthConfigSendAs string
 
 // ProviderAuthConfigPublic Dynamic token auth recipe. When set, Opik fetches a short-lived bearer from the configured auth service instead of using a static api_key. Only supported for custom providers. Secret credential values read back masked.
@@ -8788,17 +8788,17 @@ type ProviderAuthConfigPublic struct {
 	// FallbackTtlSeconds Lifetime in seconds assumed when the reply doesn't state one, capped at one year; 0 disables caching for such replies. A reply-stated lifetime always wins
 	FallbackTtlSeconds *int64 `json:"fallback_ttl_seconds,omitempty"`
 
-	// SendAs How credentials are sent: form body (default), JSON body, or basic auth (id/secret in an HTTP Basic header, remaining fields in the form body)
+	// SendAs How credentials are sent: form body (default), JSON body, or basic auth (client_id/client_secret, or username/password, in an HTTP Basic header; remaining fields in the form body)
 	SendAs *ProviderAuthConfigPublicSendAs `json:"send_as,omitempty"`
 
-	// TokenField Field holding the token in the reply; dot-path for nested replies
+	// TokenField Field holding the token in the reply; dot-path for nested replies. A reply that is the bare token itself (plain text or a JSON string) is used as-is and needs fallback_ttl_seconds
 	TokenField *string `json:"token_field,omitempty"`
 
 	// TokenUrl Auth service URL the credentials are sent to
 	TokenUrl *string `json:"token_url,omitempty"`
 }
 
-// ProviderAuthConfigPublicSendAs How credentials are sent: form body (default), JSON body, or basic auth (id/secret in an HTTP Basic header, remaining fields in the form body)
+// ProviderAuthConfigPublicSendAs How credentials are sent: form body (default), JSON body, or basic auth (client_id/client_secret, or username/password, in an HTTP Basic header; remaining fields in the form body)
 type ProviderAuthConfigPublicSendAs string
 
 // ProviderAuthConfigWrite Dynamic token auth recipe. When set, Opik fetches a short-lived bearer from the configured auth service instead of using a static api_key. Only supported for custom providers. Secret credential values read back masked.
@@ -8812,17 +8812,17 @@ type ProviderAuthConfigWrite struct {
 	// FallbackTtlSeconds Lifetime in seconds assumed when the reply doesn't state one, capped at one year; 0 disables caching for such replies. A reply-stated lifetime always wins
 	FallbackTtlSeconds *int64 `json:"fallback_ttl_seconds,omitempty"`
 
-	// SendAs How credentials are sent: form body (default), JSON body, or basic auth (id/secret in an HTTP Basic header, remaining fields in the form body)
+	// SendAs How credentials are sent: form body (default), JSON body, or basic auth (client_id/client_secret, or username/password, in an HTTP Basic header; remaining fields in the form body)
 	SendAs *ProviderAuthConfigWriteSendAs `json:"send_as,omitempty"`
 
-	// TokenField Field holding the token in the reply; dot-path for nested replies
+	// TokenField Field holding the token in the reply; dot-path for nested replies. A reply that is the bare token itself (plain text or a JSON string) is used as-is and needs fallback_ttl_seconds
 	TokenField *string `json:"token_field,omitempty"`
 
 	// TokenUrl Auth service URL the credentials are sent to
 	TokenUrl *string `json:"token_url,omitempty"`
 }
 
-// ProviderAuthConfigWriteSendAs How credentials are sent: form body (default), JSON body, or basic auth (id/secret in an HTTP Basic header, remaining fields in the form body)
+// ProviderAuthConfigWriteSendAs How credentials are sent: form body (default), JSON body, or basic auth (client_id/client_secret, or username/password, in an HTTP Basic header; remaining fields in the form body)
 type ProviderAuthConfigWriteSendAs string
 
 // RecentActivityItemPublic defines model for RecentActivityItem_Public.
@@ -9078,7 +9078,6 @@ type ServiceTogglesConfig struct {
 	GuardrailsEnabled                  bool   `json:"guardrailsEnabled"`
 	OllamaProviderEnabled              bool   `json:"ollamaProviderEnabled"`
 	OllieEnabled                       bool   `json:"ollieEnabled"`
-	OnlineScoringTracingEnabled        bool   `json:"onlineScoringTracingEnabled"`
 	OpenaiProviderEnabled              bool   `json:"openaiProviderEnabled"`
 	OpenrouterProviderEnabled          bool   `json:"openrouterProviderEnabled"`
 	OpikAIEnabled                      bool   `json:"opikAIEnabled"`

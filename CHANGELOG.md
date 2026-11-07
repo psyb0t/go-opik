@@ -2,6 +2,13 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.5.0, 2026-11-07
+
+- Removed the field `OnlineScoringTracingEnabled` (`bool`) from `ServiceTogglesConfig`. The upstream spec no longer has `onlineScoringTracingEnabled`. Code that reads or sets the field must drop it.
+- Updated the doc comments of `ProviderAuthConfig.SendAs`, `ProviderAuthConfigPublic.SendAs`, `ProviderAuthConfigWrite.SendAs` and their `SendAs` types. Basic auth now documents `client_id`/`client_secret` or `username`/`password` in the HTTP Basic header.
+- Updated the doc comments of `TokenField` on `ProviderAuthConfig`, `ProviderAuthConfigPublic` and `ProviderAuthConfigWrite`. A reply that is the bare token is used as-is and needs `fallback_ttl_seconds`.
+- Migration: delete uses of `ServiceTogglesConfig.OnlineScoringTracingEnabled`.
+
 ## v0.4.0, 2026-11-05
 
 - Changed `FindDatasetItemsWithExperimentItemsParams.ExperimentIds` from `string` to `*string`. The `experiment_ids` query parameter is now optional, and `NewFindDatasetItemsWithExperimentItemsRequest` omits it when the pointer is nil. Callers must pass a pointer.

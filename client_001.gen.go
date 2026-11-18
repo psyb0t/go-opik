@@ -2292,6 +2292,96 @@ func (e FeedbackUpdateType) Valid() bool {
 	}
 }
 
+// Defines values for GuardrailPolicyRulePublicType.
+const (
+	GuardrailPolicyRulePublicTypeCUSTOMCLASSIFIER GuardrailPolicyRulePublicType = "CUSTOM_CLASSIFIER"
+	GuardrailPolicyRulePublicTypeLLMJUDGE         GuardrailPolicyRulePublicType = "LLM_JUDGE"
+	GuardrailPolicyRulePublicTypePII              GuardrailPolicyRulePublicType = "PII"
+	GuardrailPolicyRulePublicTypePROMPTINJECTION  GuardrailPolicyRulePublicType = "PROMPT_INJECTION"
+	GuardrailPolicyRulePublicTypeTOPIC            GuardrailPolicyRulePublicType = "TOPIC"
+)
+
+// Valid indicates whether the value is a known member of the GuardrailPolicyRulePublicType enum.
+func (e GuardrailPolicyRulePublicType) Valid() bool {
+	switch e {
+	case GuardrailPolicyRulePublicTypeCUSTOMCLASSIFIER:
+		return true
+	case GuardrailPolicyRulePublicTypeLLMJUDGE:
+		return true
+	case GuardrailPolicyRulePublicTypePII:
+		return true
+	case GuardrailPolicyRulePublicTypePROMPTINJECTION:
+		return true
+	case GuardrailPolicyRulePublicTypeTOPIC:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GuardrailPolicyRuleWriteType.
+const (
+	GuardrailPolicyRuleWriteTypeCUSTOMCLASSIFIER GuardrailPolicyRuleWriteType = "CUSTOM_CLASSIFIER"
+	GuardrailPolicyRuleWriteTypeLLMJUDGE         GuardrailPolicyRuleWriteType = "LLM_JUDGE"
+	GuardrailPolicyRuleWriteTypePII              GuardrailPolicyRuleWriteType = "PII"
+	GuardrailPolicyRuleWriteTypePROMPTINJECTION  GuardrailPolicyRuleWriteType = "PROMPT_INJECTION"
+	GuardrailPolicyRuleWriteTypeTOPIC            GuardrailPolicyRuleWriteType = "TOPIC"
+)
+
+// Valid indicates whether the value is a known member of the GuardrailPolicyRuleWriteType enum.
+func (e GuardrailPolicyRuleWriteType) Valid() bool {
+	switch e {
+	case GuardrailPolicyRuleWriteTypeCUSTOMCLASSIFIER:
+		return true
+	case GuardrailPolicyRuleWriteTypeLLMJUDGE:
+		return true
+	case GuardrailPolicyRuleWriteTypePII:
+		return true
+	case GuardrailPolicyRuleWriteTypePROMPTINJECTION:
+		return true
+	case GuardrailPolicyRuleWriteTypeTOPIC:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GuardrailPolicyPublicExecutionScope.
+const (
+	GuardrailPolicyPublicExecutionScopeGlobal    GuardrailPolicyPublicExecutionScope = "global"
+	GuardrailPolicyPublicExecutionScopeOnRequest GuardrailPolicyPublicExecutionScope = "on_request"
+)
+
+// Valid indicates whether the value is a known member of the GuardrailPolicyPublicExecutionScope enum.
+func (e GuardrailPolicyPublicExecutionScope) Valid() bool {
+	switch e {
+	case GuardrailPolicyPublicExecutionScopeGlobal:
+		return true
+	case GuardrailPolicyPublicExecutionScopeOnRequest:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GuardrailPolicyWriteExecutionScope.
+const (
+	GuardrailPolicyWriteExecutionScopeGlobal    GuardrailPolicyWriteExecutionScope = "global"
+	GuardrailPolicyWriteExecutionScopeOnRequest GuardrailPolicyWriteExecutionScope = "on_request"
+)
+
+// Valid indicates whether the value is a known member of the GuardrailPolicyWriteExecutionScope enum.
+func (e GuardrailPolicyWriteExecutionScope) Valid() bool {
+	switch e {
+	case GuardrailPolicyWriteExecutionScopeGlobal:
+		return true
+	case GuardrailPolicyWriteExecutionScopeOnRequest:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GuardrailWriteName.
 const (
 	GuardrailWriteNameCUSTOMCLASSIFIER GuardrailWriteName = "CUSTOM_CLASSIFIER"
@@ -4392,6 +4482,60 @@ func (e TraceWriteSource) Valid() bool {
 	}
 }
 
+// Defines values for ValidationDescriptorType.
+const (
+	ValidationDescriptorTypeCUSTOMCLASSIFIER ValidationDescriptorType = "CUSTOM_CLASSIFIER"
+	ValidationDescriptorTypeLLMJUDGE         ValidationDescriptorType = "LLM_JUDGE"
+	ValidationDescriptorTypePII              ValidationDescriptorType = "PII"
+	ValidationDescriptorTypePROMPTINJECTION  ValidationDescriptorType = "PROMPT_INJECTION"
+	ValidationDescriptorTypeTOPIC            ValidationDescriptorType = "TOPIC"
+)
+
+// Valid indicates whether the value is a known member of the ValidationDescriptorType enum.
+func (e ValidationDescriptorType) Valid() bool {
+	switch e {
+	case ValidationDescriptorTypeCUSTOMCLASSIFIER:
+		return true
+	case ValidationDescriptorTypeLLMJUDGE:
+		return true
+	case ValidationDescriptorTypePII:
+		return true
+	case ValidationDescriptorTypePROMPTINJECTION:
+		return true
+	case ValidationDescriptorTypeTOPIC:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ValidationResultType.
+const (
+	ValidationResultTypeCUSTOMCLASSIFIER ValidationResultType = "CUSTOM_CLASSIFIER"
+	ValidationResultTypeLLMJUDGE         ValidationResultType = "LLM_JUDGE"
+	ValidationResultTypePII              ValidationResultType = "PII"
+	ValidationResultTypePROMPTINJECTION  ValidationResultType = "PROMPT_INJECTION"
+	ValidationResultTypeTOPIC            ValidationResultType = "TOPIC"
+)
+
+// Valid indicates whether the value is a known member of the ValidationResultType enum.
+func (e ValidationResultType) Valid() bool {
+	switch e {
+	case ValidationResultTypeCUSTOMCLASSIFIER:
+		return true
+	case ValidationResultTypeLLMJUDGE:
+		return true
+	case ValidationResultTypePII:
+		return true
+	case ValidationResultTypePROMPTINJECTION:
+		return true
+	case ValidationResultTypeTOPIC:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ValueEntrySource.
 const (
 	ValueEntrySourceOnlineScoring ValueEntrySource = "online_scoring"
@@ -4743,6 +4887,24 @@ func (e FindFeedbackDefinitionsParamsType) Valid() bool {
 	case FindFeedbackDefinitionsParamsTypeCategorical:
 		return true
 	case FindFeedbackDefinitionsParamsTypeNumerical:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FindGuardrailPoliciesParamsExecutionScope.
+const (
+	FindGuardrailPoliciesParamsExecutionScopeGlobal    FindGuardrailPoliciesParamsExecutionScope = "global"
+	FindGuardrailPoliciesParamsExecutionScopeOnRequest FindGuardrailPoliciesParamsExecutionScope = "on_request"
+)
+
+// Valid indicates whether the value is a known member of the FindGuardrailPoliciesParamsExecutionScope enum.
+func (e FindGuardrailPoliciesParamsExecutionScope) Valid() bool {
+	switch e {
+	case FindGuardrailPoliciesParamsExecutionScopeGlobal:
+		return true
+	case FindGuardrailPoliciesParamsExecutionScopeOnRequest:
 		return true
 	default:
 		return false
@@ -6251,7 +6413,6 @@ type DashboardPublic struct {
 	// ProjectId Project ID. Takes precedence over project_name when both are provided.
 	ProjectId   *openapi_types.UUID   `json:"project_id,omitempty"`
 	Scope       *DashboardPublicScope `json:"scope,omitempty"`
-	Slug        *string               `json:"slug,omitempty"`
 	Type        *DashboardPublicType  `json:"type,omitempty"`
 	WorkspaceId *string               `json:"workspace_id,omitempty"`
 }
@@ -7663,6 +7824,77 @@ type GuardrailBatchWrite struct {
 	Guardrails []GuardrailWrite `json:"guardrails"`
 }
 
+// GuardrailPolicyPagePublic defines model for GuardrailPolicyPage_Public.
+type GuardrailPolicyPagePublic struct {
+	Content    *[]GuardrailPolicyPublic `json:"content,omitempty"`
+	Page       *int32                   `json:"page,omitempty"`
+	Size       *int32                   `json:"size,omitempty"`
+	SortableBy *[]string                `json:"sortable_by,omitempty"`
+	Total      *int64                   `json:"total,omitempty"`
+}
+
+// GuardrailPolicyRulePublic At most one rule per type
+type GuardrailPolicyRulePublic struct {
+	Config JsonNode                      `json:"config"`
+	Type   GuardrailPolicyRulePublicType `json:"type"`
+}
+
+// GuardrailPolicyRulePublicType defines model for GuardrailPolicyRulePublic.Type.
+type GuardrailPolicyRulePublicType string
+
+// GuardrailPolicyRuleWrite At most one rule per type
+type GuardrailPolicyRuleWrite struct {
+	Config JsonNode                     `json:"config"`
+	Type   GuardrailPolicyRuleWriteType `json:"type"`
+}
+
+// GuardrailPolicyRuleWriteType defines model for GuardrailPolicyRuleWrite.Type.
+type GuardrailPolicyRuleWriteType string
+
+// GuardrailPolicyPublic defines model for GuardrailPolicy_Public.
+type GuardrailPolicyPublic struct {
+	CreatedAt   *time.Time `json:"created_at,omitempty"`
+	CreatedBy   *string    `json:"created_by,omitempty"`
+	Description *string    `json:"description,omitempty"`
+
+	// ExecutionScope on_request applies the policy when the SDK names it, global applies it to every guardrail built from stored policies in the workspace. Missing or null means on_request
+	ExecutionScope *GuardrailPolicyPublicExecutionScope `json:"execution_scope,omitempty"`
+
+	// Id Optional on create, generated when missing, as for prompts and datasets. Ignored on update, where the path names the policy
+	Id            *openapi_types.UUID `json:"id,omitempty"`
+	LastUpdatedAt *time.Time          `json:"last_updated_at,omitempty"`
+	LastUpdatedBy *string             `json:"last_updated_by,omitempty"`
+
+	// Name The SDK names policies by name, so it is unique in the workspace, ignoring case
+	Name string `json:"name"`
+
+	// Rules At most one rule per type
+	Rules []GuardrailPolicyRulePublic `json:"rules"`
+}
+
+// GuardrailPolicyPublicExecutionScope on_request applies the policy when the SDK names it, global applies it to every guardrail built from stored policies in the workspace. Missing or null means on_request
+type GuardrailPolicyPublicExecutionScope string
+
+// GuardrailPolicyWrite defines model for GuardrailPolicy_Write.
+type GuardrailPolicyWrite struct {
+	Description *string `json:"description,omitempty"`
+
+	// ExecutionScope on_request applies the policy when the SDK names it, global applies it to every guardrail built from stored policies in the workspace. Missing or null means on_request
+	ExecutionScope *GuardrailPolicyWriteExecutionScope `json:"execution_scope,omitempty"`
+
+	// Id Optional on create, generated when missing, as for prompts and datasets. Ignored on update, where the path names the policy
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// Name The SDK names policies by name, so it is unique in the workspace, ignoring case
+	Name string `json:"name"`
+
+	// Rules At most one rule per type
+	Rules []GuardrailPolicyRuleWrite `json:"rules"`
+}
+
+// GuardrailPolicyWriteExecutionScope on_request applies the policy when the SDK names it, global applies it to every guardrail built from stored policies in the workspace. Missing or null means on_request
+type GuardrailPolicyWriteExecutionScope string
+
 // GuardrailWrite defines model for Guardrail_Write.
 type GuardrailWrite struct {
 	Config    JsonNode            `json:"config"`
@@ -7682,6 +7914,21 @@ type GuardrailWriteName string
 
 // GuardrailWriteResult defines model for GuardrailWrite.Result.
 type GuardrailWriteResult string
+
+// GuardrailsValidationRequest defines model for GuardrailsValidationRequest.
+type GuardrailsValidationRequest struct {
+	// Text The text to check, at most 16384 characters as the decision service counts them: on the text's JSON encoding, so the two quotes count, a quote, backslash or line break counts as 2, and any other control or non-ASCII character as 6 (an emoji as 12). In practice about 16,380 characters of English text fit, about 2,730 of text in Cyrillic, Greek, Hebrew, Arabic, Chinese or Japanese, and about 1,365 emoji. A longer text is rejected rather than cut.
+	Text string `json:"text"`
+
+	// Validations The checks to run. Together they must fit in 64 questions to the decision service, asked in up to two calls of 32: each PII class and each topic list is one question, prompt injection is one
+	Validations []ValidationDescriptor `json:"validations"`
+}
+
+// GuardrailsValidationResponse defines model for GuardrailsValidationResponse.
+type GuardrailsValidationResponse struct {
+	ValidationPassed *bool              `json:"validation_passed,omitempty"`
+	Validations      []ValidationResult `json:"validations"`
+}
 
 // GuardrailsValidationPublic defines model for GuardrailsValidation_Public.
 type GuardrailsValidationPublic struct {
@@ -9076,6 +9323,7 @@ type ServiceTogglesConfig struct {
 	ExportEnabled                      bool   `json:"exportEnabled"`
 	GeminiProviderEnabled              bool   `json:"geminiProviderEnabled"`
 	GuardrailsEnabled                  bool   `json:"guardrailsEnabled"`
+	GuardrailsValidationsEnabled       bool   `json:"guardrailsValidationsEnabled"`
 	OllamaProviderEnabled              bool   `json:"ollamaProviderEnabled"`
 	OllieEnabled                       bool   `json:"ollieEnabled"`
 	OpenaiProviderEnabled              bool   `json:"openaiProviderEnabled"`
@@ -9841,6 +10089,28 @@ type ValidatedToken struct {
 	WorkspaceName *string    `json:"workspace_name,omitempty"`
 }
 
+// ValidationDescriptor The checks to run. Together they must fit in 64 questions to the decision service, asked in up to two calls of 32: each PII class and each topic list is one question, prompt injection is one
+type ValidationDescriptor struct {
+	Config JsonNode                 `json:"config"`
+	Type   ValidationDescriptorType `json:"type"`
+}
+
+// ValidationDescriptorType defines model for ValidationDescriptor.Type.
+type ValidationDescriptorType string
+
+// ValidationResult defines model for ValidationResult.
+type ValidationResult struct {
+	// Error Set when the check could not run; the entry then passes
+	Error             *string              `json:"error,omitempty"`
+	Type              ValidationResultType `json:"type"`
+	ValidationConfig  JsonNode             `json:"validation_config"`
+	ValidationDetails JsonNode             `json:"validation_details"`
+	ValidationPassed  *bool                `json:"validation_passed,omitempty"`
+}
+
+// ValidationResultType defines model for ValidationResult.Type.
+type ValidationResultType string
+
 // ValueEntry defines model for ValueEntry.
 type ValueEntry struct {
 	Author        *string           `json:"author,omitempty"`
@@ -10378,6 +10648,19 @@ type FindFeedbackDefinitionsParams struct {
 
 // FindFeedbackDefinitionsParamsType defines parameters for FindFeedbackDefinitions.
 type FindFeedbackDefinitionsParamsType string
+
+// FindGuardrailPoliciesParams defines parameters for FindGuardrailPolicies.
+type FindGuardrailPoliciesParams struct {
+	Page           *int32                                     `form:"page,omitempty" json:"page,omitempty"`
+	Size           *int32                                     `form:"size,omitempty" json:"size,omitempty"`
+	Name           *string                                    `form:"name,omitempty" json:"name,omitempty"`
+	Names          *string                                    `form:"names,omitempty" json:"names,omitempty"`
+	ExecutionScope *FindGuardrailPoliciesParamsExecutionScope `form:"execution_scope,omitempty" json:"execution_scope,omitempty"`
+	Sorting        *string                                    `form:"sorting,omitempty" json:"sorting,omitempty"`
+}
+
+// FindGuardrailPoliciesParamsExecutionScope defines parameters for FindGuardrailPolicies.
+type FindGuardrailPoliciesParamsExecutionScope string
 
 // FindInsightsViewsParams defines parameters for FindInsightsViews.
 type FindInsightsViewsParams struct {
@@ -10998,6 +11281,15 @@ type UpdateFeedbackDefinitionJSONRequestBody = FeedbackUpdate
 
 // CreateGuardrailsJSONRequestBody defines body for CreateGuardrails for application/json ContentType.
 type CreateGuardrailsJSONRequestBody = GuardrailBatchWrite
+
+// CreateGuardrailPolicyJSONRequestBody defines body for CreateGuardrailPolicy for application/json ContentType.
+type CreateGuardrailPolicyJSONRequestBody = GuardrailPolicyWrite
+
+// UpdateGuardrailPolicyJSONRequestBody defines body for UpdateGuardrailPolicy for application/json ContentType.
+type UpdateGuardrailPolicyJSONRequestBody = GuardrailPolicyWrite
+
+// ValidateGuardrailsJSONRequestBody defines body for ValidateGuardrails for application/json ContentType.
+type ValidateGuardrailsJSONRequestBody = GuardrailsValidationRequest
 
 // CreateInsightsViewJSONRequestBody defines body for CreateInsightsView for application/json ContentType.
 type CreateInsightsViewJSONRequestBody = DashboardWrite
@@ -13611,6 +13903,79 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /v1/private/guardrails (the `CreateGuardrails` operationId).
 	CreateGuardrails(ctx context.Context, body CreateGuardrailsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FindGuardrailPolicies Find guardrail policies
+	//
+	// Find guardrail policies in a workspace.
+	//
+	// Corresponds with GET /v1/private/guardrails/policies (the `FindGuardrailPolicies` operationId).
+	FindGuardrailPolicies(ctx context.Context, params *FindGuardrailPoliciesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateGuardrailPolicyWithBody Create guardrail policy
+	//
+	// Create a guardrail policy with its rules in a workspace.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/guardrails/policies (the `CreateGuardrailPolicy` operationId).
+	CreateGuardrailPolicyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateGuardrailPolicy Create guardrail policy
+	//
+	// Create a guardrail policy with its rules in a workspace.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /v1/private/guardrails/policies (the `CreateGuardrailPolicy` operationId).
+	CreateGuardrailPolicy(ctx context.Context, body CreateGuardrailPolicyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGuardrailPolicy Delete guardrail policy
+	//
+	// Delete a guardrail policy and its rules.
+	//
+	// Corresponds with DELETE /v1/private/guardrails/policies/{id} (the `DeleteGuardrailPolicy` operationId).
+	DeleteGuardrailPolicy(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetGuardrailPolicyById Get guardrail policy by id
+	//
+	// Corresponds with GET /v1/private/guardrails/policies/{id} (the `GetGuardrailPolicyById` operationId).
+	GetGuardrailPolicyById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateGuardrailPolicyWithBody Update guardrail policy
+	//
+	// Replace a guardrail policy, rules included: a rule left out of the request is removed
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PUT /v1/private/guardrails/policies/{id} (the `UpdateGuardrailPolicy` operationId).
+	UpdateGuardrailPolicyWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateGuardrailPolicy Update guardrail policy
+	//
+	// Replace a guardrail policy, rules included: a rule left out of the request is removed
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PUT /v1/private/guardrails/policies/{id} (the `UpdateGuardrailPolicy` operationId).
+	UpdateGuardrailPolicy(ctx context.Context, id openapi_types.UUID, body UpdateGuardrailPolicyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ValidateGuardrailsWithBody Run guardrail checks on a text
+	//
+	// Runs the requested checks on the text through the Opik inference decision service and returns a verdict per check. Writes nothing: the SDK reports the results to the guardrails batch endpoint, as before.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/guardrails/validations (the `ValidateGuardrails` operationId).
+	ValidateGuardrailsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ValidateGuardrails Run guardrail checks on a text
+	//
+	// Runs the requested checks on the text through the Opik inference decision service and returns a verdict per check. Writes nothing: the SDK reports the results to the guardrails batch endpoint, as before.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /v1/private/guardrails/validations (the `ValidateGuardrails` operationId).
+	ValidateGuardrails(ctx context.Context, body ValidateGuardrailsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// FindInsightsViews Find insights views
 	//
@@ -19645,370 +20010,6 @@ func (c *Client) UpdateFeedbackDefinitionWithBody(ctx context.Context, id openap
 // Corresponds with PUT /v1/private/feedback-definitions/{id} (the `UpdateFeedbackDefinition` operationId).
 func (c *Client) UpdateFeedbackDefinition(ctx context.Context, id openapi_types.UUID, body UpdateFeedbackDefinitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateFeedbackDefinitionRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateGuardrailsWithBody Create guardrails for traces in a batch
-//
-// Batch guardrails for traces.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/guardrails (the `CreateGuardrails` operationId).
-func (c *Client) CreateGuardrailsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateGuardrailsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateGuardrails Create guardrails for traces in a batch
-//
-// Batch guardrails for traces.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/guardrails (the `CreateGuardrails` operationId).
-func (c *Client) CreateGuardrails(ctx context.Context, body CreateGuardrailsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateGuardrailsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindInsightsViews Find insights views
-//
-// Find insights views in a workspace.
-//
-// Corresponds with GET /v1/private/insights-views (the `FindInsightsViews` operationId).
-func (c *Client) FindInsightsViews(ctx context.Context, params *FindInsightsViewsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindInsightsViewsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateInsightsViewWithBody Create insights view
-//
-// Create a new insights view in a workspace.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/insights-views (the `CreateInsightsView` operationId).
-func (c *Client) CreateInsightsViewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateInsightsViewRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateInsightsView Create insights view
-//
-// Create a new insights view in a workspace.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/insights-views (the `CreateInsightsView` operationId).
-func (c *Client) CreateInsightsView(ctx context.Context, body CreateInsightsViewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateInsightsViewRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteInsightsViewsBatchWithBody Delete insights views
-//
-// Delete insights views batch.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/insights-views/delete-batch (the `DeleteInsightsViewsBatch` operationId).
-func (c *Client) DeleteInsightsViewsBatchWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteInsightsViewsBatchRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteInsightsViewsBatch Delete insights views
-//
-// Delete insights views batch.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/insights-views/delete-batch (the `DeleteInsightsViewsBatch` operationId).
-func (c *Client) DeleteInsightsViewsBatch(ctx context.Context, body DeleteInsightsViewsBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteInsightsViewsBatchRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteInsightsView Delete insights view
-//
-// Delete insights view by id.
-//
-// Corresponds with DELETE /v1/private/insights-views/{insightsViewId} (the `DeleteInsightsView` operationId).
-func (c *Client) DeleteInsightsView(ctx context.Context, insightsViewId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteInsightsViewRequest(c.Server, insightsViewId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetInsightsViewById Get insights view by id
-//
-// Corresponds with GET /v1/private/insights-views/{insightsViewId} (the `GetInsightsViewById` operationId).
-func (c *Client) GetInsightsViewById(ctx context.Context, insightsViewId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetInsightsViewByIdRequest(c.Server, insightsViewId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateInsightsViewWithBody Update insights view
-//
-// Update insights view by id. Partial updates are supported - only provided fields will be updated.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PATCH /v1/private/insights-views/{insightsViewId} (the `UpdateInsightsView` operationId).
-func (c *Client) UpdateInsightsViewWithBody(ctx context.Context, insightsViewId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateInsightsViewRequestWithBody(c.Server, insightsViewId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateInsightsView Update insights view
-//
-// Update insights view by id. Partial updates are supported - only provided fields will be updated.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PATCH /v1/private/insights-views/{insightsViewId} (the `UpdateInsightsView` operationId).
-func (c *Client) UpdateInsightsView(ctx context.Context, insightsViewId openapi_types.UUID, body UpdateInsightsViewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateInsightsViewRequest(c.Server, insightsViewId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// RunInsightsViewWidgetQueryWithBody Run a saved widget query
-//
-// Runs the query saved on an Ollie chart widget of this insights view over the given date range and returns its rows. The query is read from the saved widget; the request carries no SQL. Returns 501 when Ollie or Custom Charts is not enabled for the workspace.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/insights-views/{insightsViewId}/widgets/{widgetId}/query (the `RunInsightsViewWidgetQuery` operationId).
-func (c *Client) RunInsightsViewWidgetQueryWithBody(ctx context.Context, insightsViewId openapi_types.UUID, widgetId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRunInsightsViewWidgetQueryRequestWithBody(c.Server, insightsViewId, widgetId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// RunInsightsViewWidgetQuery Run a saved widget query
-//
-// Runs the query saved on an Ollie chart widget of this insights view over the given date range and returns its rows. The query is read from the saved widget; the request carries no SQL. Returns 501 when Ollie or Custom Charts is not enabled for the workspace.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/insights-views/{insightsViewId}/widgets/{widgetId}/query (the `RunInsightsViewWidgetQuery` operationId).
-func (c *Client) RunInsightsViewWidgetQuery(ctx context.Context, insightsViewId openapi_types.UUID, widgetId string, body RunInsightsViewWidgetQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRunInsightsViewWidgetQueryRequest(c.Server, insightsViewId, widgetId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindLlmProviderKeys Find LLM Provider's ApiKeys
-//
-// Corresponds with GET /v1/private/llm-provider-key (the `FindLlmProviderKeys` operationId).
-func (c *Client) FindLlmProviderKeys(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindLlmProviderKeysRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// StoreLlmProviderApiKeyWithBody Store LLM Provider's ApiKey
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/llm-provider-key (the `StoreLlmProviderApiKey` operationId).
-func (c *Client) StoreLlmProviderApiKeyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStoreLlmProviderApiKeyRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// StoreLlmProviderApiKey Store LLM Provider's ApiKey
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/llm-provider-key (the `StoreLlmProviderApiKey` operationId).
-func (c *Client) StoreLlmProviderApiKey(ctx context.Context, body StoreLlmProviderApiKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStoreLlmProviderApiKeyRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// TestLlmProviderAuthConfigWithBody Test a provider's dynamic token auth
-//
-// Runs the token fetch once, backend-side, and reports the token lifetime. The token itself is never returned. Send provider_id to test the stored config, auth_config to test submitted values, or both to resolve secret sentinels against the stored config.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/llm-provider-key/auth-config/test (the `TestLlmProviderAuthConfig` operationId).
-func (c *Client) TestLlmProviderAuthConfigWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewTestLlmProviderAuthConfigRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// TestLlmProviderAuthConfig Test a provider's dynamic token auth
-//
-// Runs the token fetch once, backend-side, and reports the token lifetime. The token itself is never returned. Send provider_id to test the stored config, auth_config to test submitted values, or both to resolve secret sentinels against the stored config.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/llm-provider-key/auth-config/test (the `TestLlmProviderAuthConfig` operationId).
-func (c *Client) TestLlmProviderAuthConfig(ctx context.Context, body TestLlmProviderAuthConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewTestLlmProviderAuthConfigRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteLlmProviderApiKeysBatchWithBody Delete LLM Provider's ApiKeys
-//
-// Delete LLM Provider's ApiKeys batch.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/llm-provider-key/delete (the `DeleteLlmProviderApiKeysBatch` operationId).
-func (c *Client) DeleteLlmProviderApiKeysBatchWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteLlmProviderApiKeysBatchRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteLlmProviderApiKeysBatch Delete LLM Provider's ApiKeys
-//
-// Delete LLM Provider's ApiKeys batch.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/llm-provider-key/delete (the `DeleteLlmProviderApiKeysBatch` operationId).
-func (c *Client) DeleteLlmProviderApiKeysBatch(ctx context.Context, body DeleteLlmProviderApiKeysBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteLlmProviderApiKeysBatchRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}

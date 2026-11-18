@@ -14,6 +14,1314 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+type GetWorkspaceConfigurationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *WorkspaceConfiguration
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetWorkspaceConfigurationResponse) GetJSON200() *WorkspaceConfiguration {
+	return r.JSON200
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r GetWorkspaceConfigurationResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r GetWorkspaceConfigurationResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetWorkspaceConfigurationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetWorkspaceConfigurationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetWorkspaceConfigurationResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type UpsertWorkspaceConfigurationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *WorkspaceConfiguration
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+	// JSON422 the response for an HTTP 422 `application/json` response
+	JSON422 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r UpsertWorkspaceConfigurationResponse) GetJSON200() *WorkspaceConfiguration {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r UpsertWorkspaceConfigurationResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetJSON422 returns the response for an HTTP 422 `application/json` response
+func (r UpsertWorkspaceConfigurationResponse) GetJSON422() *ErrorMessage {
+	return r.JSON422
+}
+
+// GetBody returns the raw response body bytes
+func (r UpsertWorkspaceConfigurationResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r UpsertWorkspaceConfigurationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpsertWorkspaceConfigurationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r UpsertWorkspaceConfigurationResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetCostResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *WorkspaceMetricResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetCostResponse) GetJSON200() *WorkspaceMetricResponse {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r GetCostResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r GetCostResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetCostResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetCostResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetCostResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CostsSummaryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *Result
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r CostsSummaryResponse) GetJSON200() *Result {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r CostsSummaryResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r CostsSummaryResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r CostsSummaryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CostsSummaryResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CostsSummaryResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetMetricResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *WorkspaceMetricResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetMetricResponse) GetJSON200() *WorkspaceMetricResponse {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r GetMetricResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r GetMetricResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetMetricResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetMetricResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetMetricResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetWorkspaceSpanMetricResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *WorkspaceMetricResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetWorkspaceSpanMetricResponse) GetJSON200() *WorkspaceMetricResponse {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r GetWorkspaceSpanMetricResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r GetWorkspaceSpanMetricResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetWorkspaceSpanMetricResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetWorkspaceSpanMetricResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetWorkspaceSpanMetricResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MetricsSummaryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *WorkspaceMetricsSummaryResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MetricsSummaryResponse) GetJSON200() *WorkspaceMetricsSummaryResponse {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r MetricsSummaryResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r MetricsSummaryResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MetricsSummaryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MetricsSummaryResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MetricsSummaryResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetWorkspaceTokenUsageNamesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *TokenUsageNames
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetWorkspaceTokenUsageNamesResponse) GetJSON200() *TokenUsageNames {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r GetWorkspaceTokenUsageNamesResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r GetWorkspaceTokenUsageNamesResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetWorkspaceTokenUsageNamesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetWorkspaceTokenUsageNamesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetWorkspaceTokenUsageNamesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DatasetsRedirectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DatasetsRedirectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DatasetsRedirectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DatasetsRedirectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DatasetsRedirectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ExperimentsRedirectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ExperimentsRedirectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ExperimentsRedirectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExperimentsRedirectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ExperimentsRedirectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OptimizationsRedirectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r OptimizationsRedirectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OptimizationsRedirectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OptimizationsRedirectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OptimizationsRedirectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProjectsRedirectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProjectsRedirectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsRedirectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsRedirectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectsRedirectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// GetOAuthAuthorizationServerMetadataWithResponse Get OAuth Authorization Server Metadata
+//
+// Get OAuth 2.1 Authorization Server Metadata (RFC 8414)
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /.well-known/oauth-authorization-server (the `GetOAuthAuthorizationServerMetadata` operationId).
+func (c *ClientWithResponses) GetOAuthAuthorizationServerMetadataWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetOAuthAuthorizationServerMetadataResponse, error) {
+	rsp, err := c.GetOAuthAuthorizationServerMetadata(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetOAuthAuthorizationServerMetadataResponse(rsp)
+}
+
+// IsAliveWithResponse performs a GET /is-alive/ping (the `IsAlive` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) IsAliveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*IsAliveResponse, error) {
+	rsp, err := c.IsAlive(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIsAliveResponse(rsp)
+}
+
+// VersionWithResponse performs a GET /is-alive/ver (the `Version` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) VersionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*VersionResponse, error) {
+	rsp, err := c.Version(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVersionResponse(rsp)
+}
+
+// AuthorizeWithResponse OAuth Authorization Endpoint
+//
+// OAuth 2.1 authorization endpoint (RFC 6749 §3.1). Validates the client and PKCE parameters, then redirects to the login or consent page
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /oauth/authorize (the `Authorize` operationId).
+func (c *ClientWithResponses) AuthorizeWithResponse(ctx context.Context, params *AuthorizeParams, reqEditors ...RequestEditorFn) (*AuthorizeResponse, error) {
+	rsp, err := c.Authorize(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAuthorizeResponse(rsp)
+}
+
+// ConsentWithBodyWithResponse Submit Authorization Consent
+//
+// # Submit the user's consent, issue an authorization code, and return the client redirect target
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/authorize (the `Consent` operationId).
+func (c *ClientWithResponses) ConsentWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConsentResponse2, error) {
+	rsp, err := c.ConsentWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseConsentResponse2(rsp)
+}
+
+// ConsentWithResponse Submit Authorization Consent
+//
+// # Submit the user's consent, issue an authorization code, and return the client redirect target
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/authorize (the `Consent` operationId).
+func (c *ClientWithResponses) ConsentWithResponse(ctx context.Context, body ConsentJSONRequestBody, reqEditors ...RequestEditorFn) (*ConsentResponse2, error) {
+	rsp, err := c.Consent(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseConsentResponse2(rsp)
+}
+
+// GetAuthorizeContextWithResponse Get Authorization Consent Context
+//
+// # Get the client details, eligible workspaces, and a CSRF token used to render the consent screen
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /oauth/authorize/context (the `GetAuthorizeContext` operationId).
+func (c *ClientWithResponses) GetAuthorizeContextWithResponse(ctx context.Context, params *GetAuthorizeContextParams, reqEditors ...RequestEditorFn) (*GetAuthorizeContextResponse, error) {
+	rsp, err := c.GetAuthorizeContext(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAuthorizeContextResponse(rsp)
+}
+
+// RegisterOAuthClientWithBodyWithResponse OAuth Dynamic Client Registration Endpoint
+//
+// OAuth 2.0 Dynamic Client Registration (RFC 7591). Registers a public client for the MCP OAuth flow; throttled per source IP
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/register (the `RegisterOAuthClient` operationId).
+func (c *ClientWithResponses) RegisterOAuthClientWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RegisterOAuthClientResponse, error) {
+	rsp, err := c.RegisterOAuthClientWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRegisterOAuthClientResponse(rsp)
+}
+
+// RegisterOAuthClientWithResponse OAuth Dynamic Client Registration Endpoint
+//
+// OAuth 2.0 Dynamic Client Registration (RFC 7591). Registers a public client for the MCP OAuth flow; throttled per source IP
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/register (the `RegisterOAuthClient` operationId).
+func (c *ClientWithResponses) RegisterOAuthClientWithResponse(ctx context.Context, body RegisterOAuthClientJSONRequestBody, reqEditors ...RequestEditorFn) (*RegisterOAuthClientResponse, error) {
+	rsp, err := c.RegisterOAuthClient(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRegisterOAuthClientResponse(rsp)
+}
+
+// RevokeWithBodyWithResponse OAuth Token Revocation Endpoint
+//
+// OAuth 2.0 token revocation endpoint (RFC 7009). Always returns 200, whether the token was revoked, never existed, or was invalid
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/revoke (the `Revoke` operationId).
+func (c *ClientWithResponses) RevokeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RevokeResponse, error) {
+	rsp, err := c.RevokeWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRevokeResponse(rsp)
+}
+
+// RevokeWithFormdataBodyWithResponse OAuth Token Revocation Endpoint
+//
+// OAuth 2.0 token revocation endpoint (RFC 7009). Always returns 200, whether the token was revoked, never existed, or was invalid
+//
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/revoke (the `Revoke` operationId).
+func (c *ClientWithResponses) RevokeWithFormdataBodyWithResponse(ctx context.Context, body RevokeFormdataRequestBody, reqEditors ...RequestEditorFn) (*RevokeResponse, error) {
+	rsp, err := c.RevokeWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRevokeResponse(rsp)
+}
+
+// TokenWithBodyWithResponse OAuth Token Endpoint
+//
+// OAuth 2.1 token endpoint (RFC 6749 §4.1.3, §6). Exchanges an authorization code with PKCE or a refresh token for an access/refresh token pair
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/token (the `Token` operationId).
+func (c *ClientWithResponses) TokenWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*TokenResponse2, error) {
+	rsp, err := c.TokenWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseTokenResponse2(rsp)
+}
+
+// TokenWithFormdataBodyWithResponse OAuth Token Endpoint
+//
+// OAuth 2.1 token endpoint (RFC 6749 §4.1.3, §6). Exchanges an authorization code with PKCE or a refresh token for an access/refresh token pair
+//
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /oauth/token (the `Token` operationId).
+func (c *ClientWithResponses) TokenWithFormdataBodyWithResponse(ctx context.Context, body TokenFormdataRequestBody, reqEditors ...RequestEditorFn) (*TokenResponse2, error) {
+	rsp, err := c.TokenWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseTokenResponse2(rsp)
+}
+
+// ValidateOAuthTokenWithResponse Validate OAuth Access Token
+//
+// Introspects a bearer access token and returns the identity it resolves to.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /opik/auth-oauth (the `ValidateOAuthToken` operationId).
+func (c *ClientWithResponses) ValidateOAuthTokenWithResponse(ctx context.Context, params *ValidateOAuthTokenParams, reqEditors ...RequestEditorFn) (*ValidateOAuthTokenResponse, error) {
+	rsp, err := c.ValidateOAuthToken(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseValidateOAuthTokenResponse(rsp)
+}
+
+// EnrolProjectsInAutoFirstRunWithBodyWithResponse Enrol projects in the auto-first-run rollout
+//
+// Enrols the given projects, creating their job row if needed, or clears their enrolment. Idempotent.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/agent-insights/enrollment (the `EnrolProjectsInAutoFirstRun` operationId).
+func (c *ClientWithResponses) EnrolProjectsInAutoFirstRunWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnrolProjectsInAutoFirstRunResponse, error) {
+	rsp, err := c.EnrolProjectsInAutoFirstRunWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEnrolProjectsInAutoFirstRunResponse(rsp)
+}
+
+// EnrolProjectsInAutoFirstRunWithResponse Enrol projects in the auto-first-run rollout
+//
+// Enrols the given projects, creating their job row if needed, or clears their enrolment. Idempotent.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/agent-insights/enrollment (the `EnrolProjectsInAutoFirstRun` operationId).
+func (c *ClientWithResponses) EnrolProjectsInAutoFirstRunWithResponse(ctx context.Context, body EnrolProjectsInAutoFirstRunJSONRequestBody, reqEditors ...RequestEditorFn) (*EnrolProjectsInAutoFirstRunResponse, error) {
+	rsp, err := c.EnrolProjectsInAutoFirstRun(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEnrolProjectsInAutoFirstRunResponse(rsp)
+}
+
+// ExecuteScopedAnalyticsQueryWithBodyWithResponse Execute free-form analytics SQL
+//
+// Runs read-only SQL bounded to the caller's workspace. Supply project_id to restrict traces, spans, feedback scores and trace threads to one project, or omit it to cover the whole workspace. Experiments, experiment items and dataset items always cover the whole workspace.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/analytics-queries (the `ExecuteScopedAnalyticsQuery` operationId).
+func (c *ClientWithResponses) ExecuteScopedAnalyticsQueryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExecuteScopedAnalyticsQueryResponse, error) {
+	rsp, err := c.ExecuteScopedAnalyticsQueryWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExecuteScopedAnalyticsQueryResponse(rsp)
+}
+
+// ExecuteScopedAnalyticsQueryWithResponse Execute free-form analytics SQL
+//
+// Runs read-only SQL bounded to the caller's workspace. Supply project_id to restrict traces, spans, feedback scores and trace threads to one project, or omit it to cover the whole workspace. Experiments, experiment items and dataset items always cover the whole workspace.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/analytics-queries (the `ExecuteScopedAnalyticsQuery` operationId).
+func (c *ClientWithResponses) ExecuteScopedAnalyticsQueryWithResponse(ctx context.Context, body ExecuteScopedAnalyticsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*ExecuteScopedAnalyticsQueryResponse, error) {
+	rsp, err := c.ExecuteScopedAnalyticsQuery(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExecuteScopedAnalyticsQueryResponse(rsp)
+}
+
+// ExecuteAnalyticsQueryWithBodyWithResponse Execute Agent Insights free-form SQL
+//
+// Runs Ollie-generated read-only SQL bounded to the caller's workspace and the requested project. Returns 501 when the Agent Insights toggle is off.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/analytics-queries/projects/{projectId} (the `ExecuteAnalyticsQuery` operationId).
+func (c *ClientWithResponses) ExecuteAnalyticsQueryWithBodyWithResponse(ctx context.Context, projectId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExecuteAnalyticsQueryResponse, error) {
+	rsp, err := c.ExecuteAnalyticsQueryWithBody(ctx, projectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExecuteAnalyticsQueryResponse(rsp)
+}
+
+// ExecuteAnalyticsQueryWithResponse Execute Agent Insights free-form SQL
+//
+// Runs Ollie-generated read-only SQL bounded to the caller's workspace and the requested project. Returns 501 when the Agent Insights toggle is off.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/analytics-queries/projects/{projectId} (the `ExecuteAnalyticsQuery` operationId).
+func (c *ClientWithResponses) ExecuteAnalyticsQueryWithResponse(ctx context.Context, projectId openapi_types.UUID, body ExecuteAnalyticsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*ExecuteAnalyticsQueryResponse, error) {
+	rsp, err := c.ExecuteAnalyticsQuery(ctx, projectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExecuteAnalyticsQueryResponse(rsp)
+}
+
+// CreateDashboardSavedQueryWithBodyWithResponse Save a chart query
+//
+// Saves the query of an Ollie chart so a dashboard widget can reference it by id.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/dashboard-saved-queries (the `CreateDashboardSavedQuery` operationId).
+func (c *ClientWithResponses) CreateDashboardSavedQueryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDashboardSavedQueryResponse, error) {
+	rsp, err := c.CreateDashboardSavedQueryWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateDashboardSavedQueryResponse(rsp)
+}
+
+// CreateDashboardSavedQueryWithResponse Save a chart query
+//
+// Saves the query of an Ollie chart so a dashboard widget can reference it by id.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/dashboard-saved-queries (the `CreateDashboardSavedQuery` operationId).
+func (c *ClientWithResponses) CreateDashboardSavedQueryWithResponse(ctx context.Context, body CreateDashboardSavedQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDashboardSavedQueryResponse, error) {
+	rsp, err := c.CreateDashboardSavedQuery(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateDashboardSavedQueryResponse(rsp)
+}
+
+// GetDashboardSavedQueryWithResponse Get a chart query
+//
+// Gets a dashboard saved query by id.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/dashboard-saved-queries/{id} (the `GetDashboardSavedQuery` operationId).
+func (c *ClientWithResponses) GetDashboardSavedQueryWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetDashboardSavedQueryResponse, error) {
+	rsp, err := c.GetDashboardSavedQuery(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDashboardSavedQueryResponse(rsp)
+}
+
+// GetDatasetBiInfoWithResponse Get datasets information for BI events
+//
+// Get datasets information for BI events per user per workspace.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/bi-datasets (the `GetDatasetBiInfo` operationId).
+func (c *ClientWithResponses) GetDatasetBiInfoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetDatasetBiInfoResponse, error) {
+	rsp, err := c.GetDatasetBiInfo(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDatasetBiInfoResponse(rsp)
+}
+
+// GetExperimentBiInfoWithResponse Get experiments information for BI events
+//
+// Get experiments information for BI events per user per workspace.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/bi-experiments (the `GetExperimentBiInfo` operationId).
+func (c *ClientWithResponses) GetExperimentBiInfoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetExperimentBiInfoResponse, error) {
+	rsp, err := c.GetExperimentBiInfo(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetExperimentBiInfoResponse(rsp)
+}
+
+// GetSpansBiInfoWithResponse Get spans information for BI events
+//
+// Get spans information for BI events per user per workspace.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/bi-spans (the `GetSpansBiInfo` operationId).
+func (c *ClientWithResponses) GetSpansBiInfoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSpansBiInfoResponse, error) {
+	rsp, err := c.GetSpansBiInfo(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSpansBiInfoResponse(rsp)
+}
+
+// GetTracesBiInfoWithResponse Get traces information for BI events
+//
+// Get traces information for BI events per user per workspace.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/bi-traces (the `GetTracesBiInfo` operationId).
+func (c *ClientWithResponses) GetTracesBiInfoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTracesBiInfoResponse, error) {
+	rsp, err := c.GetTracesBiInfo(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetTracesBiInfoResponse(rsp)
+}
+
+// FindUsageProjectsWithBodyWithResponse Find projects across workspaces by ids or name
+//
+// Find projects across the given workspaces, optionally narrowed by project ids or a case-insensitive name substring. Unknown or deleted projects are omitted.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/usage/projects (the `FindUsageProjects` operationId).
+func (c *ClientWithResponses) FindUsageProjectsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FindUsageProjectsResponse, error) {
+	rsp, err := c.FindUsageProjectsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFindUsageProjectsResponse(rsp)
+}
+
+// FindUsageProjectsWithResponse Find projects across workspaces by ids or name
+//
+// Find projects across the given workspaces, optionally narrowed by project ids or a case-insensitive name substring. Unknown or deleted projects are omitted.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/usage/projects (the `FindUsageProjects` operationId).
+func (c *ClientWithResponses) FindUsageProjectsWithResponse(ctx context.Context, body FindUsageProjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*FindUsageProjectsResponse, error) {
+	rsp, err := c.FindUsageProjects(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFindUsageProjectsResponse(rsp)
+}
+
+// GetSpansCountForWorkspacesWithResponse Get spans count on previous day for all available workspaces
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/workspace-span-counts (the `GetSpansCountForWorkspaces` operationId).
+func (c *ClientWithResponses) GetSpansCountForWorkspacesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSpansCountForWorkspacesResponse, error) {
+	rsp, err := c.GetSpansCountForWorkspaces(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSpansCountForWorkspacesResponse(rsp)
+}
+
+// GetSpansCountBreakdownForWorkspacesWithResponse Get spans count on previous day grouped by workspace, project and user
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/workspace-span-counts-breakdown (the `GetSpansCountBreakdownForWorkspaces` operationId).
+func (c *ClientWithResponses) GetSpansCountBreakdownForWorkspacesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSpansCountBreakdownForWorkspacesResponse, error) {
+	rsp, err := c.GetSpansCountBreakdownForWorkspaces(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSpansCountBreakdownForWorkspacesResponse(rsp)
+}
+
+// GetTracesCountForWorkspacesWithResponse Get traces count on previous day for all available workspaces
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/internal/usage/workspace-trace-counts (the `GetTracesCountForWorkspaces` operationId).
+func (c *ClientWithResponses) GetTracesCountForWorkspacesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTracesCountForWorkspacesResponse, error) {
+	rsp, err := c.GetTracesCountForWorkspaces(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetTracesCountForWorkspacesResponse(rsp)
+}
+
+// UpdateAgentConfigWithBodyWithResponse Add blueprint to existing config
+//
+// Adds a new blueprint to an existing optimizer config. Fails if the project has no config yet.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/agent-configs/blueprints (the `UpdateAgentConfig` operationId).
+func (c *ClientWithResponses) UpdateAgentConfigWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateAgentConfigResponse, error) {
+	rsp, err := c.UpdateAgentConfigWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentConfigResponse(rsp)
+}
+
+// UpdateAgentConfigWithResponse Add blueprint to existing config
+//
+// Adds a new blueprint to an existing optimizer config. Fails if the project has no config yet.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /v1/private/agent-configs/blueprints (the `UpdateAgentConfig` operationId).
+func (c *ClientWithResponses) UpdateAgentConfigWithResponse(ctx context.Context, body UpdateAgentConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateAgentConfigResponse, error) {
+	rsp, err := c.UpdateAgentConfig(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateAgentConfigResponse(rsp)
+}
+
+// CreateAgentConfigWithBodyWithResponse Create optimizer config with initial blueprint
+//
+// Creates a new optimizer config with initial blueprint. Fails if the project already has a config.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints (the `CreateAgentConfig` operationId).
+func (c *ClientWithResponses) CreateAgentConfigWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAgentConfigResponse, error) {
+	rsp, err := c.CreateAgentConfigWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAgentConfigResponse(rsp)
+}
+
+// CreateAgentConfigWithResponse Create optimizer config with initial blueprint
+//
+// Creates a new optimizer config with initial blueprint. Fails if the project already has a config.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints (the `CreateAgentConfig` operationId).
+func (c *ClientWithResponses) CreateAgentConfigWithResponse(ctx context.Context, body CreateAgentConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAgentConfigResponse, error) {
+	rsp, err := c.CreateAgentConfig(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateAgentConfigResponse(rsp)
+}
+
+// CreateOrUpdateEnvsWithBodyWithResponse Create or update environments
+//
+// Creates or updates environment-to-blueprint mappings.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints/environments (the `CreateOrUpdateEnvs` operationId).
+func (c *ClientWithResponses) CreateOrUpdateEnvsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateEnvsResponse, error) {
+	rsp, err := c.CreateOrUpdateEnvsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateOrUpdateEnvsResponse(rsp)
+}
+
+// CreateOrUpdateEnvsWithResponse Create or update environments
+//
+// Creates or updates environment-to-blueprint mappings.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints/environments (the `CreateOrUpdateEnvs` operationId).
+func (c *ClientWithResponses) CreateOrUpdateEnvsWithResponse(ctx context.Context, body CreateOrUpdateEnvsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateEnvsResponse, error) {
+	rsp, err := c.CreateOrUpdateEnvs(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateOrUpdateEnvsResponse(rsp)
+}
+
+// DeleteEnvWithResponse Delete environment
+//
+// Soft-deletes an environment by setting its ended_at timestamp.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with DELETE /v1/private/agent-configs/blueprints/environments/{env_name}/projects/{project_id} (the `DeleteEnv` operationId).
+func (c *ClientWithResponses) DeleteEnvWithResponse(ctx context.Context, envName string, projectId openapi_types.UUID, reqEditors ...RequestEditorFn) (*DeleteEnvResponse, error) {
+	rsp, err := c.DeleteEnv(ctx, envName, projectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteEnvResponse(rsp)
+}
+
+// GetBlueprintByEnvWithResponse Retrieve blueprint by environment
+//
+// Retrieves the blueprint associated with a specific environment.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-configs/blueprints/environments/{env_name}/projects/{project_id} (the `GetBlueprintByEnv` operationId).
+func (c *ClientWithResponses) GetBlueprintByEnvWithResponse(ctx context.Context, envName string, projectId openapi_types.UUID, params *GetBlueprintByEnvParams, reqEditors ...RequestEditorFn) (*GetBlueprintByEnvResponse, error) {
+	rsp, err := c.GetBlueprintByEnv(ctx, envName, projectId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetBlueprintByEnvResponse(rsp)
+}
+
+// SetEnvByBlueprintNameWithBodyWithResponse Set environment by blueprint name
+//
+// Sets an environment to point to a blueprint identified by name.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/agent-configs/blueprints/environments/{env_name}/projects/{project_id} (the `SetEnvByBlueprintName` operationId).
+func (c *ClientWithResponses) SetEnvByBlueprintNameWithBodyWithResponse(ctx context.Context, envName string, projectId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SetEnvByBlueprintNameResponse, error) {
+	rsp, err := c.SetEnvByBlueprintNameWithBody(ctx, envName, projectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSetEnvByBlueprintNameResponse(rsp)
+}
+
+// SetEnvByBlueprintNameWithResponse Set environment by blueprint name
+//
+// Sets an environment to point to a blueprint identified by name.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/agent-configs/blueprints/environments/{env_name}/projects/{project_id} (the `SetEnvByBlueprintName` operationId).
+func (c *ClientWithResponses) SetEnvByBlueprintNameWithResponse(ctx context.Context, envName string, projectId openapi_types.UUID, body SetEnvByBlueprintNameJSONRequestBody, reqEditors ...RequestEditorFn) (*SetEnvByBlueprintNameResponse, error) {
+	rsp, err := c.SetEnvByBlueprintName(ctx, envName, projectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSetEnvByBlueprintNameResponse(rsp)
+}
+
+// GetBlueprintHistoryWithResponse Get blueprint history
+//
+// Retrieves paginated blueprint history for a project.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-configs/blueprints/history/projects/{project_id} (the `GetBlueprintHistory` operationId).
+func (c *ClientWithResponses) GetBlueprintHistoryWithResponse(ctx context.Context, projectId openapi_types.UUID, params *GetBlueprintHistoryParams, reqEditors ...RequestEditorFn) (*GetBlueprintHistoryResponse, error) {
+	rsp, err := c.GetBlueprintHistory(ctx, projectId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetBlueprintHistoryResponse(rsp)
+}
+
+// GetLatestBlueprintWithResponse Retrieve latest blueprint
+//
+// Retrieves the latest blueprint for a project.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-configs/blueprints/latest/projects/{project_id} (the `GetLatestBlueprint` operationId).
+func (c *ClientWithResponses) GetLatestBlueprintWithResponse(ctx context.Context, projectId openapi_types.UUID, params *GetLatestBlueprintParams, reqEditors ...RequestEditorFn) (*GetLatestBlueprintResponse, error) {
+	rsp, err := c.GetLatestBlueprint(ctx, projectId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetLatestBlueprintResponse(rsp)
+}
+
+// CreateBlueprintFromMaskWithResponse Create blueprint from mask
+//
+// Creates a new blueprint by applying a mask's changes on top of the latest blueprint for the project.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints/projects/{project_id}/masks/{mask_id} (the `CreateBlueprintFromMask` operationId).
+func (c *ClientWithResponses) CreateBlueprintFromMaskWithResponse(ctx context.Context, projectId openapi_types.UUID, maskId openapi_types.UUID, reqEditors ...RequestEditorFn) (*CreateBlueprintFromMaskResponse, error) {
+	rsp, err := c.CreateBlueprintFromMask(ctx, projectId, maskId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateBlueprintFromMaskResponse(rsp)
+}
+
+// GetBlueprintByNameWithResponse Retrieve blueprint by name
+//
+// Retrieves a specific blueprint by its name within a project.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-configs/blueprints/projects/{project_id}/names/{name} (the `GetBlueprintByName` operationId).
+func (c *ClientWithResponses) GetBlueprintByNameWithResponse(ctx context.Context, projectId openapi_types.UUID, name string, params *GetBlueprintByNameParams, reqEditors ...RequestEditorFn) (*GetBlueprintByNameResponse, error) {
+	rsp, err := c.GetBlueprintByName(ctx, projectId, name, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetBlueprintByNameResponse(rsp)
+}
+
+// RemoveConfigKeysWithBodyWithResponse Remove configuration parameters
+//
+// Removes configuration parameters by creating a new blueprint that closes the specified keys. Returns 204 if no changes were needed (idempotent).
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints/remove-keys (the `RemoveConfigKeys` operationId).
+func (c *ClientWithResponses) RemoveConfigKeysWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RemoveConfigKeysResponse, error) {
+	rsp, err := c.RemoveConfigKeysWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRemoveConfigKeysResponse(rsp)
+}
+
+// RemoveConfigKeysWithResponse Remove configuration parameters
+//
+// Removes configuration parameters by creating a new blueprint that closes the specified keys. Returns 204 if no changes were needed (idempotent).
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-configs/blueprints/remove-keys (the `RemoveConfigKeys` operationId).
+func (c *ClientWithResponses) RemoveConfigKeysWithResponse(ctx context.Context, body RemoveConfigKeysJSONRequestBody, reqEditors ...RequestEditorFn) (*RemoveConfigKeysResponse, error) {
+	rsp, err := c.RemoveConfigKeys(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRemoveConfigKeysResponse(rsp)
+}
+
+// GetBlueprintByIdWithResponse Retrieve blueprint by ID
+//
+// Retrieves a specific blueprint by its ID.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-configs/blueprints/{blueprint_id} (the `GetBlueprintById` operationId).
+func (c *ClientWithResponses) GetBlueprintByIdWithResponse(ctx context.Context, blueprintId openapi_types.UUID, params *GetBlueprintByIdParams, reqEditors ...RequestEditorFn) (*GetBlueprintByIdResponse, error) {
+	rsp, err := c.GetBlueprintById(ctx, blueprintId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetBlueprintByIdResponse(rsp)
+}
+
+// GetDeltaByIdWithResponse Retrieve delta by blueprint ID
+//
+// Retrieves only the changes (delta) introduced in a specific blueprint.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-configs/blueprints/{blueprint_id}/deltas (the `GetDeltaById` operationId).
+func (c *ClientWithResponses) GetDeltaByIdWithResponse(ctx context.Context, blueprintId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetDeltaByIdResponse, error) {
+	rsp, err := c.GetDeltaById(ctx, blueprintId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDeltaByIdResponse(rsp)
+}
+
+// FindAgentInsightsIssuesWithResponse Find agent insights issues
+//
+// # Returns a paginated list of issues that have at least one detail row within the requested time window, with metrics aggregated over the window
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/agent-insights/issues (the `FindAgentInsightsIssues` operationId).
+func (c *ClientWithResponses) FindAgentInsightsIssuesWithResponse(ctx context.Context, params *FindAgentInsightsIssuesParams, reqEditors ...RequestEditorFn) (*FindAgentInsightsIssuesResponse, error) {
+	rsp, err := c.FindAgentInsightsIssues(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFindAgentInsightsIssuesResponse(rsp)
+}
+
+// ReportAgentInsightsIssuesWithBodyWithResponse Store agent insights report results
+//
+// Upserts the detected issues and their per-day metrics for the given report day in a single transaction. Issue status is never modified by this endpoint.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-insights/issues (the `ReportAgentInsightsIssues` operationId).
+func (c *ClientWithResponses) ReportAgentInsightsIssuesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReportAgentInsightsIssuesResponse, error) {
+	rsp, err := c.ReportAgentInsightsIssuesWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReportAgentInsightsIssuesResponse(rsp)
+}
+
+// ReportAgentInsightsIssuesWithResponse Store agent insights report results
+//
+// Upserts the detected issues and their per-day metrics for the given report day in a single transaction. Issue status is never modified by this endpoint.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/agent-insights/issues (the `ReportAgentInsightsIssues` operationId).
+func (c *ClientWithResponses) ReportAgentInsightsIssuesWithResponse(ctx context.Context, body ReportAgentInsightsIssuesJSONRequestBody, reqEditors ...RequestEditorFn) (*ReportAgentInsightsIssuesResponse, error) {
+	rsp, err := c.ReportAgentInsightsIssues(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReportAgentInsightsIssuesResponse(rsp)
+}
+
 // GetAgentInsightsIssueByIdWithResponse Get agent insights issue by id
 //
 // Returns the issue together with its per-day breakdown within the requested time window.
@@ -2590,6 +3898,139 @@ func (c *ClientWithResponses) CreateGuardrailsWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseCreateGuardrailsResponse(rsp)
+}
+
+// FindGuardrailPoliciesWithResponse Find guardrail policies
+//
+// Find guardrail policies in a workspace.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/guardrails/policies (the `FindGuardrailPolicies` operationId).
+func (c *ClientWithResponses) FindGuardrailPoliciesWithResponse(ctx context.Context, params *FindGuardrailPoliciesParams, reqEditors ...RequestEditorFn) (*FindGuardrailPoliciesResponse, error) {
+	rsp, err := c.FindGuardrailPolicies(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFindGuardrailPoliciesResponse(rsp)
+}
+
+// CreateGuardrailPolicyWithBodyWithResponse Create guardrail policy
+//
+// Create a guardrail policy with its rules in a workspace.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/guardrails/policies (the `CreateGuardrailPolicy` operationId).
+func (c *ClientWithResponses) CreateGuardrailPolicyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateGuardrailPolicyResponse, error) {
+	rsp, err := c.CreateGuardrailPolicyWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateGuardrailPolicyResponse(rsp)
+}
+
+// CreateGuardrailPolicyWithResponse Create guardrail policy
+//
+// Create a guardrail policy with its rules in a workspace.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/guardrails/policies (the `CreateGuardrailPolicy` operationId).
+func (c *ClientWithResponses) CreateGuardrailPolicyWithResponse(ctx context.Context, body CreateGuardrailPolicyJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateGuardrailPolicyResponse, error) {
+	rsp, err := c.CreateGuardrailPolicy(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateGuardrailPolicyResponse(rsp)
+}
+
+// DeleteGuardrailPolicyWithResponse Delete guardrail policy
+//
+// Delete a guardrail policy and its rules.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with DELETE /v1/private/guardrails/policies/{id} (the `DeleteGuardrailPolicy` operationId).
+func (c *ClientWithResponses) DeleteGuardrailPolicyWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*DeleteGuardrailPolicyResponse, error) {
+	rsp, err := c.DeleteGuardrailPolicy(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGuardrailPolicyResponse(rsp)
+}
+
+// GetGuardrailPolicyByIdWithResponse Get guardrail policy by id
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /v1/private/guardrails/policies/{id} (the `GetGuardrailPolicyById` operationId).
+func (c *ClientWithResponses) GetGuardrailPolicyByIdWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetGuardrailPolicyByIdResponse, error) {
+	rsp, err := c.GetGuardrailPolicyById(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetGuardrailPolicyByIdResponse(rsp)
+}
+
+// UpdateGuardrailPolicyWithBodyWithResponse Update guardrail policy
+//
+// Replace a guardrail policy, rules included: a rule left out of the request is removed
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/guardrails/policies/{id} (the `UpdateGuardrailPolicy` operationId).
+func (c *ClientWithResponses) UpdateGuardrailPolicyWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateGuardrailPolicyResponse, error) {
+	rsp, err := c.UpdateGuardrailPolicyWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateGuardrailPolicyResponse(rsp)
+}
+
+// UpdateGuardrailPolicyWithResponse Update guardrail policy
+//
+// Replace a guardrail policy, rules included: a rule left out of the request is removed
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /v1/private/guardrails/policies/{id} (the `UpdateGuardrailPolicy` operationId).
+func (c *ClientWithResponses) UpdateGuardrailPolicyWithResponse(ctx context.Context, id openapi_types.UUID, body UpdateGuardrailPolicyJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateGuardrailPolicyResponse, error) {
+	rsp, err := c.UpdateGuardrailPolicy(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateGuardrailPolicyResponse(rsp)
+}
+
+// ValidateGuardrailsWithBodyWithResponse Run guardrail checks on a text
+//
+// Runs the requested checks on the text through the Opik inference decision service and returns a verdict per check. Writes nothing: the SDK reports the results to the guardrails batch endpoint, as before.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/guardrails/validations (the `ValidateGuardrails` operationId).
+func (c *ClientWithResponses) ValidateGuardrailsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ValidateGuardrailsResponse, error) {
+	rsp, err := c.ValidateGuardrailsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseValidateGuardrailsResponse(rsp)
+}
+
+// ValidateGuardrailsWithResponse Run guardrail checks on a text
+//
+// Runs the requested checks on the text through the Opik inference decision service and returns a verdict per check. Writes nothing: the SDK reports the results to the guardrails batch endpoint, as before.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/private/guardrails/validations (the `ValidateGuardrails` operationId).
+func (c *ClientWithResponses) ValidateGuardrailsWithResponse(ctx context.Context, body ValidateGuardrailsJSONRequestBody, reqEditors ...RequestEditorFn) (*ValidateGuardrailsResponse, error) {
+	rsp, err := c.ValidateGuardrails(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseValidateGuardrailsResponse(rsp)
 }
 
 // FindInsightsViewsWithResponse Find insights views
@@ -8973,9 +10414,6 @@ func ParseUpdateDashboardResponse(rsp *http.Response) (*UpdateDashboardResponse,
 	case rsp.StatusCode == 404:
 		break // No content-type
 
-	case rsp.StatusCode == 409:
-		break // No content-type
-
 	}
 
 	return response, nil
@@ -10836,6 +12274,352 @@ func ParseCreateGuardrailsResponse(rsp *http.Response) (*CreateGuardrailsRespons
 	return response, nil
 }
 
+// ParseFindGuardrailPoliciesResponse parses an HTTP response from a FindGuardrailPoliciesWithResponse call
+func ParseFindGuardrailPoliciesResponse(rsp *http.Response) (*FindGuardrailPoliciesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FindGuardrailPoliciesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GuardrailPolicyPagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorMessagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest ErrorMessagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateGuardrailPolicyResponse parses an HTTP response from a CreateGuardrailPolicyWithResponse call
+func ParseCreateGuardrailPolicyResponse(rsp *http.Response) (*CreateGuardrailPolicyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateGuardrailPolicyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 201:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 201:
+		var headers CreateGuardrailPolicyResponse201Headers
+		if values := rsp.Header.Values("Location"); len(values) > 0 {
+			var value string
+			if err := runtime.BindStyledParameterWithOptions("simple", "Location", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: true, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.Location = value
+		}
+		response.Headers201 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseDeleteGuardrailPolicyResponse parses an HTTP response from a DeleteGuardrailPolicyWithResponse call
+func ParseDeleteGuardrailPolicyResponse(rsp *http.Response) (*DeleteGuardrailPolicyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteGuardrailPolicyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetGuardrailPolicyByIdResponse parses an HTTP response from a GetGuardrailPolicyByIdWithResponse call
+func ParseGetGuardrailPolicyByIdResponse(rsp *http.Response) (*GetGuardrailPolicyByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetGuardrailPolicyByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GuardrailPolicyPublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorMessagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest ErrorMessagePublic
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateGuardrailPolicyResponse parses an HTTP response from a UpdateGuardrailPolicyWithResponse call
+func ParseUpdateGuardrailPolicyResponse(rsp *http.Response) (*UpdateGuardrailPolicyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateGuardrailPolicyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseValidateGuardrailsResponse parses an HTTP response from a ValidateGuardrailsWithResponse call
+func ParseValidateGuardrailsResponse(rsp *http.Response) (*ValidateGuardrailsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ValidateGuardrailsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GuardrailsValidationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseFindInsightsViewsResponse parses an HTTP response from a FindInsightsViewsWithResponse call
 func ParseFindInsightsViewsResponse(rsp *http.Response) (*FindInsightsViewsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -10984,9 +12768,6 @@ func ParseUpdateInsightsViewResponse(rsp *http.Response) (*UpdateInsightsViewRes
 		response.JSON200 = &dest
 
 	case rsp.StatusCode == 404:
-		break // No content-type
-
-	case rsp.StatusCode == 409:
 		break // No content-type
 
 	}

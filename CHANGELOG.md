@@ -2,6 +2,16 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.6.0, 2026-11-18
+
+- Added guardrail policy endpoints to `ClientInterface`, `Client`, `ClientWithResponsesInterface` and `ClientWithResponses`: `CreateGuardrailPolicy`, `FindGuardrailPolicies`, `GetGuardrailPolicyById`, `UpdateGuardrailPolicy`, `DeleteGuardrailPolicy` and `ValidateGuardrails`, each with a `WithBody` variant and a `WithResponse` form. Matching `New...Request` builders and `Parse...Response` functions are included.
+- Added the guardrail types `GuardrailPolicyPublic`, `GuardrailPolicyPagePublic`, `GuardrailPolicyWrite`, `GuardrailPolicyRulePublic`, `GuardrailPolicyRuleWrite`, `GuardrailsValidationRequest`, `GuardrailsValidationResponse`, `ValidationDescriptor` and `ValidationResult`, with their enum types and constants. Added `FindGuardrailPoliciesParams` for the list query.
+- Added the field `GuardrailsValidationsEnabled` to `ServiceTogglesConfig`.
+- Removed the field `Slug` (`*string`) from `DashboardPublic`. The upstream spec no longer has it. Code that reads the field must drop it.
+- Added methods to the `ClientInterface` and `ClientWithResponsesInterface` interfaces. Custom implementations or mocks of these interfaces must add the new methods.
+- Raised the minimum Go version to 1.26.11 in `go.mod` and the development image, to pick up the `net/http` fix for GO-2026-6859.
+- Migration: delete uses of `DashboardPublic.Slug` and implement the new interface methods in any custom client or mock.
+
 ## v0.5.0, 2026-11-07
 
 - Removed the field `OnlineScoringTracingEnabled` (`bool`) from `ServiceTogglesConfig`. The upstream spec no longer has `onlineScoringTracingEnabled`. Code that reads or sets the field must drop it.

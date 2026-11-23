@@ -2,6 +2,11 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.6.1, 2026-11-23
+
+- Added the field `JSON409` (`*ErrorMessage`) and the method `GetJSON409` to `UpdateAutomationRuleEvaluatorResponse`. `ParseUpdateAutomationRuleEvaluatorResponse` now decodes an HTTP 409 `application/json` reply into `JSON409`.
+- Updated the doc comments of `DatasetWrite.ProjectName` and `PromptWrite.ProjectName`. Without a project, the item is now created in the Default Project instead of at workspace level.
+
 ## v0.6.0, 2026-11-18
 
 - Added guardrail policy endpoints to `ClientInterface`, `Client`, `ClientWithResponsesInterface` and `ClientWithResponses`: `CreateGuardrailPolicy`, `FindGuardrailPolicies`, `GetGuardrailPolicyById`, `UpdateGuardrailPolicy`, `DeleteGuardrailPolicy` and `ValidateGuardrails`, each with a `WithBody` variant and a `WithResponse` form. Matching `New...Request` builders and `Parse...Response` functions are included.

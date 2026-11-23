@@ -6936,7 +6936,7 @@ type DatasetWrite struct {
 	// ProjectId Project ID. Takes precedence over project_name when both are provided.
 	ProjectId *openapi_types.UUID `json:"project_id,omitempty"`
 
-	// ProjectName For project scope, specify either project_id or project_name. If project_name is provided and the project does not exist, it will be created. Ignored when project_id is provided. If neither is provided, the dataset is created at workspace level.
+	// ProjectName For project scope, specify either project_id or project_name. If project_name is provided and the project does not exist, it will be created. Ignored when project_id is provided. If neither is provided, the dataset is created in the Default Project.
 	ProjectName *string                 `json:"project_name,omitempty"`
 	Tags        *[]string               `json:"tags,omitempty"`
 	Type        *DatasetWriteType       `json:"type,omitempty"`
@@ -8906,7 +8906,7 @@ type PromptWrite struct {
 	// ProjectId Project ID. Takes precedence over project_name when both are provided.
 	ProjectId *openapi_types.UUID `json:"project_id,omitempty"`
 
-	// ProjectName For project scope, specify either project_id or project_name. If project_name is provided and the project does not exist, it will be created. Ignored when project_id is provided. If neither is provided, the prompt is created at workspace level.
+	// ProjectName For project scope, specify either project_id or project_name. If project_name is provided and the project does not exist, it will be created. Ignored when project_id is provided. If neither is provided, the prompt is created in the Default Project.
 	ProjectName *string   `json:"project_name,omitempty"`
 	Tags        *[]string `json:"tags,omitempty"`
 	Template    *string   `json:"template,omitempty"`

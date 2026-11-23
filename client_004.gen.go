@@ -14,6 +14,14 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DeleteWorkspaceConfigurationResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type GetWorkspaceConfigurationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -10204,6 +10212,19 @@ func ParseUpdateAutomationRuleEvaluatorResponse(rsp *http.Response) (*UpdateAuto
 	response := &UpdateAutomationRuleEvaluatorResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ErrorMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
 	}
 
 	return response, nil

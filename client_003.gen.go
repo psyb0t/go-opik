@@ -9494,6 +9494,13 @@ func (r GetEvaluatorByIdResponse) ContentType() string {
 type UpdateAutomationRuleEvaluatorResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON409 the response for an HTTP 409 `application/json` response
+	JSON409 *ErrorMessage
+}
+
+// GetJSON409 returns the response for an HTTP 409 `application/json` response
+func (r UpdateAutomationRuleEvaluatorResponse) GetJSON409() *ErrorMessage {
+	return r.JSON409
 }
 
 // GetBody returns the raw response body bytes
@@ -20008,12 +20015,4 @@ func (r DeleteWorkspaceConfigurationResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeleteWorkspaceConfigurationResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
 }

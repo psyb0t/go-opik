@@ -2,6 +2,16 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.7.0, 2026-11-24
+
+- Added view endpoints to `ClientInterface`, `Client`, `ClientWithResponsesInterface` and `ClientWithResponses`: `CreateView`, `GetViewById`, `UpdateView`, `DeleteView`, `GetViewVersions`, `GetViewVersion`, `CreateViewVersion`, `DeleteViewVersion` and `SetViewCurrentVersion`, each with a `WithBody` variant where it takes a body and a `WithResponse` form. Matching `New...Request` builders and `Parse...Response` functions are included.
+- Added the view types `View`, `ViewCreate`, `ViewUpdate`, `ViewInput`, `ViewCurrentVersion`, `ViewVersion`, `ViewVersionCreate`, `ViewVersionSummary` and `ViewVersionPage`, with their enum types and constants. Added `GetViewVersionsParams` for the version list query.
+- Added `StreamDatasetExperimentItems`, `StreamDatasetExperimentItemsWithBody` and their `WithResponse` forms. They call `POST /v1/private/datasets/items/experiments/items/stream`. Added `DatasetExperimentItemStreamRequest`, `StreamDatasetExperimentItemsJSONRequestBody`, `StreamDatasetExperimentItemsResponse`, `NewStreamDatasetExperimentItemsRequest` and `ParseStreamDatasetExperimentItemsResponse`.
+- Added the field `ModelPricesEnabled` (`bool`) to `ServiceTogglesConfig`.
+- Removed the field `DatasetVersion` (`*string`) from `FindDatasetItemsWithExperimentItemsParams`. The `dataset_version` query parameter is gone from the upstream spec. `DatasetVersions` replaces it in the new stream request. Code that sets the field must drop it.
+- Added methods to the `ClientInterface` and `ClientWithResponsesInterface` interfaces. Custom implementations or mocks of these interfaces must add them.
+- Migration: delete uses of `FindDatasetItemsWithExperimentItemsParams.DatasetVersion` and implement the new interface methods in any custom client or mock.
+
 ## v0.6.1, 2026-11-23
 
 - Added the field `JSON409` (`*ErrorMessage`) and the method `GetJSON409` to `UpdateAutomationRuleEvaluatorResponse`. `ParseUpdateAutomationRuleEvaluatorResponse` now decodes an HTTP 409 `application/json` reply into `JSON409`.

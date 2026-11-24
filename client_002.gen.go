@@ -17,6 +17,577 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// CancelExperiments Cancel running experiments
+//
+// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
+func (c *Client) CancelExperiments(ctx context.Context, body CancelExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelExperimentsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteExperimentsByIdWithBody Delete experiments by id
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/delete (the `DeleteExperimentsById` operationId).
+func (c *Client) DeleteExperimentsByIdWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteExperimentsByIdRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteExperimentsById Delete experiments by id
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/delete (the `DeleteExperimentsById` operationId).
+func (c *Client) DeleteExperimentsById(ctx context.Context, body DeleteExperimentsByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteExperimentsByIdRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ExecuteExperimentWithBody Create and execute experiment
+//
+// Creates experiments for each prompt variant and asynchronously processes all dataset items.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/execute (the `ExecuteExperiment` operationId).
+func (c *Client) ExecuteExperimentWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExecuteExperimentRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ExecuteExperiment Create and execute experiment
+//
+// Creates experiments for each prompt variant and asynchronously processes all dataset items.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/execute (the `ExecuteExperiment` operationId).
+func (c *Client) ExecuteExperiment(ctx context.Context, body ExecuteExperimentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExecuteExperimentRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FindFeedbackScoreNames Find Feedback Score names
+//
+// Corresponds with GET /v1/private/experiments/feedback-scores/names (the `FindFeedbackScoreNames` operationId).
+func (c *Client) FindFeedbackScoreNames(ctx context.Context, params *FindFeedbackScoreNamesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFindFeedbackScoreNamesRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FinishExperimentsWithBody Finish experiments
+//
+// Finish experiments and trigger alert events.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/finish (the `FinishExperiments` operationId).
+func (c *Client) FinishExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFinishExperimentsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FinishExperiments Finish experiments
+//
+// Finish experiments and trigger alert events.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/finish (the `FinishExperiments` operationId).
+func (c *Client) FinishExperiments(ctx context.Context, body FinishExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFinishExperimentsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FindExperimentGroups Find experiment groups
+//
+// Find experiments grouped by specified fields.
+//
+// Corresponds with GET /v1/private/experiments/groups (the `FindExperimentGroups` operationId).
+func (c *Client) FindExperimentGroups(ctx context.Context, params *FindExperimentGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFindExperimentGroupsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FindExperimentGroupsAggregations Find experiment groups with aggregations
+//
+// Find experiments grouped by specified fields with aggregation metrics.
+//
+// Corresponds with GET /v1/private/experiments/groups/aggregations (the `FindExperimentGroupsAggregations` operationId).
+func (c *Client) FindExperimentGroupsAggregations(ctx context.Context, params *FindExperimentGroupsAggregationsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFindExperimentGroupsAggregationsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateExperimentItemsWithBody Create experiment items
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/items (the `CreateExperimentItems` operationId).
+func (c *Client) CreateExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateExperimentItemsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateExperimentItems Create experiment items
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/items (the `CreateExperimentItems` operationId).
+func (c *Client) CreateExperimentItems(ctx context.Context, body CreateExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateExperimentItemsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ExperimentItemsBulkWithBody Record experiment items in bulk
+//
+// Record experiment items in bulk with traces, spans, and feedback scores. Maximum request size is 4MB.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PUT /v1/private/experiments/items/bulk (the `ExperimentItemsBulk` operationId).
+func (c *Client) ExperimentItemsBulkWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExperimentItemsBulkRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ExperimentItemsBulk Record experiment items in bulk
+//
+// Record experiment items in bulk with traces, spans, and feedback scores. Maximum request size is 4MB.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /v1/private/experiments/items/bulk (the `ExperimentItemsBulk` operationId).
+func (c *Client) ExperimentItemsBulk(ctx context.Context, body ExperimentItemsBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExperimentItemsBulkRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteExperimentItemsWithBody Delete experiment items
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/items/delete (the `DeleteExperimentItems` operationId).
+func (c *Client) DeleteExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteExperimentItemsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteExperimentItems Delete experiment items
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/items/delete (the `DeleteExperimentItems` operationId).
+func (c *Client) DeleteExperimentItems(ctx context.Context, body DeleteExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteExperimentItemsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// StreamExperimentItemsWithBody Stream experiment items
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/items/stream (the `StreamExperimentItems` operationId).
+func (c *Client) StreamExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStreamExperimentItemsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// StreamExperimentItems Stream experiment items
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/items/stream (the `StreamExperimentItems` operationId).
+func (c *Client) StreamExperimentItems(ctx context.Context, body StreamExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStreamExperimentItemsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetExperimentItemById Get experiment item by id
+//
+// Corresponds with GET /v1/private/experiments/items/{id} (the `GetExperimentItemById` operationId).
+func (c *Client) GetExperimentItemById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetExperimentItemByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// StreamExperimentsWithBody Stream experiments
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/experiments/stream (the `StreamExperiments` operationId).
+func (c *Client) StreamExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStreamExperimentsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// StreamExperiments Stream experiments
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/experiments/stream (the `StreamExperiments` operationId).
+func (c *Client) StreamExperiments(ctx context.Context, body StreamExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStreamExperimentsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetExperimentById Get experiment by id
+//
+// Corresponds with GET /v1/private/experiments/{id} (the `GetExperimentById` operationId).
+func (c *Client) GetExperimentById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetExperimentByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateExperimentWithBody Update experiment by id
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PATCH /v1/private/experiments/{id} (the `UpdateExperiment` operationId).
+func (c *Client) UpdateExperimentWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateExperimentRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateExperiment Update experiment by id
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PATCH /v1/private/experiments/{id} (the `UpdateExperiment` operationId).
+func (c *Client) UpdateExperiment(ctx context.Context, id openapi_types.UUID, body UpdateExperimentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateExperimentRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FindFeedbackDefinitions Find Feedback definitions
+//
+// Corresponds with GET /v1/private/feedback-definitions (the `FindFeedbackDefinitions` operationId).
+func (c *Client) FindFeedbackDefinitions(ctx context.Context, params *FindFeedbackDefinitionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFindFeedbackDefinitionsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateFeedbackDefinitionWithBody Create feedback definition
+//
+// Get feedback definition.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/feedback-definitions (the `CreateFeedbackDefinition` operationId).
+func (c *Client) CreateFeedbackDefinitionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateFeedbackDefinitionRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateFeedbackDefinition Create feedback definition
+//
+// Get feedback definition.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/feedback-definitions (the `CreateFeedbackDefinition` operationId).
+func (c *Client) CreateFeedbackDefinition(ctx context.Context, body CreateFeedbackDefinitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateFeedbackDefinitionRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteFeedbackDefinitionsBatchWithBody Delete feedback definitions
+//
+// Delete feedback definitions batch.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/feedback-definitions/delete (the `DeleteFeedbackDefinitionsBatch` operationId).
+func (c *Client) DeleteFeedbackDefinitionsBatchWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteFeedbackDefinitionsBatchRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteFeedbackDefinitionsBatch Delete feedback definitions
+//
+// Delete feedback definitions batch.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/feedback-definitions/delete (the `DeleteFeedbackDefinitionsBatch` operationId).
+func (c *Client) DeleteFeedbackDefinitionsBatch(ctx context.Context, body DeleteFeedbackDefinitionsBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteFeedbackDefinitionsBatchRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteFeedbackDefinitionById Delete feedback definition by id
+//
+// Corresponds with DELETE /v1/private/feedback-definitions/{id} (the `DeleteFeedbackDefinitionById` operationId).
+func (c *Client) DeleteFeedbackDefinitionById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteFeedbackDefinitionByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetFeedbackDefinitionById Get feedback definition by id
+//
+// Corresponds with GET /v1/private/feedback-definitions/{id} (the `GetFeedbackDefinitionById` operationId).
+func (c *Client) GetFeedbackDefinitionById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetFeedbackDefinitionByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateFeedbackDefinitionWithBody Update feedback definition by id
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PUT /v1/private/feedback-definitions/{id} (the `UpdateFeedbackDefinition` operationId).
+func (c *Client) UpdateFeedbackDefinitionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateFeedbackDefinitionRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateFeedbackDefinition Update feedback definition by id
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /v1/private/feedback-definitions/{id} (the `UpdateFeedbackDefinition` operationId).
+func (c *Client) UpdateFeedbackDefinition(ctx context.Context, id openapi_types.UUID, body UpdateFeedbackDefinitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateFeedbackDefinitionRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // CreateGuardrailsWithBody Create guardrails for traces in a batch
 //
 // Batch guardrails for traces.
@@ -4309,6 +4880,243 @@ func (c *Client) DeleteTraceFeedbackScore(ctx context.Context, id openapi_types.
 // Corresponds with GET /v1/private/traces/{traceId}/comments/{commentId} (the `GetTraceComment` operationId).
 func (c *Client) GetTraceComment(ctx context.Context, traceId openapi_types.UUID, commentId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetTraceCommentRequest(c.Server, traceId, commentId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateViewWithBody Create view
+//
+// Create a view with its first version.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/views (the `CreateView` operationId).
+func (c *Client) CreateViewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateViewRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateView Create view
+//
+// Create a view with its first version.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/views (the `CreateView` operationId).
+func (c *Client) CreateView(ctx context.Context, body CreateViewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateViewRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteView Delete view
+//
+// Soft delete a view.
+//
+// Corresponds with DELETE /v1/private/views/{id} (the `DeleteView` operationId).
+func (c *Client) DeleteView(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteViewRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetViewById Get view by id
+//
+// Get a view with its current version.
+//
+// Corresponds with GET /v1/private/views/{id} (the `GetViewById` operationId).
+func (c *Client) GetViewById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetViewByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateViewWithBody Update view
+//
+// Update the name and description of a view.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PATCH /v1/private/views/{id} (the `UpdateView` operationId).
+func (c *Client) UpdateViewWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateViewRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UpdateView Update view
+//
+// Update the name and description of a view.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PATCH /v1/private/views/{id} (the `UpdateView` operationId).
+func (c *Client) UpdateView(ctx context.Context, id openapi_types.UUID, body UpdateViewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateViewRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// SetViewCurrentVersionWithBody Select view version
+//
+// Make an existing version the one that renders. Also used for rollback; writes no version.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PUT /v1/private/views/{id}/current (the `SetViewCurrentVersion` operationId).
+func (c *Client) SetViewCurrentVersionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSetViewCurrentVersionRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// SetViewCurrentVersion Select view version
+//
+// Make an existing version the one that renders. Also used for rollback; writes no version.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /v1/private/views/{id}/current (the `SetViewCurrentVersion` operationId).
+func (c *Client) SetViewCurrentVersion(ctx context.Context, id openapi_types.UUID, body SetViewCurrentVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSetViewCurrentVersionRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetViewVersions Get view versions
+//
+// # List the versions of a view, newest first
+//
+// Corresponds with GET /v1/private/views/{id}/versions (the `GetViewVersions` operationId).
+func (c *Client) GetViewVersions(ctx context.Context, id openapi_types.UUID, params *GetViewVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetViewVersionsRequest(c.Server, id, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateViewVersionWithBody Create view version
+//
+// Add a version to a view and make it current.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/views/{id}/versions (the `CreateViewVersion` operationId).
+func (c *Client) CreateViewVersionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateViewVersionRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CreateViewVersion Create view version
+//
+// Add a version to a view and make it current.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/views/{id}/versions (the `CreateViewVersion` operationId).
+func (c *Client) CreateViewVersion(ctx context.Context, id openapi_types.UUID, body CreateViewVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateViewVersionRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DeleteViewVersion Delete view version
+//
+// Delete one version of a view. Refused for the current version, and so for the only version; version numbers are never reused.
+//
+// Corresponds with DELETE /v1/private/views/{id}/versions/{version} (the `DeleteViewVersion` operationId).
+func (c *Client) DeleteViewVersion(ctx context.Context, id openapi_types.UUID, version int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteViewVersionRequest(c.Server, id, version)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetViewVersion Get view version
+//
+// Get one version of a view.
+//
+// Corresponds with GET /v1/private/views/{id}/versions/{version} (the `GetViewVersion` operationId).
+func (c *Client) GetViewVersion(ctx context.Context, id openapi_types.UUID, version int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetViewVersionRequest(c.Server, id, version)
 	if err != nil {
 		return nil, err
 	}
@@ -9476,6 +10284,46 @@ func NewDeleteDatasetItemsRequestWithBody(server string, contentType string, bod
 	return req, nil
 }
 
+// NewStreamDatasetExperimentItemsRequest calls the generic StreamDatasetExperimentItems builder with application/json body
+func NewStreamDatasetExperimentItemsRequest(server string, body StreamDatasetExperimentItemsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewStreamDatasetExperimentItemsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewStreamDatasetExperimentItemsRequestWithBody constructs an http.Request for the StreamDatasetExperimentItems method, with any body, and a specified content type
+func NewStreamDatasetExperimentItemsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/datasets/items/experiments/items/stream")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewCreateDatasetItemsFromCsvRequestWithBody constructs an http.Request for the CreateDatasetItemsFromCsv method, with any body, and a specified content type
 func NewCreateDatasetItemsFromCsvRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -10239,9 +11087,9 @@ func NewFindDatasetItemsWithExperimentItemsRequest(server string, id openapi_typ
 
 		}
 
-		if params.DatasetVersion != nil {
+		if params.DatasetVersions != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "dataset_version", *params.DatasetVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "dataset_versions", *params.DatasetVersions, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -19164,801 +20012,6 @@ func NewGetTracesByProjectRequest(server string, params *GetTracesByProjectParam
 		if params.StripAttachments != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "strip_attachments", *params.StripAttachments, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Sorting != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sorting", *params.Sorting, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Exclude != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "exclude", *params.Exclude, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search", *params.Search, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.FromTime != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_time", *params.FromTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ToTime != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_time", *params.ToTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.AnnotationQueueId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "annotation_queue_id", *params.AnnotationQueueId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewCreateTraceRequest calls the generic CreateTrace builder with application/json body
-func NewCreateTraceRequest(server string, body CreateTraceJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCreateTraceRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewCreateTraceRequestWithBody constructs an http.Request for the CreateTrace method, with any body, and a specified content type
-func NewCreateTraceRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewBatchUpdateTracesRequest calls the generic BatchUpdateTraces builder with application/json body
-func NewBatchUpdateTracesRequest(server string, body BatchUpdateTracesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewBatchUpdateTracesRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewBatchUpdateTracesRequestWithBody constructs an http.Request for the BatchUpdateTraces method, with any body, and a specified content type
-func NewBatchUpdateTracesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/batch")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewCreateTracesRequest calls the generic CreateTraces builder with application/json body
-func NewCreateTracesRequest(server string, body CreateTracesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCreateTracesRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewCreateTracesRequestWithBody constructs an http.Request for the CreateTraces method, with any body, and a specified content type
-func NewCreateTracesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/batch")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTraceCommentsRequest calls the generic DeleteTraceComments builder with application/json body
-func NewDeleteTraceCommentsRequest(server string, body DeleteTraceCommentsJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteTraceCommentsRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewDeleteTraceCommentsRequestWithBody constructs an http.Request for the DeleteTraceComments method, with any body, and a specified content type
-func NewDeleteTraceCommentsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/comments/delete")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewUpdateTraceCommentRequest calls the generic UpdateTraceComment builder with application/json body
-func NewUpdateTraceCommentRequest(server string, commentId openapi_types.UUID, body UpdateTraceCommentJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewUpdateTraceCommentRequestWithBody(server, commentId, "application/json", bodyReader)
-}
-
-// NewUpdateTraceCommentRequestWithBody constructs an http.Request for the UpdateTraceComment method, with any body, and a specified content type
-func NewUpdateTraceCommentRequestWithBody(server string, commentId openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "commentId", commentId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/comments/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTracesRequest calls the generic DeleteTraces builder with application/json body
-func NewDeleteTracesRequest(server string, body DeleteTracesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteTracesRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewDeleteTracesRequestWithBody constructs an http.Request for the DeleteTraces method, with any body, and a specified content type
-func NewDeleteTracesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/delete")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewTracesExistRequest constructs an http.Request for the TracesExist method
-func NewTracesExistRequest(server string, params *TracesExistParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/exists")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.ProjectId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ProjectName != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Source != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "source", *params.Source, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ThreadOnly != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "thread_only", *params.ThreadOnly, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewScoreBatchOfTracesRequest calls the generic ScoreBatchOfTraces builder with application/json body
-func NewScoreBatchOfTracesRequest(server string, body ScoreBatchOfTracesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewScoreBatchOfTracesRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewScoreBatchOfTracesRequestWithBody constructs an http.Request for the ScoreBatchOfTraces method, with any body, and a specified content type
-func NewScoreBatchOfTracesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/feedback-scores")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewFindFeedbackScoreNames2Request constructs an http.Request for the FindFeedbackScoreNames2 method
-func NewFindFeedbackScoreNames2Request(server string, params *FindFeedbackScoreNames2Params) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/feedback-scores/names")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.ProjectId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSearchTracesRequest calls the generic SearchTraces builder with application/json body
-func NewSearchTracesRequest(server string, body SearchTracesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSearchTracesRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewSearchTracesRequestWithBody constructs an http.Request for the SearchTraces method, with any body, and a specified content type
-func NewSearchTracesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/search")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewGetTraceStatsRequest constructs an http.Request for the GetTraceStats method
-func NewGetTraceStatsRequest(server string, params *GetTraceStatsParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/stats")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.ProjectId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ProjectName != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Filters != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filters", *params.Filters, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search", *params.Search, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.FromTime != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_time", *params.FromTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ToTime != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_time", *params.ToTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.AnnotationQueueId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "annotation_queue_id", *params.AnnotationQueueId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetTraceThreadsRequest constructs an http.Request for the GetTraceThreads method
-func NewGetTraceThreadsRequest(server string, params *GetTraceThreadsParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/private/traces/threads")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Size != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "size", *params.Size, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ProjectName != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ProjectId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Truncate != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "truncate", *params.Truncate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.StripAttachments != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "strip_attachments", *params.StripAttachments, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Filters != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filters", *params.Filters, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {

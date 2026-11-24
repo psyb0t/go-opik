@@ -4620,6 +4620,180 @@ func (e ValueEntryPublicSource) Valid() bool {
 	}
 }
 
+// Defines values for ViewArea.
+const (
+	ViewAreaWidget ViewArea = "widget"
+)
+
+// Valid indicates whether the value is a known member of the ViewArea enum.
+func (e ViewArea) Valid() bool {
+	switch e {
+	case ViewAreaWidget:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewCreateArea.
+const (
+	ViewCreateAreaWidget ViewCreateArea = "widget"
+)
+
+// Valid indicates whether the value is a known member of the ViewCreateArea enum.
+func (e ViewCreateArea) Valid() bool {
+	switch e {
+	case ViewCreateAreaWidget:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewCreateAuthor.
+const (
+	ViewCreateAuthorAgent ViewCreateAuthor = "agent"
+	ViewCreateAuthorOllie ViewCreateAuthor = "ollie"
+	ViewCreateAuthorUser  ViewCreateAuthor = "user"
+)
+
+// Valid indicates whether the value is a known member of the ViewCreateAuthor enum.
+func (e ViewCreateAuthor) Valid() bool {
+	switch e {
+	case ViewCreateAuthorAgent:
+		return true
+	case ViewCreateAuthorOllie:
+		return true
+	case ViewCreateAuthorUser:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewCreateType.
+const (
+	ViewCreateTypeHtml ViewCreateType = "html"
+)
+
+// Valid indicates whether the value is a known member of the ViewCreateType enum.
+func (e ViewCreateType) Valid() bool {
+	switch e {
+	case ViewCreateTypeHtml:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewInputKind.
+const (
+	ViewInputKindQuery ViewInputKind = "query"
+)
+
+// Valid indicates whether the value is a known member of the ViewInputKind enum.
+func (e ViewInputKind) Valid() bool {
+	switch e {
+	case ViewInputKindQuery:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewVersionAuthor.
+const (
+	ViewVersionAuthorAgent ViewVersionAuthor = "agent"
+	ViewVersionAuthorOllie ViewVersionAuthor = "ollie"
+	ViewVersionAuthorUser  ViewVersionAuthor = "user"
+)
+
+// Valid indicates whether the value is a known member of the ViewVersionAuthor enum.
+func (e ViewVersionAuthor) Valid() bool {
+	switch e {
+	case ViewVersionAuthorAgent:
+		return true
+	case ViewVersionAuthorOllie:
+		return true
+	case ViewVersionAuthorUser:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewVersionType.
+const (
+	ViewVersionTypeHtml ViewVersionType = "html"
+)
+
+// Valid indicates whether the value is a known member of the ViewVersionType enum.
+func (e ViewVersionType) Valid() bool {
+	switch e {
+	case ViewVersionTypeHtml:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewVersionCreateAuthor.
+const (
+	ViewVersionCreateAuthorAgent ViewVersionCreateAuthor = "agent"
+	ViewVersionCreateAuthorOllie ViewVersionCreateAuthor = "ollie"
+	ViewVersionCreateAuthorUser  ViewVersionCreateAuthor = "user"
+)
+
+// Valid indicates whether the value is a known member of the ViewVersionCreateAuthor enum.
+func (e ViewVersionCreateAuthor) Valid() bool {
+	switch e {
+	case ViewVersionCreateAuthorAgent:
+		return true
+	case ViewVersionCreateAuthorOllie:
+		return true
+	case ViewVersionCreateAuthorUser:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewVersionCreateType.
+const (
+	ViewVersionCreateTypeHtml ViewVersionCreateType = "html"
+)
+
+// Valid indicates whether the value is a known member of the ViewVersionCreateType enum.
+func (e ViewVersionCreateType) Valid() bool {
+	switch e {
+	case ViewVersionCreateTypeHtml:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ViewVersionSummaryAuthor.
+const (
+	ViewVersionSummaryAuthorAgent ViewVersionSummaryAuthor = "agent"
+	ViewVersionSummaryAuthorOllie ViewVersionSummaryAuthor = "ollie"
+	ViewVersionSummaryAuthorUser  ViewVersionSummaryAuthor = "user"
+)
+
+// Valid indicates whether the value is a known member of the ViewVersionSummaryAuthor enum.
+func (e ViewVersionSummaryAuthor) Valid() bool {
+	switch e {
+	case ViewVersionSummaryAuthorAgent:
+		return true
+	case ViewVersionSummaryAuthorOllie:
+		return true
+	case ViewVersionSummaryAuthorUser:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for WebhookTestResultStatus.
 const (
 	WebhookTestResultStatusFailure WebhookTestResultStatus = "failure"
@@ -6480,6 +6654,36 @@ type DatasetExpansionWrite struct {
 
 	// VariationInstructions Additional instructions for data variation
 	VariationInstructions *string `json:"variation_instructions,omitempty"`
+}
+
+// DatasetExperimentItemStreamRequest defines model for DatasetExperimentItemStreamRequest.
+type DatasetExperimentItemStreamRequest struct {
+	// DatasetId Dataset ID. Set this or dataset_name
+	DatasetId *openapi_types.UUID `json:"dataset_id,omitempty"`
+
+	// DatasetName Dataset name. Set this or dataset_id
+	DatasetName *string `json:"dataset_name,omitempty"`
+
+	// DatasetVersions Dataset version hashes or tags, such as 'latest'. Only experiments run against one of these versions are included; omit for every version. Returns 404 if any version does not exist
+	DatasetVersions *[]string `json:"dataset_versions,omitempty"`
+
+	// Filters JSON array of dataset item filters, evaluated against the newest version of each item that the experiments reference
+	Filters *string `json:"filters,omitempty"`
+
+	// LastRetrievedExperimentId Optional hint: experiment_id of the last experiment item received. Used only if that item was deleted, to resume from the start of its experiment instead of from the start of the stream. Requires last_retrieved_id
+	LastRetrievedExperimentId *openapi_types.UUID `json:"last_retrieved_experiment_id,omitempty"`
+
+	// LastRetrievedId id of the last experiment item received
+	LastRetrievedId *openapi_types.UUID `json:"last_retrieved_id,omitempty"`
+
+	// Limit Maximum number of experiment items to return
+	Limit *int32 `json:"limit,omitempty"`
+
+	// ProjectName Project of the dataset, used with dataset_name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// Truncate Truncate image included in either input, output or metadata
+	Truncate *bool `json:"truncate,omitempty"`
 }
 
 // DatasetExportJobPublic defines model for DatasetExportJob_Public.
@@ -9324,6 +9528,7 @@ type ServiceTogglesConfig struct {
 	GeminiProviderEnabled              bool   `json:"geminiProviderEnabled"`
 	GuardrailsEnabled                  bool   `json:"guardrailsEnabled"`
 	GuardrailsValidationsEnabled       bool   `json:"guardrailsValidationsEnabled"`
+	ModelPricesEnabled                 bool   `json:"modelPricesEnabled"`
 	OllamaProviderEnabled              bool   `json:"ollamaProviderEnabled"`
 	OllieEnabled                       bool   `json:"ollieEnabled"`
 	OpenaiProviderEnabled              bool   `json:"openaiProviderEnabled"`
@@ -10175,6 +10380,170 @@ type ValueEntryPublic struct {
 // ValueEntryPublicSource defines model for ValueEntryPublic.Source.
 type ValueEntryPublicSource string
 
+// View A generated view and the version that renders
+type View struct {
+	Area           *ViewArea           `json:"area,omitempty"`
+	CreatedAt      *time.Time          `json:"created_at,omitempty"`
+	CreatedBy      *string             `json:"created_by,omitempty"`
+	CurrentVersion *int32              `json:"current_version,omitempty"`
+	Description    *string             `json:"description,omitempty"`
+	Id             *openapi_types.UUID `json:"id,omitempty"`
+	LastUpdatedAt  *time.Time          `json:"last_updated_at,omitempty"`
+	LastUpdatedBy  *string             `json:"last_updated_by,omitempty"`
+	Name           *string             `json:"name,omitempty"`
+
+	// Version An immutable version of a view
+	Version *ViewVersion `json:"version,omitempty"`
+}
+
+// ViewArea defines model for View.Area.
+type ViewArea string
+
+// ViewCreate defines model for ViewCreate.
+type ViewCreate struct {
+	// Area The content area the view is written for; fixed after creation
+	Area ViewCreateArea `json:"area"`
+
+	// Author Who produced the version: user (default), ollie or agent. Informational only
+	Author      *ViewCreateAuthor `json:"author,omitempty"`
+	Description *string           `json:"description,omitempty"`
+
+	// EngineVersion HTML contract version the view was written against
+	EngineVersion int32 `json:"engine_version"`
+
+	// Html The view: HTML, CSS and script rendered in a sandboxed iframe
+	Html string `json:"html"`
+
+	// Inputs Input name to data source, one or several; the view receives one data object with a key per input
+	Inputs map[string]ViewInput `json:"inputs"`
+
+	// Libraries Libraries the host loads before the view runs; none when omitted
+	Libraries *[]string `json:"libraries,omitempty"`
+	Name      string    `json:"name"`
+
+	// Summary What the first version shows, one line
+	Summary *string `json:"summary,omitempty"`
+
+	// Type View type
+	Type ViewCreateType `json:"type"`
+}
+
+// ViewCreateArea The content area the view is written for; fixed after creation
+type ViewCreateArea string
+
+// ViewCreateAuthor Who produced the version: user (default), ollie or agent. Informational only
+type ViewCreateAuthor string
+
+// ViewCreateType View type
+type ViewCreateType string
+
+// ViewCurrentVersion The version to make current
+type ViewCurrentVersion struct {
+	// Version An existing version number of the view, starting at 1
+	Version int32 `json:"version"`
+}
+
+// ViewInput A data source of a view; the host resolves it and passes the result under the input name
+type ViewInput struct {
+	// Columns The columns the author saw when it ran the query, name to type. Informational
+	Columns *map[string]string `json:"columns,omitempty"`
+
+	// Kind Source type
+	Kind ViewInputKind `json:"kind"`
+
+	// QueryId The saved query to run
+	QueryId string `json:"query_id"`
+}
+
+// ViewInputKind Source type
+type ViewInputKind string
+
+// ViewUpdate defines model for ViewUpdate.
+type ViewUpdate struct {
+	// Description Omit to keep the description; an empty or blank string clears it
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
+// ViewVersion An immutable version of a view
+type ViewVersion struct {
+	Author    *ViewVersionAuthor `json:"author,omitempty"`
+	CreatedAt *time.Time         `json:"created_at,omitempty"`
+	CreatedBy *string            `json:"created_by,omitempty"`
+
+	// EngineVersion HTML contract version the view was written against
+	EngineVersion *int32                `json:"engine_version,omitempty"`
+	Html          *string               `json:"html,omitempty"`
+	Inputs        *map[string]ViewInput `json:"inputs,omitempty"`
+
+	// Libraries Libraries the host loads before the view runs; omitted when it uses none
+	Libraries *[]string           `json:"libraries,omitempty"`
+	Summary   *string             `json:"summary,omitempty"`
+	Type      *ViewVersionType    `json:"type,omitempty"`
+	Version   *int32              `json:"version,omitempty"`
+	ViewId    *openapi_types.UUID `json:"view_id,omitempty"`
+}
+
+// ViewVersionAuthor defines model for ViewVersion.Author.
+type ViewVersionAuthor string
+
+// ViewVersionType defines model for ViewVersion.Type.
+type ViewVersionType string
+
+// ViewVersionCreate defines model for ViewVersionCreate.
+type ViewVersionCreate struct {
+	// Author Who produced the version: user (default), ollie or agent. Informational only
+	Author *ViewVersionCreateAuthor `json:"author,omitempty"`
+
+	// EngineVersion HTML contract version the view was written against
+	EngineVersion int32 `json:"engine_version"`
+
+	// Html The view: HTML, CSS and script rendered in a sandboxed iframe
+	Html string `json:"html"`
+
+	// Inputs Input name to data source, one or several; the view receives one data object with a key per input
+	Inputs map[string]ViewInput `json:"inputs"`
+
+	// Libraries Libraries the host loads before the view runs; none when omitted
+	Libraries *[]string `json:"libraries,omitempty"`
+
+	// Summary What changed, one line
+	Summary *string `json:"summary,omitempty"`
+
+	// Type View type
+	Type ViewVersionCreateType `json:"type"`
+}
+
+// ViewVersionCreateAuthor Who produced the version: user (default), ollie or agent. Informational only
+type ViewVersionCreateAuthor string
+
+// ViewVersionCreateType View type
+type ViewVersionCreateType string
+
+// ViewVersionPage A page of a view's versions, newest first
+type ViewVersionPage struct {
+	Content *[]ViewVersionSummary `json:"content,omitempty"`
+	Page    *int32                `json:"page,omitempty"`
+
+	// Size Number of versions in this page
+	Size  *int32 `json:"size,omitempty"`
+	Total *int64 `json:"total,omitempty"`
+}
+
+// ViewVersionSummary A version of a view without its HTML
+type ViewVersionSummary struct {
+	Author    *ViewVersionSummaryAuthor `json:"author,omitempty"`
+	CreatedAt *time.Time                `json:"created_at,omitempty"`
+	CreatedBy *string                   `json:"created_by,omitempty"`
+
+	// Summary Change summary; omitted when the author gave none
+	Summary *string `json:"summary,omitempty"`
+	Version *int32  `json:"version,omitempty"`
+}
+
+// ViewVersionSummaryAuthor defines model for ViewVersionSummary.Author.
+type ViewVersionSummaryAuthor string
+
 // WebhookExamples defines model for WebhookExamples.
 type WebhookExamples struct {
 	ResponseExamples *map[string]map[string]interface{} `json:"response_examples,omitempty"`
@@ -10567,14 +10936,14 @@ type ApplyDatasetItemChangesParams struct {
 
 // FindDatasetItemsWithExperimentItemsParams defines parameters for FindDatasetItemsWithExperimentItems.
 type FindDatasetItemsWithExperimentItemsParams struct {
-	Page           *int32  `form:"page,omitempty" json:"page,omitempty"`
-	Size           *int32  `form:"size,omitempty" json:"size,omitempty"`
-	ExperimentIds  *string `form:"experiment_ids,omitempty" json:"experiment_ids,omitempty"`
-	DatasetVersion *string `form:"dataset_version,omitempty" json:"dataset_version,omitempty"`
-	Filters        *string `form:"filters,omitempty" json:"filters,omitempty"`
-	Sorting        *string `form:"sorting,omitempty" json:"sorting,omitempty"`
-	Search         *string `form:"search,omitempty" json:"search,omitempty"`
-	Truncate       *bool   `form:"truncate,omitempty" json:"truncate,omitempty"`
+	Page            *int32  `form:"page,omitempty" json:"page,omitempty"`
+	Size            *int32  `form:"size,omitempty" json:"size,omitempty"`
+	ExperimentIds   *string `form:"experiment_ids,omitempty" json:"experiment_ids,omitempty"`
+	DatasetVersions *string `form:"dataset_versions,omitempty" json:"dataset_versions,omitempty"`
+	Filters         *string `form:"filters,omitempty" json:"filters,omitempty"`
+	Sorting         *string `form:"sorting,omitempty" json:"sorting,omitempty"`
+	Search          *string `form:"search,omitempty" json:"search,omitempty"`
+	Truncate        *bool   `form:"truncate,omitempty" json:"truncate,omitempty"`
 }
 
 // GetDatasetItemsOutputColumnsParams defines parameters for GetDatasetItemsOutputColumns.
@@ -11009,6 +11378,12 @@ type GetTraceByIdParams struct {
 	StripAttachments *bool `form:"strip_attachments,omitempty" json:"strip_attachments,omitempty"`
 }
 
+// GetViewVersionsParams defines parameters for GetViewVersions.
+type GetViewVersionsParams struct {
+	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
+	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
+}
+
 // DatasetsRedirectParams defines parameters for DatasetsRedirect.
 type DatasetsRedirectParams struct {
 	DatasetId     openapi_types.UUID `form:"dataset_id" json:"dataset_id"`
@@ -11182,6 +11557,9 @@ type BatchUpdateDatasetItemsJSONRequestBody = DatasetItemBatchUpdate
 
 // DeleteDatasetItemsJSONRequestBody defines body for DeleteDatasetItems for application/json ContentType.
 type DeleteDatasetItemsJSONRequestBody = DatasetItemsDelete
+
+// StreamDatasetExperimentItemsJSONRequestBody defines body for StreamDatasetExperimentItems for application/json ContentType.
+type StreamDatasetExperimentItemsJSONRequestBody = DatasetExperimentItemStreamRequest
 
 // CreateDatasetItemsFromCsvMultipartRequestBody defines body for CreateDatasetItemsFromCsv for multipart/form-data ContentType.
 type CreateDatasetItemsFromCsvMultipartRequestBody CreateDatasetItemsFromCsvMultipartBody
@@ -11536,6 +11914,18 @@ type AddTraceFeedbackScoreJSONRequestBody = FeedbackScore
 
 // DeleteTraceFeedbackScoreJSONRequestBody defines body for DeleteTraceFeedbackScore for application/json ContentType.
 type DeleteTraceFeedbackScoreJSONRequestBody = DeleteFeedbackScore
+
+// CreateViewJSONRequestBody defines body for CreateView for application/json ContentType.
+type CreateViewJSONRequestBody = ViewCreate
+
+// UpdateViewJSONRequestBody defines body for UpdateView for application/json ContentType.
+type UpdateViewJSONRequestBody = ViewUpdate
+
+// SetViewCurrentVersionJSONRequestBody defines body for SetViewCurrentVersion for application/json ContentType.
+type SetViewCurrentVersionJSONRequestBody = ViewCurrentVersion
+
+// CreateViewVersionJSONRequestBody defines body for CreateViewVersion for application/json ContentType.
+type CreateViewVersionJSONRequestBody = ViewVersionCreate
 
 // SubmitWelcomeWizardJSONRequestBody defines body for SubmitWelcomeWizard for application/json ContentType.
 type SubmitWelcomeWizardJSONRequestBody = WelcomeWizardSubmission
@@ -13219,6 +13609,36 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /v1/private/datasets/items/delete (the `DeleteDatasetItems` operationId).
 	DeleteDatasetItems(ctx context.Context, body DeleteDatasetItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StreamDatasetExperimentItemsWithBody Stream a dataset's experiment items
+	//
+	// Stream the experiment items of every regular experiment on a dataset, one experiment item per line.
+	// Optimizer trial, mini-batch and mutation experiments are excluded.
+	//
+	// Rows are ordered by experiment, then dataset item. To read the next page, send the id of the last row
+	// received as last_retrieved_id; a page with fewer rows than the limit is the last one. Optionally also
+	// send its experiment_id as last_retrieved_experiment_id: it is only used if that row was deleted, to
+	// resume from the start of its experiment instead of from the start of the stream.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/datasets/items/experiments/items/stream (the `StreamDatasetExperimentItems` operationId).
+	StreamDatasetExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StreamDatasetExperimentItems Stream a dataset's experiment items
+	//
+	// Stream the experiment items of every regular experiment on a dataset, one experiment item per line.
+	// Optimizer trial, mini-batch and mutation experiments are excluded.
+	//
+	// Rows are ordered by experiment, then dataset item. To read the next page, send the id of the last row
+	// received as last_retrieved_id; a page with fewer rows than the limit is the last one. Optionally also
+	// send its experiment_id as last_retrieved_experiment_id: it is only used if that row was deleted, to
+	// resume from the start of its experiment instead of from the start of the stream.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /v1/private/datasets/items/experiments/items/stream (the `StreamDatasetExperimentItems` operationId).
+	StreamDatasetExperimentItems(ctx context.Context, body StreamDatasetExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateDatasetItemsFromCsvWithBody Create dataset items from CSV file
 	//
@@ -15737,6 +16157,113 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /v1/private/traces/{traceId}/comments/{commentId} (the `GetTraceComment` operationId).
 	GetTraceComment(ctx context.Context, traceId openapi_types.UUID, commentId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateViewWithBody Create view
+	//
+	// Create a view with its first version.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/views (the `CreateView` operationId).
+	CreateViewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateView Create view
+	//
+	// Create a view with its first version.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /v1/private/views (the `CreateView` operationId).
+	CreateView(ctx context.Context, body CreateViewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteView Delete view
+	//
+	// Soft delete a view.
+	//
+	// Corresponds with DELETE /v1/private/views/{id} (the `DeleteView` operationId).
+	DeleteView(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetViewById Get view by id
+	//
+	// Get a view with its current version.
+	//
+	// Corresponds with GET /v1/private/views/{id} (the `GetViewById` operationId).
+	GetViewById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateViewWithBody Update view
+	//
+	// Update the name and description of a view.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PATCH /v1/private/views/{id} (the `UpdateView` operationId).
+	UpdateViewWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateView Update view
+	//
+	// Update the name and description of a view.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PATCH /v1/private/views/{id} (the `UpdateView` operationId).
+	UpdateView(ctx context.Context, id openapi_types.UUID, body UpdateViewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SetViewCurrentVersionWithBody Select view version
+	//
+	// Make an existing version the one that renders. Also used for rollback; writes no version.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PUT /v1/private/views/{id}/current (the `SetViewCurrentVersion` operationId).
+	SetViewCurrentVersionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SetViewCurrentVersion Select view version
+	//
+	// Make an existing version the one that renders. Also used for rollback; writes no version.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PUT /v1/private/views/{id}/current (the `SetViewCurrentVersion` operationId).
+	SetViewCurrentVersion(ctx context.Context, id openapi_types.UUID, body SetViewCurrentVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetViewVersions Get view versions
+	//
+	// List the versions of a view, newest first
+	//
+	// Corresponds with GET /v1/private/views/{id}/versions (the `GetViewVersions` operationId).
+	GetViewVersions(ctx context.Context, id openapi_types.UUID, params *GetViewVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateViewVersionWithBody Create view version
+	//
+	// Add a version to a view and make it current.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/views/{id}/versions (the `CreateViewVersion` operationId).
+	CreateViewVersionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateViewVersion Create view version
+	//
+	// Add a version to a view and make it current.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /v1/private/views/{id}/versions (the `CreateViewVersion` operationId).
+	CreateViewVersion(ctx context.Context, id openapi_types.UUID, body CreateViewVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteViewVersion Delete view version
+	//
+	// Delete one version of a view. Refused for the current version, and so for the only version; version numbers are never reused.
+	//
+	// Corresponds with DELETE /v1/private/views/{id}/versions/{version} (the `DeleteViewVersion` operationId).
+	DeleteViewVersion(ctx context.Context, id openapi_types.UUID, version int32, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetViewVersion Get view version
+	//
+	// Get one version of a view.
+	//
+	// Corresponds with GET /v1/private/views/{id}/versions/{version} (the `GetViewVersion` operationId).
+	GetViewVersion(ctx context.Context, id openapi_types.UUID, version int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetWelcomeWizardStatus Get welcome wizard tracking status
 	//
@@ -18504,6 +19031,56 @@ func (c *Client) DeleteDatasetItems(ctx context.Context, body DeleteDatasetItems
 	return c.Client.Do(req)
 }
 
+// StreamDatasetExperimentItemsWithBody Stream a dataset's experiment items
+//
+// Stream the experiment items of every regular experiment on a dataset, one experiment item per line.
+// Optimizer trial, mini-batch and mutation experiments are excluded.
+//
+// Rows are ordered by experiment, then dataset item. To read the next page, send the id of the last row
+// received as last_retrieved_id; a page with fewer rows than the limit is the last one. Optionally also
+// send its experiment_id as last_retrieved_experiment_id: it is only used if that row was deleted, to
+// resume from the start of its experiment instead of from the start of the stream.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/datasets/items/experiments/items/stream (the `StreamDatasetExperimentItems` operationId).
+func (c *Client) StreamDatasetExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStreamDatasetExperimentItemsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// StreamDatasetExperimentItems Stream a dataset's experiment items
+//
+// Stream the experiment items of every regular experiment on a dataset, one experiment item per line.
+// Optimizer trial, mini-batch and mutation experiments are excluded.
+//
+// Rows are ordered by experiment, then dataset item. To read the next page, send the id of the last row
+// received as last_retrieved_id; a page with fewer rows than the limit is the last one. Optionally also
+// send its experiment_id as last_retrieved_experiment_id: it is only used if that row was deleted, to
+// resume from the start of its experiment instead of from the start of the stream.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/datasets/items/experiments/items/stream (the `StreamDatasetExperimentItems` operationId).
+func (c *Client) StreamDatasetExperimentItems(ctx context.Context, body StreamDatasetExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStreamDatasetExperimentItemsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // CreateDatasetItemsFromCsvWithBody Create dataset items from CSV file
 //
 // Create dataset items from uploaded CSV file. CSV should have headers in the first row. Processing happens asynchronously in batches.
@@ -19439,577 +20016,6 @@ func (c *Client) BatchUpdateExperiments(ctx context.Context, body BatchUpdateExp
 // Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
 func (c *Client) CancelExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCancelExperimentsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CancelExperiments Cancel running experiments
-//
-// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
-func (c *Client) CancelExperiments(ctx context.Context, body CancelExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelExperimentsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteExperimentsByIdWithBody Delete experiments by id
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/delete (the `DeleteExperimentsById` operationId).
-func (c *Client) DeleteExperimentsByIdWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteExperimentsByIdRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteExperimentsById Delete experiments by id
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/delete (the `DeleteExperimentsById` operationId).
-func (c *Client) DeleteExperimentsById(ctx context.Context, body DeleteExperimentsByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteExperimentsByIdRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ExecuteExperimentWithBody Create and execute experiment
-//
-// Creates experiments for each prompt variant and asynchronously processes all dataset items.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/execute (the `ExecuteExperiment` operationId).
-func (c *Client) ExecuteExperimentWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExecuteExperimentRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ExecuteExperiment Create and execute experiment
-//
-// Creates experiments for each prompt variant and asynchronously processes all dataset items.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/execute (the `ExecuteExperiment` operationId).
-func (c *Client) ExecuteExperiment(ctx context.Context, body ExecuteExperimentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExecuteExperimentRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindFeedbackScoreNames Find Feedback Score names
-//
-// Corresponds with GET /v1/private/experiments/feedback-scores/names (the `FindFeedbackScoreNames` operationId).
-func (c *Client) FindFeedbackScoreNames(ctx context.Context, params *FindFeedbackScoreNamesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindFeedbackScoreNamesRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FinishExperimentsWithBody Finish experiments
-//
-// Finish experiments and trigger alert events.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/finish (the `FinishExperiments` operationId).
-func (c *Client) FinishExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFinishExperimentsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FinishExperiments Finish experiments
-//
-// Finish experiments and trigger alert events.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/finish (the `FinishExperiments` operationId).
-func (c *Client) FinishExperiments(ctx context.Context, body FinishExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFinishExperimentsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindExperimentGroups Find experiment groups
-//
-// Find experiments grouped by specified fields.
-//
-// Corresponds with GET /v1/private/experiments/groups (the `FindExperimentGroups` operationId).
-func (c *Client) FindExperimentGroups(ctx context.Context, params *FindExperimentGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindExperimentGroupsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindExperimentGroupsAggregations Find experiment groups with aggregations
-//
-// Find experiments grouped by specified fields with aggregation metrics.
-//
-// Corresponds with GET /v1/private/experiments/groups/aggregations (the `FindExperimentGroupsAggregations` operationId).
-func (c *Client) FindExperimentGroupsAggregations(ctx context.Context, params *FindExperimentGroupsAggregationsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindExperimentGroupsAggregationsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateExperimentItemsWithBody Create experiment items
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/items (the `CreateExperimentItems` operationId).
-func (c *Client) CreateExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateExperimentItemsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateExperimentItems Create experiment items
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/items (the `CreateExperimentItems` operationId).
-func (c *Client) CreateExperimentItems(ctx context.Context, body CreateExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateExperimentItemsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ExperimentItemsBulkWithBody Record experiment items in bulk
-//
-// Record experiment items in bulk with traces, spans, and feedback scores. Maximum request size is 4MB.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PUT /v1/private/experiments/items/bulk (the `ExperimentItemsBulk` operationId).
-func (c *Client) ExperimentItemsBulkWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExperimentItemsBulkRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ExperimentItemsBulk Record experiment items in bulk
-//
-// Record experiment items in bulk with traces, spans, and feedback scores. Maximum request size is 4MB.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PUT /v1/private/experiments/items/bulk (the `ExperimentItemsBulk` operationId).
-func (c *Client) ExperimentItemsBulk(ctx context.Context, body ExperimentItemsBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExperimentItemsBulkRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteExperimentItemsWithBody Delete experiment items
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/items/delete (the `DeleteExperimentItems` operationId).
-func (c *Client) DeleteExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteExperimentItemsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteExperimentItems Delete experiment items
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/items/delete (the `DeleteExperimentItems` operationId).
-func (c *Client) DeleteExperimentItems(ctx context.Context, body DeleteExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteExperimentItemsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// StreamExperimentItemsWithBody Stream experiment items
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/items/stream (the `StreamExperimentItems` operationId).
-func (c *Client) StreamExperimentItemsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStreamExperimentItemsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// StreamExperimentItems Stream experiment items
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/items/stream (the `StreamExperimentItems` operationId).
-func (c *Client) StreamExperimentItems(ctx context.Context, body StreamExperimentItemsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStreamExperimentItemsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetExperimentItemById Get experiment item by id
-//
-// Corresponds with GET /v1/private/experiments/items/{id} (the `GetExperimentItemById` operationId).
-func (c *Client) GetExperimentItemById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetExperimentItemByIdRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// StreamExperimentsWithBody Stream experiments
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments/stream (the `StreamExperiments` operationId).
-func (c *Client) StreamExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStreamExperimentsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// StreamExperiments Stream experiments
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments/stream (the `StreamExperiments` operationId).
-func (c *Client) StreamExperiments(ctx context.Context, body StreamExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStreamExperimentsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetExperimentById Get experiment by id
-//
-// Corresponds with GET /v1/private/experiments/{id} (the `GetExperimentById` operationId).
-func (c *Client) GetExperimentById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetExperimentByIdRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateExperimentWithBody Update experiment by id
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PATCH /v1/private/experiments/{id} (the `UpdateExperiment` operationId).
-func (c *Client) UpdateExperimentWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateExperimentRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateExperiment Update experiment by id
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PATCH /v1/private/experiments/{id} (the `UpdateExperiment` operationId).
-func (c *Client) UpdateExperiment(ctx context.Context, id openapi_types.UUID, body UpdateExperimentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateExperimentRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindFeedbackDefinitions Find Feedback definitions
-//
-// Corresponds with GET /v1/private/feedback-definitions (the `FindFeedbackDefinitions` operationId).
-func (c *Client) FindFeedbackDefinitions(ctx context.Context, params *FindFeedbackDefinitionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindFeedbackDefinitionsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateFeedbackDefinitionWithBody Create feedback definition
-//
-// Get feedback definition.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/feedback-definitions (the `CreateFeedbackDefinition` operationId).
-func (c *Client) CreateFeedbackDefinitionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateFeedbackDefinitionRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateFeedbackDefinition Create feedback definition
-//
-// Get feedback definition.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/feedback-definitions (the `CreateFeedbackDefinition` operationId).
-func (c *Client) CreateFeedbackDefinition(ctx context.Context, body CreateFeedbackDefinitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateFeedbackDefinitionRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteFeedbackDefinitionsBatchWithBody Delete feedback definitions
-//
-// Delete feedback definitions batch.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/feedback-definitions/delete (the `DeleteFeedbackDefinitionsBatch` operationId).
-func (c *Client) DeleteFeedbackDefinitionsBatchWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteFeedbackDefinitionsBatchRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteFeedbackDefinitionsBatch Delete feedback definitions
-//
-// Delete feedback definitions batch.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/feedback-definitions/delete (the `DeleteFeedbackDefinitionsBatch` operationId).
-func (c *Client) DeleteFeedbackDefinitionsBatch(ctx context.Context, body DeleteFeedbackDefinitionsBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteFeedbackDefinitionsBatchRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteFeedbackDefinitionById Delete feedback definition by id
-//
-// Corresponds with DELETE /v1/private/feedback-definitions/{id} (the `DeleteFeedbackDefinitionById` operationId).
-func (c *Client) DeleteFeedbackDefinitionById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteFeedbackDefinitionByIdRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetFeedbackDefinitionById Get feedback definition by id
-//
-// Corresponds with GET /v1/private/feedback-definitions/{id} (the `GetFeedbackDefinitionById` operationId).
-func (c *Client) GetFeedbackDefinitionById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetFeedbackDefinitionByIdRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateFeedbackDefinitionWithBody Update feedback definition by id
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PUT /v1/private/feedback-definitions/{id} (the `UpdateFeedbackDefinition` operationId).
-func (c *Client) UpdateFeedbackDefinitionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateFeedbackDefinitionRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateFeedbackDefinition Update feedback definition by id
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PUT /v1/private/feedback-definitions/{id} (the `UpdateFeedbackDefinition` operationId).
-func (c *Client) UpdateFeedbackDefinition(ctx context.Context, id openapi_types.UUID, body UpdateFeedbackDefinitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateFeedbackDefinitionRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}

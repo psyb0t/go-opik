@@ -633,6 +633,24 @@ func (e AssistantMessageRole) Valid() bool {
 	}
 }
 
+// Defines values for AttemptStatus.
+const (
+	AttemptStatusFailed  AttemptStatus = "failed"
+	AttemptStatusRunning AttemptStatus = "running"
+)
+
+// Valid indicates whether the value is a known member of the AttemptStatus enum.
+func (e AttemptStatus) Valid() bool {
+	switch e {
+	case AttemptStatusFailed:
+		return true
+	case AttemptStatusRunning:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AutomationRuleEvaluatorObjectObjectPublicAction.
 const (
 	AutomationRuleEvaluatorObjectObjectPublicActionAnnotationQueueRouter AutomationRuleEvaluatorObjectObjectPublicAction = "annotation_queue_router"
@@ -2382,6 +2400,33 @@ func (e GuardrailPolicyWriteExecutionScope) Valid() bool {
 	}
 }
 
+// Defines values for GuardrailTrainingRunStatus.
+const (
+	GuardrailTrainingRunStatusCancelled GuardrailTrainingRunStatus = "cancelled"
+	GuardrailTrainingRunStatusCompleted GuardrailTrainingRunStatus = "completed"
+	GuardrailTrainingRunStatusFailed    GuardrailTrainingRunStatus = "failed"
+	GuardrailTrainingRunStatusQueued    GuardrailTrainingRunStatus = "queued"
+	GuardrailTrainingRunStatusRunning   GuardrailTrainingRunStatus = "running"
+)
+
+// Valid indicates whether the value is a known member of the GuardrailTrainingRunStatus enum.
+func (e GuardrailTrainingRunStatus) Valid() bool {
+	switch e {
+	case GuardrailTrainingRunStatusCancelled:
+		return true
+	case GuardrailTrainingRunStatusCompleted:
+		return true
+	case GuardrailTrainingRunStatusFailed:
+		return true
+	case GuardrailTrainingRunStatusQueued:
+		return true
+	case GuardrailTrainingRunStatusRunning:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GuardrailWriteName.
 const (
 	GuardrailWriteNameCUSTOMCLASSIFIER GuardrailWriteName = "CUSTOM_CLASSIFIER"
@@ -2940,6 +2985,30 @@ func (e ProjectStatItemObjectPublicType) Valid() bool {
 	case ProjectStatItemObjectPublicTypeCOUNT:
 		return true
 	case ProjectStatItemObjectPublicTypePERCENTAGE:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ProjectTopicsStatus.
+const (
+	ProjectTopicsStatusCollecting ProjectTopicsStatus = "collecting"
+	ProjectTopicsStatusDisabled   ProjectTopicsStatus = "disabled"
+	ProjectTopicsStatusReady      ProjectTopicsStatus = "ready"
+	ProjectTopicsStatusTooLarge   ProjectTopicsStatus = "too_large"
+)
+
+// Valid indicates whether the value is a known member of the ProjectTopicsStatus enum.
+func (e ProjectTopicsStatus) Valid() bool {
+	switch e {
+	case ProjectTopicsStatusCollecting:
+		return true
+	case ProjectTopicsStatusDisabled:
+		return true
+	case ProjectTopicsStatusReady:
+		return true
+	case ProjectTopicsStatusTooLarge:
 		return true
 	default:
 		return false
@@ -5067,6 +5136,33 @@ func (e FindFeedbackDefinitionsParamsType) Valid() bool {
 	}
 }
 
+// Defines values for FindGuardrailModelsParamsLatestRunStatus.
+const (
+	FindGuardrailModelsParamsLatestRunStatusCancelled FindGuardrailModelsParamsLatestRunStatus = "cancelled"
+	FindGuardrailModelsParamsLatestRunStatusCompleted FindGuardrailModelsParamsLatestRunStatus = "completed"
+	FindGuardrailModelsParamsLatestRunStatusFailed    FindGuardrailModelsParamsLatestRunStatus = "failed"
+	FindGuardrailModelsParamsLatestRunStatusQueued    FindGuardrailModelsParamsLatestRunStatus = "queued"
+	FindGuardrailModelsParamsLatestRunStatusRunning   FindGuardrailModelsParamsLatestRunStatus = "running"
+)
+
+// Valid indicates whether the value is a known member of the FindGuardrailModelsParamsLatestRunStatus enum.
+func (e FindGuardrailModelsParamsLatestRunStatus) Valid() bool {
+	switch e {
+	case FindGuardrailModelsParamsLatestRunStatusCancelled:
+		return true
+	case FindGuardrailModelsParamsLatestRunStatusCompleted:
+		return true
+	case FindGuardrailModelsParamsLatestRunStatusFailed:
+		return true
+	case FindGuardrailModelsParamsLatestRunStatusQueued:
+		return true
+	case FindGuardrailModelsParamsLatestRunStatusRunning:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for FindGuardrailPoliciesParamsExecutionScope.
 const (
 	FindGuardrailPoliciesParamsExecutionScopeGlobal    FindGuardrailPoliciesParamsExecutionScope = "global"
@@ -5903,6 +5999,15 @@ type AttachmentPage struct {
 	SortableBy *[]string     `json:"sortableBy,omitempty"`
 	Total      *int64        `json:"total,omitempty"`
 }
+
+// Attempt collecting only: the project's newest run when it is running or failed; omitted when it saved or there is none. The runbook's 'Reading topics' section tells the collecting cases apart
+type Attempt struct {
+	// Status running: the run started and has not ended. failed: it ended without saving
+	Status *AttemptStatus `json:"status,omitempty"`
+}
+
+// AttemptStatus running: the run started and has not ended. failed: it ended without saving
+type AttemptStatus string
 
 // AuthDetailsHolder defines model for AuthDetailsHolder.
 type AuthDetailsHolder = map[string]interface{}
@@ -7153,6 +7258,15 @@ type DatasetWriteType string
 // DatasetWriteVisibility defines model for DatasetWrite.Visibility.
 type DatasetWriteVisibility string
 
+// DayCount One entry per day of the window, oldest first, today last
+type DayCount struct {
+	// Count Traces created on the day
+	Count *int64 `json:"count,omitempty"`
+
+	// Day A UTC date
+	Day *openapi_types.Date `json:"day,omitempty"`
+}
+
 // DeleteFeedbackScore defines model for DeleteFeedbackScore.
 type DeleteFeedbackScore struct {
 	Author        *string             `json:"author,omitempty"`
@@ -7439,6 +7553,7 @@ type ExperimentItem struct {
 	Comments            *[]Comment                         `json:"comments,omitempty"`
 	CreatedAt           *time.Time                         `json:"created_at,omitempty"`
 	CreatedBy           *string                            `json:"created_by,omitempty"`
+	DatasetItemData     *JsonNode                          `json:"dataset_item_data,omitempty"`
 	DatasetItemId       openapi_types.UUID                 `json:"dataset_item_id"`
 	Description         *string                            `json:"description,omitempty"`
 	Duration            *float64                           `json:"duration,omitempty"`
@@ -7522,6 +7637,7 @@ type ExperimentItemCompare struct {
 	Comments            *[]CommentCompare                         `json:"comments,omitempty"`
 	CreatedAt           *time.Time                                `json:"created_at,omitempty"`
 	CreatedBy           *string                                   `json:"created_by,omitempty"`
+	DatasetItemData     *JsonNode                                 `json:"dataset_item_data,omitempty"`
 	DatasetItemId       openapi_types.UUID                        `json:"dataset_item_id"`
 	Description         *string                                   `json:"description,omitempty"`
 	Duration            *float64                                  `json:"duration,omitempty"`
@@ -8028,6 +8144,37 @@ type GuardrailBatchWrite struct {
 	Guardrails []GuardrailWrite `json:"guardrails"`
 }
 
+// GuardrailModel defines model for GuardrailModel.
+type GuardrailModel struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedBy *string    `json:"created_by,omitempty"`
+
+	// Description What the model flags: the question its adapter is trained and served on
+	Description   string                `json:"description"`
+	Id            *openapi_types.UUID   `json:"id,omitempty"`
+	LastUpdatedAt *time.Time            `json:"last_updated_at,omitempty"`
+	LastUpdatedBy *string               `json:"last_updated_by,omitempty"`
+	LatestRun     *GuardrailTrainingRun `json:"latest_run,omitempty"`
+
+	// Name Unique in the workspace, ignoring case; never changes
+	Name       string                `json:"name"`
+	ServingRun *GuardrailTrainingRun `json:"serving_run,omitempty"`
+}
+
+// GuardrailModelPage defines model for GuardrailModelPage.
+type GuardrailModelPage struct {
+	Content    *[]GuardrailModel `json:"content,omitempty"`
+	Page       *int32            `json:"page,omitempty"`
+	Size       *int32            `json:"size,omitempty"`
+	SortableBy *[]string         `json:"sortable_by,omitempty"`
+	Total      *int64            `json:"total,omitempty"`
+}
+
+// GuardrailModelUpdate defines model for GuardrailModelUpdate.
+type GuardrailModelUpdate struct {
+	Description string `json:"description"`
+}
+
 // GuardrailPolicyPagePublic defines model for GuardrailPolicyPage_Public.
 type GuardrailPolicyPagePublic struct {
 	Content    *[]GuardrailPolicyPublic `json:"content,omitempty"`
@@ -8098,6 +8245,36 @@ type GuardrailPolicyWrite struct {
 
 // GuardrailPolicyWriteExecutionScope on_request applies the policy when the SDK names it, global applies it to every guardrail built from stored policies in the workspace. Missing or null means on_request
 type GuardrailPolicyWriteExecutionScope string
+
+// GuardrailTrainingRun defines model for GuardrailTrainingRun.
+type GuardrailTrainingRun struct {
+	// Attempt Which attempt of one training the run is, 1 for the first
+	Attempt   *int32     `json:"attempt,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedBy *string    `json:"created_by,omitempty"`
+
+	// FinishedAt When the run reached completed, failed or cancelled; null while it is in flight
+	FinishedAt    *time.Time                  `json:"finished_at,omitempty"`
+	Id            *openapi_types.UUID         `json:"id,omitempty"`
+	LastUpdatedAt *time.Time                  `json:"last_updated_at,omitempty"`
+	LastUpdatedBy *string                     `json:"last_updated_by,omitempty"`
+	ModelId       *openapi_types.UUID         `json:"model_id,omitempty"`
+	Status        *GuardrailTrainingRunStatus `json:"status,omitempty"`
+
+	// StatusMessage Why the run ended failed or cancelled; null otherwise
+	StatusMessage *string `json:"status_message,omitempty"`
+}
+
+// GuardrailTrainingRunStatus defines model for GuardrailTrainingRun.Status.
+type GuardrailTrainingRunStatus string
+
+// GuardrailTrainingRunPage defines model for GuardrailTrainingRunPage.
+type GuardrailTrainingRunPage struct {
+	Content *[]GuardrailTrainingRun `json:"content,omitempty"`
+	Page    *int32                  `json:"page,omitempty"`
+	Size    *int32                  `json:"size,omitempty"`
+	Total   *int64                  `json:"total,omitempty"`
+}
 
 // GuardrailWrite defines model for Guardrail_Write.
 type GuardrailWrite struct {
@@ -8647,6 +8824,12 @@ type OptimizationWrite struct {
 // OptimizationWriteStatus defines model for OptimizationWrite.Status.
 type OptimizationWriteStatus string
 
+// OtherStats ready only: the traces per day with no topic, or with a topic that is no longer live. Add it to the topics' series for the project's total per day
+type OtherStats struct {
+	// Series One entry per day of the window, oldest first, today last
+	Series *[]DayCount `json:"series,omitempty"`
+}
+
 // PageColumns defines model for PageColumns.
 type PageColumns struct {
 	Columns *[]Column `json:"columns,omitempty"`
@@ -8777,6 +8960,45 @@ type ProjectStatsSummaryItem struct {
 type ProjectStatsPublic struct {
 	Stats *[]ProjectStatItemObjectPublic `json:"stats,omitempty"`
 }
+
+// ProjectTopics defines model for ProjectTopics.
+type ProjectTopics struct {
+	// Attempt collecting only: the project's newest run when it is running or failed; omitted when it saved or there is none. The runbook's 'Reading topics' section tells the collecting cases apart
+	Attempt *Attempt `json:"attempt,omitempty"`
+
+	// LabelledFrom ready only: the first day in the window with a labelled trace; earlier days are 0 because nothing was labelled. Omitted when the window has none
+	LabelledFrom *openapi_types.Date `json:"labelled_from,omitempty"`
+
+	// LastRunAt When the project's last saved run (a discovery run or a nightly update) finished; omitted before the first one
+	LastRunAt *time.Time `json:"last_run_at,omitempty"`
+
+	// MinVectors collecting only: traces with a vector the discovery run needs
+	MinVectors *int64 `json:"min_vectors,omitempty"`
+
+	// Other ready only: the traces per day with no topic, or with a topic that is no longer live. Add it to the topics' series for the project's total per day
+	Other *OtherStats `json:"other,omitempty"`
+
+	// Status disabled: the workspace is not opted in to topics. collecting: the project has no topics yet. ready: topics with counts. too_large: the project has too many traces in the window to count; a retry answers the same
+	Status *ProjectTopicsStatus `json:"status,omitempty"`
+
+	// Today The UTC date of the request, the window's last day
+	Today *openapi_types.Date `json:"today,omitempty"`
+
+	// Topics The live topics in rank order; empty unless ready
+	Topics *[]TopicStats `json:"topics,omitempty"`
+
+	// TotalTraces ready only: traces with a topic in the window, Other included
+	TotalTraces *int64 `json:"total_traces,omitempty"`
+
+	// VectorsInWindow collecting only: traces with a vector in the window
+	VectorsInWindow *int64 `json:"vectors_in_window,omitempty"`
+
+	// WindowFrom The window's first UTC day, inclusive
+	WindowFrom *openapi_types.Date `json:"window_from,omitempty"`
+}
+
+// ProjectTopicsStatus disabled: the workspace is not opted in to topics. collecting: the project has no topics yet. ready: topics with counts. too_large: the project has too many traces in the window to count; a retry answers the same
+type ProjectTopicsStatus string
 
 // ProjectUpdate defines model for ProjectUpdate.
 type ProjectUpdate struct {
@@ -9527,6 +9749,7 @@ type ServiceTogglesConfig struct {
 	ExportEnabled                      bool   `json:"exportEnabled"`
 	GeminiProviderEnabled              bool   `json:"geminiProviderEnabled"`
 	GuardrailsEnabled                  bool   `json:"guardrailsEnabled"`
+	GuardrailsTrainingEnabled          bool   `json:"guardrailsTrainingEnabled"`
 	GuardrailsValidationsEnabled       bool   `json:"guardrailsValidationsEnabled"`
 	ModelPricesEnabled                 bool   `json:"modelPricesEnabled"`
 	OllamaProviderEnabled              bool   `json:"ollamaProviderEnabled"`
@@ -9538,6 +9761,7 @@ type ServiceTogglesConfig struct {
 	PythonEvaluatorEnabled             bool   `json:"pythonEvaluatorEnabled"`
 	SpanLlmAsJudgeEnabled              bool   `json:"spanLlmAsJudgeEnabled"`
 	SpanUserDefinedMetricPythonEnabled bool   `json:"spanUserDefinedMetricPythonEnabled"`
+	TopicsEnabled                      *bool  `json:"topicsEnabled,omitempty"`
 	TraceThreadPythonEvaluatorEnabled  bool   `json:"traceThreadPythonEvaluatorEnabled"`
 	VertexaiProviderEnabled            bool   `json:"vertexaiProviderEnabled"`
 	WelcomeWizardEnabled               bool   `json:"welcomeWizardEnabled"`
@@ -9926,6 +10150,36 @@ type ToolsParam struct {
 
 // ToolsParamChatCompletions defines model for ToolsParam.ChatCompletions.
 type ToolsParamChatCompletions string
+
+// TopicStats The live topics in rank order; empty unless ready
+type TopicStats struct {
+	// Born The UTC date the topic was made: for a discovery run's topics, the day the run started
+	Born *openapi_types.Date `json:"born,omitempty"`
+
+	// Count Traces of the topic in the window
+	Count *int64 `json:"count,omitempty"`
+
+	// Definition What the topic's traces are about
+	Definition *string `json:"definition,omitempty"`
+
+	// Id The topic id, the value the traces filter uses
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// IsNew Born after the project's discovery run, in the last 7 days
+	IsNew *bool `json:"is_new,omitempty"`
+
+	// Name The topic's name
+	Name *string `json:"name,omitempty"`
+
+	// Rank 1-based: topics by count, most first, then the earlier born, then the id
+	Rank *int32 `json:"rank,omitempty"`
+
+	// Series One entry per day of the window, oldest first, today last
+	Series *[]DayCount `json:"series,omitempty"`
+
+	// Share count / total_traces, from 0 to 1, not rounded
+	Share *float64 `json:"share,omitempty"`
+}
 
 // TraceBatchUpdate Request to batch update multiple traces
 type TraceBatchUpdate struct {
@@ -11018,6 +11272,40 @@ type FindFeedbackDefinitionsParams struct {
 // FindFeedbackDefinitionsParamsType defines parameters for FindFeedbackDefinitions.
 type FindFeedbackDefinitionsParamsType string
 
+// FindGuardrailModelsParams defines parameters for FindGuardrailModels.
+type FindGuardrailModelsParams struct {
+	Page            *int32                                    `form:"page,omitempty" json:"page,omitempty"`
+	Size            *int32                                    `form:"size,omitempty" json:"size,omitempty"`
+	Name            *string                                   `form:"name,omitempty" json:"name,omitempty"`
+	UsableOnly      *bool                                     `form:"usable_only,omitempty" json:"usable_only,omitempty"`
+	LatestRunStatus *FindGuardrailModelsParamsLatestRunStatus `form:"latest_run_status,omitempty" json:"latest_run_status,omitempty"`
+	Sorting         *string                                   `form:"sorting,omitempty" json:"sorting,omitempty"`
+}
+
+// FindGuardrailModelsParamsLatestRunStatus defines parameters for FindGuardrailModels.
+type FindGuardrailModelsParamsLatestRunStatus string
+
+// CreateGuardrailModelMultipartBody defines parameters for CreateGuardrailModel.
+type CreateGuardrailModelMultipartBody struct {
+	Description string `json:"description"`
+
+	// File JSON Lines in UTF-8, one {"text": "...", "label": "yes" | "no"} object per line, yes meaning the text violates. The deployment sets the limits; by default 20 to 50,000 rows, at least 5 per label, up to 12,000 characters each, 50 MB
+	File map[string]interface{} `json:"file"`
+	Name string                 `json:"name"`
+}
+
+// FindGuardrailTrainingRunsParams defines parameters for FindGuardrailTrainingRuns.
+type FindGuardrailTrainingRunsParams struct {
+	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
+	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
+}
+
+// RetrainGuardrailModelMultipartBody defines parameters for RetrainGuardrailModel.
+type RetrainGuardrailModelMultipartBody struct {
+	// File JSON Lines in UTF-8, one {"text": "...", "label": "yes" | "no"} object per line, yes meaning the text violates. The deployment sets the limits; by default 20 to 50,000 rows, at least 5 per label, up to 12,000 characters each, 50 MB
+	File map[string]interface{} `json:"file"`
+}
+
 // FindGuardrailPoliciesParams defines parameters for FindGuardrailPolicies.
 type FindGuardrailPoliciesParams struct {
 	Page           *int32                                     `form:"page,omitempty" json:"page,omitempty"`
@@ -11298,6 +11586,11 @@ type GetSpanStatsParamsType string
 // GetSpanByIdParams defines parameters for GetSpanById.
 type GetSpanByIdParams struct {
 	StripAttachments *bool `form:"strip_attachments,omitempty" json:"strip_attachments,omitempty"`
+}
+
+// GetProjectTopicsParams defines parameters for GetProjectTopics.
+type GetProjectTopicsParams struct {
+	ProjectId openapi_types.UUID `form:"project_id" json:"project_id"`
 }
 
 // GetTracesByProjectParams defines parameters for GetTracesByProject.
@@ -11659,6 +11952,15 @@ type UpdateFeedbackDefinitionJSONRequestBody = FeedbackUpdate
 
 // CreateGuardrailsJSONRequestBody defines body for CreateGuardrails for application/json ContentType.
 type CreateGuardrailsJSONRequestBody = GuardrailBatchWrite
+
+// CreateGuardrailModelMultipartRequestBody defines body for CreateGuardrailModel for multipart/form-data ContentType.
+type CreateGuardrailModelMultipartRequestBody CreateGuardrailModelMultipartBody
+
+// UpdateGuardrailModelJSONRequestBody defines body for UpdateGuardrailModel for application/json ContentType.
+type UpdateGuardrailModelJSONRequestBody = GuardrailModelUpdate
+
+// RetrainGuardrailModelMultipartRequestBody defines body for RetrainGuardrailModel for multipart/form-data ContentType.
+type RetrainGuardrailModelMultipartRequestBody RetrainGuardrailModelMultipartBody
 
 // CreateGuardrailPolicyJSONRequestBody defines body for CreateGuardrailPolicy for application/json ContentType.
 type CreateGuardrailPolicyJSONRequestBody = GuardrailPolicyWrite
@@ -14324,6 +14626,84 @@ type ClientInterface interface {
 	// Corresponds with POST /v1/private/guardrails (the `CreateGuardrails` operationId).
 	CreateGuardrails(ctx context.Context, body CreateGuardrailsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// FindGuardrailModels Find guardrail models
+	//
+	// Find the workspace's guardrail models, each with its serving run and its latest run
+	//
+	// Corresponds with GET /v1/private/guardrails/models (the `FindGuardrailModels` operationId).
+	FindGuardrailModels(ctx context.Context, params *FindGuardrailModelsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateGuardrailModelWithBody Create guardrail model
+	//
+	// Create a guardrail model and start its first training run from a labelled JSONL file.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/guardrails/models (the `CreateGuardrailModel` operationId).
+	CreateGuardrailModelWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGuardrailModel Delete guardrail model
+	//
+	// Delete a guardrail model and its runs.
+	//
+	// Corresponds with DELETE /v1/private/guardrails/models/{id} (the `DeleteGuardrailModel` operationId).
+	DeleteGuardrailModel(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetGuardrailModelById Get guardrail model by id
+	//
+	// Get a guardrail model with its serving run and its latest run.
+	//
+	// Corresponds with GET /v1/private/guardrails/models/{id} (the `GetGuardrailModelById` operationId).
+	GetGuardrailModelById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateGuardrailModelWithBody Update guardrail model
+	//
+	// Update a guardrail model's description; its name never changes
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PATCH /v1/private/guardrails/models/{id} (the `UpdateGuardrailModel` operationId).
+	UpdateGuardrailModelWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateGuardrailModel Update guardrail model
+	//
+	// Update a guardrail model's description; its name never changes
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PATCH /v1/private/guardrails/models/{id} (the `UpdateGuardrailModel` operationId).
+	UpdateGuardrailModel(ctx context.Context, id openapi_types.UUID, body UpdateGuardrailModelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FindGuardrailTrainingRuns Find guardrail model training runs
+	//
+	// Find a guardrail model's training runs, newest first
+	//
+	// Corresponds with GET /v1/private/guardrails/models/{id}/runs (the `FindGuardrailTrainingRuns` operationId).
+	FindGuardrailTrainingRuns(ctx context.Context, id openapi_types.UUID, params *FindGuardrailTrainingRunsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RetrainGuardrailModelWithBody Retrain guardrail model
+	//
+	// Start a new training of the model from a labelled JSONL file; the serving run keeps serving until the new one completes
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/guardrails/models/{id}/runs (the `RetrainGuardrailModel` operationId).
+	RetrainGuardrailModelWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetGuardrailTrainingRunById Get guardrail model training run by id
+	//
+	// Get one training run of a guardrail model.
+	//
+	// Corresponds with GET /v1/private/guardrails/models/{id}/runs/{runId} (the `GetGuardrailTrainingRunById` operationId).
+	GetGuardrailTrainingRunById(ctx context.Context, id openapi_types.UUID, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CancelGuardrailTrainingRun Cancel guardrail model training run
+	//
+	// Cancel a training run that is queued or running. Cancelling a cancelled run again changes nothing and answers 204 too
+	//
+	// Corresponds with POST /v1/private/guardrails/models/{id}/runs/{runId}/cancel (the `CancelGuardrailTrainingRun` operationId).
+	CancelGuardrailTrainingRun(ctx context.Context, id openapi_types.UUID, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// FindGuardrailPolicies Find guardrail policies
 	//
 	// Find guardrail policies in a workspace.
@@ -15748,6 +16128,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /v1/private/toggles (the `GetServiceToggles` operationId).
 	GetServiceToggles(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetProjectTopics Get a project's topics
+	//
+	// The project's topics over the window, the last topics.run.windowDays UTC days (default 30), today included: per topic its count, share, rank and a daily series, plus Other's daily series. Counts can be up to 5 minutes old. status is disabled when the workspace is not opted in to topics, collecting while the project has no topics yet, too_large when a ClickHouse read hit a rows, bytes or memory guard (a retry answers the same, so do not retry), and ready otherwise. Fields of other states are omitted.
+	//
+	// Corresponds with GET /v1/private/topics (the `GetProjectTopics` operationId).
+	GetProjectTopics(ctx context.Context, params *GetProjectTopicsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTracesByProject Get traces by project_name or project_id
 	//
@@ -19622,400 +20009,6 @@ func (c *Client) GetDatasetVersionByHash(ctx context.Context, id openapi_types.U
 // Corresponds with PATCH /v1/private/datasets/{id}/versions/hash/{versionHash} (the `UpdateDatasetVersion` operationId).
 func (c *Client) UpdateDatasetVersionWithBody(ctx context.Context, id openapi_types.UUID, versionHash string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateDatasetVersionRequestWithBody(c.Server, id, versionHash, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateDatasetVersion Update dataset version
-//
-// Update a dataset version's change_description and/or add new tags.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PATCH /v1/private/datasets/{id}/versions/hash/{versionHash} (the `UpdateDatasetVersion` operationId).
-func (c *Client) UpdateDatasetVersion(ctx context.Context, id openapi_types.UUID, versionHash string, body UpdateDatasetVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateDatasetVersionRequest(c.Server, id, versionHash, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateVersionTagWithBody Create version tag
-//
-// Add a tag to a specific dataset version for easy reference (e.g., 'baseline', 'v1.0', 'production')
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/versions/hash/{versionHash}/tags (the `CreateVersionTag` operationId).
-func (c *Client) CreateVersionTagWithBody(ctx context.Context, id openapi_types.UUID, versionHash string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateVersionTagRequestWithBody(c.Server, id, versionHash, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateVersionTag Create version tag
-//
-// Add a tag to a specific dataset version for easy reference (e.g., 'baseline', 'v1.0', 'production')
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/versions/hash/{versionHash}/tags (the `CreateVersionTag` operationId).
-func (c *Client) CreateVersionTag(ctx context.Context, id openapi_types.UUID, versionHash string, body CreateVersionTagJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateVersionTagRequest(c.Server, id, versionHash, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// RestoreDatasetVersionWithBody Restore dataset to a previous version
-//
-// Restores the dataset to a previous version state by creating a new version with items copied from the specified version. If the version is already the latest, returns it as-is (no-op).
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/versions/restore (the `RestoreDatasetVersion` operationId).
-func (c *Client) RestoreDatasetVersionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRestoreDatasetVersionRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// RestoreDatasetVersion Restore dataset to a previous version
-//
-// Restores the dataset to a previous version state by creating a new version with items copied from the specified version. If the version is already the latest, returns it as-is (no-op).
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/versions/restore (the `RestoreDatasetVersion` operationId).
-func (c *Client) RestoreDatasetVersion(ctx context.Context, id openapi_types.UUID, body RestoreDatasetVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRestoreDatasetVersionRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// RetrieveDatasetVersionWithBody Retrieve dataset version by name
-//
-// Get a specific version by its version name (e.g., 'v1', 'v373'). This is more efficient than paginating through all versions for large datasets.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/versions/retrieve (the `RetrieveDatasetVersion` operationId).
-func (c *Client) RetrieveDatasetVersionWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrieveDatasetVersionRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// RetrieveDatasetVersion Retrieve dataset version by name
-//
-// Get a specific version by its version name (e.g., 'v1', 'v373'). This is more efficient than paginating through all versions for large datasets.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/versions/retrieve (the `RetrieveDatasetVersion` operationId).
-func (c *Client) RetrieveDatasetVersion(ctx context.Context, id openapi_types.UUID, body RetrieveDatasetVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrieveDatasetVersionRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteVersionTag Delete version tag
-//
-// Remove a tag from a dataset version. The version itself is not deleted, only the tag reference.
-//
-// Corresponds with DELETE /v1/private/datasets/{id}/versions/{versionHash}/tags/{tag} (the `DeleteVersionTag` operationId).
-func (c *Client) DeleteVersionTag(ctx context.Context, id openapi_types.UUID, versionHash string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteVersionTagRequest(c.Server, id, versionHash, tag)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindEnvironments Find environments
-//
-// Find environments for the workspace. Capped at the workspace limit (default 100).
-//
-// Corresponds with GET /v1/private/environments (the `FindEnvironments` operationId).
-func (c *Client) FindEnvironments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindEnvironmentsRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateEnvironmentWithBody Create environment
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/environments (the `CreateEnvironment` operationId).
-func (c *Client) CreateEnvironmentWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateEnvironmentRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateEnvironment Create environment
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/environments (the `CreateEnvironment` operationId).
-func (c *Client) CreateEnvironment(ctx context.Context, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateEnvironmentRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteEnvironmentsBatchWithBody Delete environments
-//
-// Delete environments batch. Idempotent — missing ids are silently ignored.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/environments/delete (the `DeleteEnvironmentsBatch` operationId).
-func (c *Client) DeleteEnvironmentsBatchWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteEnvironmentsBatchRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// DeleteEnvironmentsBatch Delete environments
-//
-// Delete environments batch. Idempotent — missing ids are silently ignored.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/environments/delete (the `DeleteEnvironmentsBatch` operationId).
-func (c *Client) DeleteEnvironmentsBatch(ctx context.Context, body DeleteEnvironmentsBatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteEnvironmentsBatchRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetEnvironmentById Get environment by id
-//
-// Corresponds with GET /v1/private/environments/{id} (the `GetEnvironmentById` operationId).
-func (c *Client) GetEnvironmentById(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetEnvironmentByIdRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateEnvironmentWithBody Update environment by id
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PATCH /v1/private/environments/{id} (the `UpdateEnvironment` operationId).
-func (c *Client) UpdateEnvironmentWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateEnvironmentRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateEnvironment Update environment by id
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PATCH /v1/private/environments/{id} (the `UpdateEnvironment` operationId).
-func (c *Client) UpdateEnvironment(ctx context.Context, id openapi_types.UUID, body UpdateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateEnvironmentRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindExperiments Find experiments
-//
-// Corresponds with GET /v1/private/experiments (the `FindExperiments` operationId).
-func (c *Client) FindExperiments(ctx context.Context, params *FindExperimentsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindExperimentsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateExperimentWithBody Create experiment
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /v1/private/experiments (the `CreateExperiment` operationId).
-func (c *Client) CreateExperimentWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateExperimentRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CreateExperiment Create experiment
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/experiments (the `CreateExperiment` operationId).
-func (c *Client) CreateExperiment(ctx context.Context, body CreateExperimentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateExperimentRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// BatchUpdateExperimentsWithBody Batch update experiments
-//
-// Update multiple experiments.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PATCH /v1/private/experiments/batch (the `BatchUpdateExperiments` operationId).
-func (c *Client) BatchUpdateExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewBatchUpdateExperimentsRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// BatchUpdateExperiments Batch update experiments
-//
-// Update multiple experiments.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with PATCH /v1/private/experiments/batch (the `BatchUpdateExperiments` operationId).
-func (c *Client) BatchUpdateExperiments(ctx context.Context, body BatchUpdateExperimentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewBatchUpdateExperimentsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CancelExperimentsWithBody Cancel running experiments
-//
-// Stops the given experiments: queued items are skipped and the experiments are marked cancelled
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PUT /v1/private/experiments/cancel (the `CancelExperiments` operationId).
-func (c *Client) CancelExperimentsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelExperimentsRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}

@@ -2,6 +2,15 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.7.1, 2026-11-25
+
+- Added guardrail model methods `FindGuardrailModels`, `CreateGuardrailModelWithBody`, `GetGuardrailModelById`, `UpdateGuardrailModel`, `UpdateGuardrailModelWithBody`, `DeleteGuardrailModel` and `RetrainGuardrailModelWithBody` to `Client` and `ClientWithResponses`, with the matching `...WithResponse` methods, `New...Request` builders and `Parse...Response` functions.
+- Added guardrail training run methods `FindGuardrailTrainingRuns`, `GetGuardrailTrainingRunById` and `CancelGuardrailTrainingRun`, with their `WithResponse` methods, request builders and parsers.
+- Added `GetProjectTopics`, `GetProjectTopicsWithResponse`, `GetProjectTopicsParams`, `ProjectTopics`, `TopicStats`, `OtherStats` and `DayCount`, plus the status enum `ProjectTopicsStatus` (`collecting`, `disabled`, `ready`, `too_large`).
+- Added the types `GuardrailModel`, `GuardrailModelPage`, `GuardrailModelUpdate`, `GuardrailTrainingRun`, `GuardrailTrainingRunPage`, `Attempt`, and the enums `GuardrailTrainingRunStatus`, `AttemptStatus` and `FindGuardrailModelsParamsLatestRunStatus`.
+- Added the optional fields `GuardrailsTrainingEnabled` and `TopicsEnabled` to `ServiceTogglesConfig`, and `DatasetItemData` to `ExperimentItem` and `ExperimentItemCompare`.
+- Migration: the new methods are also on `ClientInterface` and `ClientWithResponsesInterface`. Code that implements either interface itself, for example a mock, must add them.
+
 ## v0.7.0, 2026-11-24
 
 - Added view endpoints to `ClientInterface`, `Client`, `ClientWithResponsesInterface` and `ClientWithResponses`: `CreateView`, `GetViewById`, `UpdateView`, `DeleteView`, `GetViewVersions`, `GetViewVersion`, `CreateViewVersion`, `DeleteViewVersion` and `SetViewCurrentVersion`, each with a `WithBody` variant where it takes a body and a `WithResponse` form. Matching `New...Request` builders and `Parse...Response` functions are included.

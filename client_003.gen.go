@@ -17,6 +17,1174 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+// NewCreateSpanRequest calls the generic CreateSpan builder with application/json body
+func NewCreateSpanRequest(server string, body CreateSpanJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateSpanRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCreateSpanRequestWithBody constructs an http.Request for the CreateSpan method, with any body, and a specified content type
+func NewCreateSpanRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewBatchUpdateSpansRequest calls the generic BatchUpdateSpans builder with application/json body
+func NewBatchUpdateSpansRequest(server string, body BatchUpdateSpansJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBatchUpdateSpansRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewBatchUpdateSpansRequestWithBody constructs an http.Request for the BatchUpdateSpans method, with any body, and a specified content type
+func NewBatchUpdateSpansRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/batch")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCreateSpansRequest calls the generic CreateSpans builder with application/json body
+func NewCreateSpansRequest(server string, body CreateSpansJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateSpansRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCreateSpansRequestWithBody constructs an http.Request for the CreateSpans method, with any body, and a specified content type
+func NewCreateSpansRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/batch")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteSpanCommentsRequest calls the generic DeleteSpanComments builder with application/json body
+func NewDeleteSpanCommentsRequest(server string, body DeleteSpanCommentsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteSpanCommentsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDeleteSpanCommentsRequestWithBody constructs an http.Request for the DeleteSpanComments method, with any body, and a specified content type
+func NewDeleteSpanCommentsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/comments/delete")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUpdateSpanCommentRequest calls the generic UpdateSpanComment builder with application/json body
+func NewUpdateSpanCommentRequest(server string, commentId openapi_types.UUID, body UpdateSpanCommentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateSpanCommentRequestWithBody(server, commentId, "application/json", bodyReader)
+}
+
+// NewUpdateSpanCommentRequestWithBody constructs an http.Request for the UpdateSpanComment method, with any body, and a specified content type
+func NewUpdateSpanCommentRequestWithBody(server string, commentId openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "commentId", commentId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/comments/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSpansExistRequest constructs an http.Request for the SpansExist method
+func NewSpansExistRequest(server string, params *SpansExistParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/exists")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ProjectId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Source != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "source", *params.Source, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScoreBatchOfSpansRequest calls the generic ScoreBatchOfSpans builder with application/json body
+func NewScoreBatchOfSpansRequest(server string, body ScoreBatchOfSpansJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScoreBatchOfSpansRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewScoreBatchOfSpansRequestWithBody constructs an http.Request for the ScoreBatchOfSpans method, with any body, and a specified content type
+func NewScoreBatchOfSpansRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/feedback-scores")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFindFeedbackScoreNames1Request constructs an http.Request for the FindFeedbackScoreNames1 method
+func NewFindFeedbackScoreNames1Request(server string, params *FindFeedbackScoreNames1Params) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/feedback-scores/names")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ProjectId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSearchSpansRequest calls the generic SearchSpans builder with application/json body
+func NewSearchSpansRequest(server string, body SearchSpansJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSearchSpansRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSearchSpansRequestWithBody constructs an http.Request for the SearchSpans method, with any body, and a specified content type
+func NewSearchSpansRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/search")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetSpanStatsRequest constructs an http.Request for the GetSpanStats method
+func NewGetSpanStatsRequest(server string, params *GetSpanStatsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/stats")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ProjectId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TraceId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "trace_id", *params.TraceId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Filters != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filters", *params.Filters, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search", *params.Search, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromTime != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_time", *params.FromTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToTime != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_time", *params.ToTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDeleteSpanByIdRequest constructs an http.Request for the DeleteSpanById method
+func NewDeleteSpanByIdRequest(server string, id string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSpanByIdRequest constructs an http.Request for the GetSpanById method
+func NewGetSpanByIdRequest(server string, id openapi_types.UUID, params *GetSpanByIdParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.StripAttachments != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "strip_attachments", *params.StripAttachments, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUpdateSpanRequest calls the generic UpdateSpan builder with application/json body
+func NewUpdateSpanRequest(server string, id openapi_types.UUID, body UpdateSpanJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateSpanRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewUpdateSpanRequestWithBody constructs an http.Request for the UpdateSpan method, with any body, and a specified content type
+func NewUpdateSpanRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAddSpanCommentRequest calls the generic AddSpanComment builder with application/json body
+func NewAddSpanCommentRequest(server string, id openapi_types.UUID, body AddSpanCommentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAddSpanCommentRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewAddSpanCommentRequestWithBody constructs an http.Request for the AddSpanComment method, with any body, and a specified content type
+func NewAddSpanCommentRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s/comments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAddSpanFeedbackScoreRequest calls the generic AddSpanFeedbackScore builder with application/json body
+func NewAddSpanFeedbackScoreRequest(server string, id openapi_types.UUID, body AddSpanFeedbackScoreJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAddSpanFeedbackScoreRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewAddSpanFeedbackScoreRequestWithBody constructs an http.Request for the AddSpanFeedbackScore method, with any body, and a specified content type
+func NewAddSpanFeedbackScoreRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s/feedback-scores", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteSpanFeedbackScoreRequest calls the generic DeleteSpanFeedbackScore builder with application/json body
+func NewDeleteSpanFeedbackScoreRequest(server string, id openapi_types.UUID, body DeleteSpanFeedbackScoreJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteSpanFeedbackScoreRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewDeleteSpanFeedbackScoreRequestWithBody constructs an http.Request for the DeleteSpanFeedbackScore method, with any body, and a specified content type
+func NewDeleteSpanFeedbackScoreRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s/feedback-scores/delete", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetSpanCommentRequest constructs an http.Request for the GetSpanComment method
+func NewGetSpanCommentRequest(server string, spanId openapi_types.UUID, commentId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "spanId", spanId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "commentId", commentId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/spans/%s/comments/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetServiceTogglesRequest constructs an http.Request for the GetServiceToggles method
+func NewGetServiceTogglesRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/toggles")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetProjectTopicsRequest constructs an http.Request for the GetProjectTopics method
+func NewGetProjectTopicsRequest(server string, params *GetProjectTopicsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/topics")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetTracesByProjectRequest constructs an http.Request for the GetTracesByProject method
+func NewGetTracesByProjectRequest(server string, params *GetTracesByProjectParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/private/traces")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Size != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "size", *params.Size, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_id", *params.ProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Filters != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filters", *params.Filters, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Truncate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "truncate", *params.Truncate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StripAttachments != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "strip_attachments", *params.StripAttachments, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Sorting != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sorting", *params.Sorting, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Exclude != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "exclude", *params.Exclude, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search", *params.Search, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromTime != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_time", *params.FromTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToTime != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_time", *params.ToTime, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AnnotationQueueId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "annotation_queue_id", *params.AnnotationQueueId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewCreateTraceRequest calls the generic CreateTrace builder with application/json body
 func NewCreateTraceRequest(server string, body CreateTraceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -5015,6 +6183,96 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /v1/private/guardrails (the `CreateGuardrails` operationId).
 	CreateGuardrailsWithResponse(ctx context.Context, body CreateGuardrailsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateGuardrailsResponse, error)
 
+	// FindGuardrailModelsWithResponse Find guardrail models
+	//
+	// Find the workspace's guardrail models, each with its serving run and its latest run
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /v1/private/guardrails/models (the `FindGuardrailModels` operationId).
+	FindGuardrailModelsWithResponse(ctx context.Context, params *FindGuardrailModelsParams, reqEditors ...RequestEditorFn) (*FindGuardrailModelsResponse, error)
+
+	// CreateGuardrailModelWithBodyWithResponse Create guardrail model
+	//
+	// Create a guardrail model and start its first training run from a labelled JSONL file.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /v1/private/guardrails/models (the `CreateGuardrailModel` operationId).
+	CreateGuardrailModelWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateGuardrailModelResponse, error)
+
+	// DeleteGuardrailModelWithResponse Delete guardrail model
+	//
+	// Delete a guardrail model and its runs.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with DELETE /v1/private/guardrails/models/{id} (the `DeleteGuardrailModel` operationId).
+	DeleteGuardrailModelWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*DeleteGuardrailModelResponse, error)
+
+	// GetGuardrailModelByIdWithResponse Get guardrail model by id
+	//
+	// Get a guardrail model with its serving run and its latest run.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /v1/private/guardrails/models/{id} (the `GetGuardrailModelById` operationId).
+	GetGuardrailModelByIdWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetGuardrailModelByIdResponse, error)
+
+	// UpdateGuardrailModelWithBodyWithResponse Update guardrail model
+	//
+	// Update a guardrail model's description; its name never changes
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PATCH /v1/private/guardrails/models/{id} (the `UpdateGuardrailModel` operationId).
+	UpdateGuardrailModelWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateGuardrailModelResponse, error)
+
+	// UpdateGuardrailModelWithResponse Update guardrail model
+	//
+	// Update a guardrail model's description; its name never changes
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PATCH /v1/private/guardrails/models/{id} (the `UpdateGuardrailModel` operationId).
+	UpdateGuardrailModelWithResponse(ctx context.Context, id openapi_types.UUID, body UpdateGuardrailModelJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateGuardrailModelResponse, error)
+
+	// FindGuardrailTrainingRunsWithResponse Find guardrail model training runs
+	//
+	// Find a guardrail model's training runs, newest first
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /v1/private/guardrails/models/{id}/runs (the `FindGuardrailTrainingRuns` operationId).
+	FindGuardrailTrainingRunsWithResponse(ctx context.Context, id openapi_types.UUID, params *FindGuardrailTrainingRunsParams, reqEditors ...RequestEditorFn) (*FindGuardrailTrainingRunsResponse, error)
+
+	// RetrainGuardrailModelWithBodyWithResponse Retrain guardrail model
+	//
+	// Start a new training of the model from a labelled JSONL file; the serving run keeps serving until the new one completes
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /v1/private/guardrails/models/{id}/runs (the `RetrainGuardrailModel` operationId).
+	RetrainGuardrailModelWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RetrainGuardrailModelResponse, error)
+
+	// GetGuardrailTrainingRunByIdWithResponse Get guardrail model training run by id
+	//
+	// Get one training run of a guardrail model.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /v1/private/guardrails/models/{id}/runs/{runId} (the `GetGuardrailTrainingRunById` operationId).
+	GetGuardrailTrainingRunByIdWithResponse(ctx context.Context, id openapi_types.UUID, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetGuardrailTrainingRunByIdResponse, error)
+
+	// CancelGuardrailTrainingRunWithResponse Cancel guardrail model training run
+	//
+	// Cancel a training run that is queued or running. Cancelling a cancelled run again changes nothing and answers 204 too
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /v1/private/guardrails/models/{id}/runs/{runId}/cancel (the `CancelGuardrailTrainingRun` operationId).
+	CancelGuardrailTrainingRunWithResponse(ctx context.Context, id openapi_types.UUID, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*CancelGuardrailTrainingRunResponse, error)
+
 	// FindGuardrailPoliciesWithResponse Find guardrail policies
 	//
 	// Find guardrail policies in a workspace.
@@ -6561,6 +7819,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /v1/private/toggles (the `GetServiceToggles` operationId).
 	GetServiceTogglesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetServiceTogglesResponse, error)
+
+	// GetProjectTopicsWithResponse Get a project's topics
+	//
+	// The project's topics over the window, the last topics.run.windowDays UTC days (default 30), today included: per topic its count, share, rank and a daily series, plus Other's daily series. Counts can be up to 5 minutes old. status is disabled when the workspace is not opted in to topics, collecting while the project has no topics yet, too_large when a ClickHouse read hit a rows, bytes or memory guard (a retry answers the same, so do not retry), and ready otherwise. Fields of other states are omitted.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /v1/private/topics (the `GetProjectTopics` operationId).
+	GetProjectTopicsWithResponse(ctx context.Context, params *GetProjectTopicsParams, reqEditors ...RequestEditorFn) (*GetProjectTopicsResponse, error)
 
 	// GetTracesByProjectWithResponse Get traces by project_name or project_id
 	//
@@ -14105,6 +15372,585 @@ func (r CreateGuardrailsResponse) ContentType() string {
 	return ""
 }
 
+type FindGuardrailModelsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *GuardrailModelPage
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FindGuardrailModelsResponse) GetJSON200() *GuardrailModelPage {
+	return r.JSON200
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r FindGuardrailModelsResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r FindGuardrailModelsResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r FindGuardrailModelsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FindGuardrailModelsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FindGuardrailModelsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FindGuardrailModelsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// CreateGuardrailModelResponse201Headers the declared response headers of an HTTP 201 response for CreateGuardrailModel
+type CreateGuardrailModelResponse201Headers struct {
+	Location string
+}
+
+type CreateGuardrailModelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON409 the response for an HTTP 409 `application/json` response
+	JSON409 *ErrorMessage
+	// JSON429 the response for an HTTP 429 `application/json` response
+	JSON429 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+	// Headers201 the parsed response headers for an HTTP 201 response
+	Headers201 *CreateGuardrailModelResponse201Headers
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r CreateGuardrailModelResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r CreateGuardrailModelResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON409 returns the response for an HTTP 409 `application/json` response
+func (r CreateGuardrailModelResponse) GetJSON409() *ErrorMessage {
+	return r.JSON409
+}
+
+// GetJSON429 returns the response for an HTTP 429 `application/json` response
+func (r CreateGuardrailModelResponse) GetJSON429() *ErrorMessage {
+	return r.JSON429
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r CreateGuardrailModelResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r CreateGuardrailModelResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateGuardrailModelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateGuardrailModelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CreateGuardrailModelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DeleteGuardrailModelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON409 the response for an HTTP 409 `application/json` response
+	JSON409 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r DeleteGuardrailModelResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON409 returns the response for an HTTP 409 `application/json` response
+func (r DeleteGuardrailModelResponse) GetJSON409() *ErrorMessage {
+	return r.JSON409
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r DeleteGuardrailModelResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r DeleteGuardrailModelResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteGuardrailModelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteGuardrailModelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DeleteGuardrailModelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetGuardrailModelByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *GuardrailModel
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetGuardrailModelByIdResponse) GetJSON200() *GuardrailModel {
+	return r.JSON200
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r GetGuardrailModelByIdResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r GetGuardrailModelByIdResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r GetGuardrailModelByIdResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r GetGuardrailModelByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetGuardrailModelByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetGuardrailModelByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetGuardrailModelByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type UpdateGuardrailModelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+	// JSON422 the response for an HTTP 422 `application/json` response
+	JSON422 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r UpdateGuardrailModelResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r UpdateGuardrailModelResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetJSON422 returns the response for an HTTP 422 `application/json` response
+func (r UpdateGuardrailModelResponse) GetJSON422() *ErrorMessage {
+	return r.JSON422
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r UpdateGuardrailModelResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r UpdateGuardrailModelResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateGuardrailModelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateGuardrailModelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r UpdateGuardrailModelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FindGuardrailTrainingRunsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *GuardrailTrainingRunPage
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FindGuardrailTrainingRunsResponse) GetJSON200() *GuardrailTrainingRunPage {
+	return r.JSON200
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r FindGuardrailTrainingRunsResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r FindGuardrailTrainingRunsResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r FindGuardrailTrainingRunsResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r FindGuardrailTrainingRunsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FindGuardrailTrainingRunsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FindGuardrailTrainingRunsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FindGuardrailTrainingRunsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// RetrainGuardrailModelResponse201Headers the declared response headers of an HTTP 201 response for RetrainGuardrailModel
+type RetrainGuardrailModelResponse201Headers struct {
+	Location string
+}
+
+type RetrainGuardrailModelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessage
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+	// JSON409 the response for an HTTP 409 `application/json` response
+	JSON409 *ErrorMessage
+	// JSON429 the response for an HTTP 429 `application/json` response
+	JSON429 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+	// Headers201 the parsed response headers for an HTTP 201 response
+	Headers201 *RetrainGuardrailModelResponse201Headers
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r RetrainGuardrailModelResponse) GetJSON400() *ErrorMessage {
+	return r.JSON400
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r RetrainGuardrailModelResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r RetrainGuardrailModelResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetJSON409 returns the response for an HTTP 409 `application/json` response
+func (r RetrainGuardrailModelResponse) GetJSON409() *ErrorMessage {
+	return r.JSON409
+}
+
+// GetJSON429 returns the response for an HTTP 429 `application/json` response
+func (r RetrainGuardrailModelResponse) GetJSON429() *ErrorMessage {
+	return r.JSON429
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r RetrainGuardrailModelResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r RetrainGuardrailModelResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r RetrainGuardrailModelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RetrainGuardrailModelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r RetrainGuardrailModelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetGuardrailTrainingRunByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *GuardrailTrainingRun
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetGuardrailTrainingRunByIdResponse) GetJSON200() *GuardrailTrainingRun {
+	return r.JSON200
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r GetGuardrailTrainingRunByIdResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r GetGuardrailTrainingRunByIdResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r GetGuardrailTrainingRunByIdResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r GetGuardrailTrainingRunByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetGuardrailTrainingRunByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetGuardrailTrainingRunByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetGuardrailTrainingRunByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CancelGuardrailTrainingRunResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *ErrorMessage
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *ErrorMessage
+	// JSON409 the response for an HTTP 409 `application/json` response
+	JSON409 *ErrorMessage
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *ErrorMessage
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r CancelGuardrailTrainingRunResponse) GetJSON403() *ErrorMessage {
+	return r.JSON403
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r CancelGuardrailTrainingRunResponse) GetJSON404() *ErrorMessage {
+	return r.JSON404
+}
+
+// GetJSON409 returns the response for an HTTP 409 `application/json` response
+func (r CancelGuardrailTrainingRunResponse) GetJSON409() *ErrorMessage {
+	return r.JSON409
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r CancelGuardrailTrainingRunResponse) GetJSON503() *ErrorMessage {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r CancelGuardrailTrainingRunResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r CancelGuardrailTrainingRunResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CancelGuardrailTrainingRunResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CancelGuardrailTrainingRunResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type FindGuardrailPoliciesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -18169,1853 +20015,4 @@ func (r GetPromptByCommitResponse) GetJSON404() *ErrorMessageDetail {
 // GetJSON409 returns the response for an HTTP 409 `application/json` response
 func (r GetPromptByCommitResponse) GetJSON409() *ErrorMessageDetail {
 	return r.JSON409
-}
-
-// GetBody returns the raw response body bytes
-func (r GetPromptByCommitResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetPromptByCommitResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetPromptByCommitResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetPromptByCommitResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type DeletePromptsBatchResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r DeletePromptsBatchResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r DeletePromptsBatchResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeletePromptsBatchResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeletePromptsBatchResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetPromptsByCommitsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]PromptVersionLinkPublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetPromptsByCommitsResponse) GetJSON200() *[]PromptVersionLinkPublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetPromptsByCommitsResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetPromptsByCommitsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetPromptsByCommitsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetPromptsByCommitsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type UpdatePromptVersionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessage
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r UpdatePromptVersionsResponse) GetJSON400() *ErrorMessage {
-	return r.JSON400
-}
-
-// GetBody returns the raw response body bytes
-func (r UpdatePromptVersionsResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r UpdatePromptVersionsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r UpdatePromptVersionsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r UpdatePromptVersionsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type CreatePromptVersionResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptVersionDetail
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessageDetail
-	// JSON409 the response for an HTTP 409 `application/json` response
-	JSON409 *ErrorMessageDetail
-	// JSON422 the response for an HTTP 422 `application/json` response
-	JSON422 *ErrorMessageDetail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r CreatePromptVersionResponse) GetJSON200() *PromptVersionDetail {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r CreatePromptVersionResponse) GetJSON400() *ErrorMessageDetail {
-	return r.JSON400
-}
-
-// GetJSON409 returns the response for an HTTP 409 `application/json` response
-func (r CreatePromptVersionResponse) GetJSON409() *ErrorMessageDetail {
-	return r.JSON409
-}
-
-// GetJSON422 returns the response for an HTTP 422 `application/json` response
-func (r CreatePromptVersionResponse) GetJSON422() *ErrorMessageDetail {
-	return r.JSON422
-}
-
-// GetBody returns the raw response body bytes
-func (r CreatePromptVersionResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r CreatePromptVersionResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreatePromptVersionResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CreatePromptVersionResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// RetrievePromptVersionResponse200Headers the declared response headers of an HTTP 200 response for RetrievePromptVersion
-type RetrievePromptVersionResponse200Headers struct {
-	XOpikDeprecation *string
-}
-
-type RetrievePromptVersionResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptVersionDetail
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessageDetail
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessageDetail
-	// JSON422 the response for an HTTP 422 `application/json` response
-	JSON422 *ErrorMessageDetail
-	// Headers200 the parsed response headers for an HTTP 200 response
-	Headers200 *RetrievePromptVersionResponse200Headers
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r RetrievePromptVersionResponse) GetJSON200() *PromptVersionDetail {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r RetrievePromptVersionResponse) GetJSON400() *ErrorMessageDetail {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r RetrievePromptVersionResponse) GetJSON404() *ErrorMessageDetail {
-	return r.JSON404
-}
-
-// GetJSON422 returns the response for an HTTP 422 `application/json` response
-func (r RetrievePromptVersionResponse) GetJSON422() *ErrorMessageDetail {
-	return r.JSON422
-}
-
-// GetBody returns the raw response body bytes
-func (r RetrievePromptVersionResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r RetrievePromptVersionResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RetrievePromptVersionResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r RetrievePromptVersionResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type RetrievePromptVersionsByIdsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]PromptVersionDetail
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessageDetail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r RetrievePromptVersionsByIdsResponse) GetJSON200() *[]PromptVersionDetail {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r RetrievePromptVersionsByIdsResponse) GetJSON400() *ErrorMessageDetail {
-	return r.JSON400
-}
-
-// GetBody returns the raw response body bytes
-func (r RetrievePromptVersionsByIdsResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r RetrievePromptVersionsByIdsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RetrievePromptVersionsByIdsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r RetrievePromptVersionsByIdsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetPromptVersionByIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptVersionDetail
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessageDetail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetPromptVersionByIdResponse) GetJSON200() *PromptVersionDetail {
-	return r.JSON200
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r GetPromptVersionByIdResponse) GetJSON404() *ErrorMessageDetail {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r GetPromptVersionByIdResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetPromptVersionByIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetPromptVersionByIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetPromptVersionByIdResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SetPromptVersionEnvironmentResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessage
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessage
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r SetPromptVersionEnvironmentResponse) GetJSON400() *ErrorMessage {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r SetPromptVersionEnvironmentResponse) GetJSON404() *ErrorMessage {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r SetPromptVersionEnvironmentResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SetPromptVersionEnvironmentResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SetPromptVersionEnvironmentResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SetPromptVersionEnvironmentResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type DeletePromptResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r DeletePromptResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r DeletePromptResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeletePromptResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeletePromptResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetPromptByIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptDetail
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessageDetail
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessageDetail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetPromptByIdResponse) GetJSON200() *PromptDetail {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r GetPromptByIdResponse) GetJSON400() *ErrorMessageDetail {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r GetPromptByIdResponse) GetJSON404() *ErrorMessageDetail {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r GetPromptByIdResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetPromptByIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetPromptByIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetPromptByIdResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type UpdatePromptResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessage
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessage
-	// JSON409 the response for an HTTP 409 `application/json` response
-	JSON409 *ErrorMessage
-	// JSON422 the response for an HTTP 422 `application/json` response
-	JSON422 *ErrorMessage
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r UpdatePromptResponse) GetJSON400() *ErrorMessage {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r UpdatePromptResponse) GetJSON404() *ErrorMessage {
-	return r.JSON404
-}
-
-// GetJSON409 returns the response for an HTTP 409 `application/json` response
-func (r UpdatePromptResponse) GetJSON409() *ErrorMessage {
-	return r.JSON409
-}
-
-// GetJSON422 returns the response for an HTTP 422 `application/json` response
-func (r UpdatePromptResponse) GetJSON422() *ErrorMessage {
-	return r.JSON422
-}
-
-// GetBody returns the raw response body bytes
-func (r UpdatePromptResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r UpdatePromptResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r UpdatePromptResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r UpdatePromptResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetPromptVersionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptVersionPagePublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetPromptVersionsResponse) GetJSON200() *PromptVersionPagePublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetPromptVersionsResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetPromptVersionsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetPromptVersionsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetPromptVersionsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetPromptVersionByNumberResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptVersionDetail
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessageDetail
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessageDetail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetPromptVersionByNumberResponse) GetJSON200() *PromptVersionDetail {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r GetPromptVersionByNumberResponse) GetJSON400() *ErrorMessageDetail {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r GetPromptVersionByNumberResponse) GetJSON404() *ErrorMessageDetail {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r GetPromptVersionByNumberResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetPromptVersionByNumberResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetPromptVersionByNumberResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetPromptVersionByNumberResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type RestorePromptVersionResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *PromptVersionDetail
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessageDetail
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessageDetail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r RestorePromptVersionResponse) GetJSON200() *PromptVersionDetail {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r RestorePromptVersionResponse) GetJSON400() *ErrorMessageDetail {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r RestorePromptVersionResponse) GetJSON404() *ErrorMessageDetail {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r RestorePromptVersionResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r RestorePromptVersionResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RestorePromptVersionResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r RestorePromptVersionResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type FindReportFailuresResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ReportFailurePage
-	// JSON401 the response for an HTTP 401 `application/json` response
-	JSON401 *ErrorMessage
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r FindReportFailuresResponse) GetJSON200() *ReportFailurePage {
-	return r.JSON200
-}
-
-// GetJSON401 returns the response for an HTTP 401 `application/json` response
-func (r FindReportFailuresResponse) GetJSON401() *ErrorMessage {
-	return r.JSON401
-}
-
-// GetBody returns the raw response body bytes
-func (r FindReportFailuresResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r FindReportFailuresResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r FindReportFailuresResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r FindReportFailuresResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// CreateReportFailureResponse201Headers the declared response headers of an HTTP 201 response for CreateReportFailure
-type CreateReportFailureResponse201Headers struct {
-	Location *string
-}
-
-type CreateReportFailureResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessage
-	// JSON401 the response for an HTTP 401 `application/json` response
-	JSON401 *ErrorMessage
-	// Headers201 the parsed response headers for an HTTP 201 response
-	Headers201 *CreateReportFailureResponse201Headers
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r CreateReportFailureResponse) GetJSON400() *ErrorMessage {
-	return r.JSON400
-}
-
-// GetJSON401 returns the response for an HTTP 401 `application/json` response
-func (r CreateReportFailureResponse) GetJSON401() *ErrorMessage {
-	return r.JSON401
-}
-
-// GetBody returns the raw response body bytes
-func (r CreateReportFailureResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateReportFailureResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateReportFailureResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CreateReportFailureResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type FindRetentionRulesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *RetentionRulePagePublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r FindRetentionRulesResponse) GetJSON200() *RetentionRulePagePublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r FindRetentionRulesResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r FindRetentionRulesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r FindRetentionRulesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r FindRetentionRulesResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// CreateRetentionRuleResponse201Headers the declared response headers of an HTTP 201 response for CreateRetentionRule
-type CreateRetentionRuleResponse201Headers struct {
-	Location string
-}
-
-type CreateRetentionRuleResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *RetentionRulePublic
-	// Headers201 the parsed response headers for an HTTP 201 response
-	Headers201 *CreateRetentionRuleResponse201Headers
-}
-
-// GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r CreateRetentionRuleResponse) GetJSON201() *RetentionRulePublic {
-	return r.JSON201
-}
-
-// GetBody returns the raw response body bytes
-func (r CreateRetentionRuleResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateRetentionRuleResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateRetentionRuleResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CreateRetentionRuleResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type DeactivateRetentionRuleResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r DeactivateRetentionRuleResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r DeactivateRetentionRuleResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeactivateRetentionRuleResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeactivateRetentionRuleResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetRetentionRuleByIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *RetentionRulePublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetRetentionRuleByIdResponse) GetJSON200() *RetentionRulePublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetRetentionRuleByIdResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRetentionRuleByIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRetentionRuleByIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetRetentionRuleByIdResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetSpansByProjectResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *SpanPagePublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetSpansByProjectResponse) GetJSON200() *SpanPagePublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetSpansByProjectResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSpansByProjectResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSpansByProjectResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetSpansByProjectResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// CreateSpanResponse201Headers the declared response headers of an HTTP 201 response for CreateSpan
-type CreateSpanResponse201Headers struct {
-	Location string
-}
-
-type CreateSpanResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON409 the response for an HTTP 409 `application/json` response
-	JSON409 *ErrorMessage
-	// Headers201 the parsed response headers for an HTTP 201 response
-	Headers201 *CreateSpanResponse201Headers
-}
-
-// GetJSON409 returns the response for an HTTP 409 `application/json` response
-func (r CreateSpanResponse) GetJSON409() *ErrorMessage {
-	return r.JSON409
-}
-
-// GetBody returns the raw response body bytes
-func (r CreateSpanResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateSpanResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateSpanResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CreateSpanResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type BatchUpdateSpansResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessage
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r BatchUpdateSpansResponse) GetJSON400() *ErrorMessage {
-	return r.JSON400
-}
-
-// GetBody returns the raw response body bytes
-func (r BatchUpdateSpansResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r BatchUpdateSpansResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r BatchUpdateSpansResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r BatchUpdateSpansResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type CreateSpansResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r CreateSpansResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateSpansResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateSpansResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CreateSpansResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type DeleteSpanCommentsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r DeleteSpanCommentsResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteSpanCommentsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteSpanCommentsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeleteSpanCommentsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type UpdateSpanCommentResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r UpdateSpanCommentResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r UpdateSpanCommentResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r UpdateSpanCommentResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r UpdateSpanCommentResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SpansExistResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ExistenceResponse
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SpansExistResponse) GetJSON200() *ExistenceResponse {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SpansExistResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SpansExistResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SpansExistResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SpansExistResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type ScoreBatchOfSpansResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r ScoreBatchOfSpansResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r ScoreBatchOfSpansResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ScoreBatchOfSpansResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ScoreBatchOfSpansResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type FindFeedbackScoreNames1Response struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FeedbackScoreNamesPublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r FindFeedbackScoreNames1Response) GetJSON200() *FeedbackScoreNamesPublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r FindFeedbackScoreNames1Response) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r FindFeedbackScoreNames1Response) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r FindFeedbackScoreNames1Response) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r FindFeedbackScoreNames1Response) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SearchSpansResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SearchSpansResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SearchSpansResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SearchSpansResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SearchSpansResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetSpanStatsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ProjectStatsPublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetSpanStatsResponse) GetJSON200() *ProjectStatsPublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetSpanStatsResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSpanStatsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSpanStatsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetSpanStatsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type DeleteSpanByIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r DeleteSpanByIdResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteSpanByIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteSpanByIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeleteSpanByIdResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetSpanByIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *SpanPublic
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *SpanPublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetSpanByIdResponse) GetJSON200() *SpanPublic {
-	return r.JSON200
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r GetSpanByIdResponse) GetJSON404() *SpanPublic {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r GetSpanByIdResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSpanByIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSpanByIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetSpanByIdResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type UpdateSpanResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r UpdateSpanResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r UpdateSpanResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r UpdateSpanResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r UpdateSpanResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// AddSpanCommentResponse201Headers the declared response headers of an HTTP 201 response for AddSpanComment
-type AddSpanCommentResponse201Headers struct {
-	Location string
-}
-
-type AddSpanCommentResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// Headers201 the parsed response headers for an HTTP 201 response
-	Headers201 *AddSpanCommentResponse201Headers
-}
-
-// GetBody returns the raw response body bytes
-func (r AddSpanCommentResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r AddSpanCommentResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r AddSpanCommentResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r AddSpanCommentResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type AddSpanFeedbackScoreResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r AddSpanFeedbackScoreResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r AddSpanFeedbackScoreResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r AddSpanFeedbackScoreResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r AddSpanFeedbackScoreResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type DeleteSpanFeedbackScoreResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r DeleteSpanFeedbackScoreResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteSpanFeedbackScoreResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteSpanFeedbackScoreResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r DeleteSpanFeedbackScoreResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetSpanCommentResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *Comment
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *ErrorMessage
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetSpanCommentResponse) GetJSON200() *Comment {
-	return r.JSON200
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r GetSpanCommentResponse) GetJSON404() *ErrorMessage {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r GetSpanCommentResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSpanCommentResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSpanCommentResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetSpanCommentResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetServiceTogglesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ServiceTogglesConfig
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetServiceTogglesResponse) GetJSON200() *ServiceTogglesConfig {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetServiceTogglesResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetServiceTogglesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetServiceTogglesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetServiceTogglesResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GetTracesByProjectResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *TracePagePublic
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetTracesByProjectResponse) GetJSON200() *TracePagePublic {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GetTracesByProjectResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GetTracesByProjectResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetTracesByProjectResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetTracesByProjectResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// CreateTraceResponse201Headers the declared response headers of an HTTP 201 response for CreateTrace
-type CreateTraceResponse201Headers struct {
-	Location string
-}
-
-type CreateTraceResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// Headers201 the parsed response headers for an HTTP 201 response
-	Headers201 *CreateTraceResponse201Headers
-}
-
-// GetBody returns the raw response body bytes
-func (r CreateTraceResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateTraceResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateTraceResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CreateTraceResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type BatchUpdateTracesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *ErrorMessage
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r BatchUpdateTracesResponse) GetJSON400() *ErrorMessage {
-	return r.JSON400
-}
-
-// GetBody returns the raw response body bytes
-func (r BatchUpdateTracesResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r BatchUpdateTracesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r BatchUpdateTracesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r BatchUpdateTracesResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
 }

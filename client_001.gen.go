@@ -10995,6 +10995,18 @@ type ValidateOAuthTokenParams struct {
 	Authorization *string `json:"Authorization,omitempty"`
 }
 
+// ResetProjectTopicsParams defines parameters for ResetProjectTopics.
+type ResetProjectTopicsParams struct {
+	WorkspaceId string `form:"workspace_id" json:"workspace_id"`
+}
+
+// RunProjectTopicsParams defines parameters for RunProjectTopics.
+type RunProjectTopicsParams struct {
+	WorkspaceId    string  `form:"workspace_id" json:"workspace_id"`
+	Night          *string `form:"night,omitempty" json:"night,omitempty"`
+	IgnoreBackfill *bool   `form:"ignore_backfill,omitempty" json:"ignore_backfill,omitempty"`
+}
+
 // GetBlueprintByEnvParams defines parameters for GetBlueprintByEnv.
 type GetBlueprintByEnvParams struct {
 	MaskId *openapi_types.UUID `form:"mask_id,omitempty" json:"mask_id,omitempty"`
@@ -11772,6 +11784,9 @@ type TestWebhookJSONRequestBody = AlertWrite
 
 // UpdateAlertJSONRequestBody defines body for UpdateAlert for application/json ContentType.
 type UpdateAlertJSONRequestBody = AlertWrite
+
+// RunAnalyticsQueryJSONRequestBody defines body for RunAnalyticsQuery for application/json ContentType.
+type RunAnalyticsQueryJSONRequestBody = ScopedAnalyticsQueryRequest
 
 // CreateAnnotationQueueJSONRequestBody defines body for CreateAnnotationQueue for application/json ContentType.
 type CreateAnnotationQueueJSONRequestBody = AnnotationQueueWrite
@@ -12956,6 +12971,20 @@ type ClientInterface interface {
 	// Corresponds with GET /v1/internal/dashboard-saved-queries/{id} (the `GetDashboardSavedQuery` operationId).
 	GetDashboardSavedQuery(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ResetProjectTopics Forget a project's topic list
+	//
+	// Deletes the project's topics and clears the list on its topic_projects row, in one transaction, so its next discovery run, planned or by hand, builds a new list. The row's run and vectors backfill state stay. The workspace is opted in to topics at stage build or later, and the project has a topic_projects row and no run in flight.
+	//
+	// Corresponds with POST /v1/internal/topics/projects/{projectId}/reset (the `ResetProjectTopics` operationId).
+	ResetProjectTopics(ctx context.Context, projectId openapi_types.UUID, params *ResetProjectTopicsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RunProjectTopics Run a project's topics now
+	//
+	// Queues the project's discovery run and returns its run id; any pod runs it. The run's outcome is on the project's topic_projects row while it is the project's latest run, and in the run's logs. The window ends at the start of the night date (UTC; default today, at most tomorrow, at least the vectors backfill window ago). The workspace is opted in to topics at stage build or later, the window holds topics.run.minVectors vectors of the project, and the project has no list and no run in flight. The project's vectors backfill must have drained: ignore_backfill=true builds it from the vectors it has so far. A failed discovery run's retry wait and topics.runs.maxInFlight do not apply.
+	//
+	// Corresponds with POST /v1/internal/topics/projects/{projectId}/run (the `RunProjectTopics` operationId).
+	RunProjectTopics(ctx context.Context, projectId openapi_types.UUID, params *RunProjectTopicsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetDatasetBiInfo Get datasets information for BI events
 	//
 	// Get datasets information for BI events per user per workspace.
@@ -13346,6 +13375,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with PUT /v1/private/alerts/{id} (the `UpdateAlert` operationId).
 	UpdateAlert(ctx context.Context, id openapi_types.UUID, body UpdateAlertJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RunAnalyticsQueryWithBody Run free-form analytics SQL
+	//
+	// Runs read-only SQL bounded to the caller's workspace. Supply project_id to restrict traces, spans, feedback scores and trace threads to one project, or omit it to cover the whole workspace. Experiments, experiment items and dataset items always cover the whole workspace. Returns 501 when Custom Charts or its public endpoints are not enabled.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /v1/private/analytics-queries (the `RunAnalyticsQuery` operationId).
+	RunAnalyticsQueryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RunAnalyticsQuery Run free-form analytics SQL
+	//
+	// Runs read-only SQL bounded to the caller's workspace. Supply project_id to restrict traces, spans, feedback scores and trace threads to one project, or omit it to cover the whole workspace. Experiments, experiment items and dataset items always cover the whole workspace. Returns 501 when Custom Charts or its public endpoints are not enabled.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /v1/private/analytics-queries (the `RunAnalyticsQuery` operationId).
+	RunAnalyticsQuery(ctx context.Context, body RunAnalyticsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// FindAnnotationQueues Find annotation queues
 	//
@@ -17242,6 +17289,40 @@ func (c *Client) GetDashboardSavedQuery(ctx context.Context, id openapi_types.UU
 	return c.Client.Do(req)
 }
 
+// ResetProjectTopics Forget a project's topic list
+//
+// Deletes the project's topics and clears the list on its topic_projects row, in one transaction, so its next discovery run, planned or by hand, builds a new list. The row's run and vectors backfill state stay. The workspace is opted in to topics at stage build or later, and the project has a topic_projects row and no run in flight.
+//
+// Corresponds with POST /v1/internal/topics/projects/{projectId}/reset (the `ResetProjectTopics` operationId).
+func (c *Client) ResetProjectTopics(ctx context.Context, projectId openapi_types.UUID, params *ResetProjectTopicsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewResetProjectTopicsRequest(c.Server, projectId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// RunProjectTopics Run a project's topics now
+//
+// Queues the project's discovery run and returns its run id; any pod runs it. The run's outcome is on the project's topic_projects row while it is the project's latest run, and in the run's logs. The window ends at the start of the night date (UTC; default today, at most tomorrow, at least the vectors backfill window ago). The workspace is opted in to topics at stage build or later, the window holds topics.run.minVectors vectors of the project, and the project has no list and no run in flight. The project's vectors backfill must have drained: ignore_backfill=true builds it from the vectors it has so far. A failed discovery run's retry wait and topics.runs.maxInFlight do not apply.
+//
+// Corresponds with POST /v1/internal/topics/projects/{projectId}/run (the `RunProjectTopics` operationId).
+func (c *Client) RunProjectTopics(ctx context.Context, projectId openapi_types.UUID, params *RunProjectTopicsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRunProjectTopicsRequest(c.Server, projectId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // GetDatasetBiInfo Get datasets information for BI events
 //
 // Get datasets information for BI events per user per workspace.
@@ -18133,6 +18214,44 @@ func (c *Client) UpdateAlertWithBody(ctx context.Context, id openapi_types.UUID,
 // Corresponds with PUT /v1/private/alerts/{id} (the `UpdateAlert` operationId).
 func (c *Client) UpdateAlert(ctx context.Context, id openapi_types.UUID, body UpdateAlertJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateAlertRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// RunAnalyticsQueryWithBody Run free-form analytics SQL
+//
+// Runs read-only SQL bounded to the caller's workspace. Supply project_id to restrict traces, spans, feedback scores and trace threads to one project, or omit it to cover the whole workspace. Experiments, experiment items and dataset items always cover the whole workspace. Returns 501 when Custom Charts or its public endpoints are not enabled.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /v1/private/analytics-queries (the `RunAnalyticsQuery` operationId).
+func (c *Client) RunAnalyticsQueryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRunAnalyticsQueryRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// RunAnalyticsQuery Run free-form analytics SQL
+//
+// Runs read-only SQL bounded to the caller's workspace. Supply project_id to restrict traces, spans, feedback scores and trace threads to one project, or omit it to cover the whole workspace. Experiments, experiment items and dataset items always cover the whole workspace. Returns 501 when Custom Charts or its public endpoints are not enabled.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /v1/private/analytics-queries (the `RunAnalyticsQuery` operationId).
+func (c *Client) RunAnalyticsQuery(ctx context.Context, body RunAnalyticsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRunAnalyticsQueryRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -19894,121 +20013,6 @@ func (c *Client) ApplyDatasetItemChangesWithBody(ctx context.Context, id openapi
 // Corresponds with POST /v1/private/datasets/{id}/items/changes (the `ApplyDatasetItemChanges` operationId).
 func (c *Client) ApplyDatasetItemChanges(ctx context.Context, id openapi_types.UUID, params *ApplyDatasetItemChangesParams, body ApplyDatasetItemChangesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApplyDatasetItemChangesRequest(c.Server, id, params, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// FindDatasetItemsWithExperimentItems Find dataset items with experiment items
-//
-// Corresponds with GET /v1/private/datasets/{id}/items/experiments/items (the `FindDatasetItemsWithExperimentItems` operationId).
-func (c *Client) FindDatasetItemsWithExperimentItems(ctx context.Context, id openapi_types.UUID, params *FindDatasetItemsWithExperimentItemsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFindDatasetItemsWithExperimentItemsRequest(c.Server, id, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetDatasetItemsOutputColumns Get dataset items output columns
-//
-// Corresponds with GET /v1/private/datasets/{id}/items/experiments/items/output/columns (the `GetDatasetItemsOutputColumns` operationId).
-func (c *Client) GetDatasetItemsOutputColumns(ctx context.Context, id openapi_types.UUID, params *GetDatasetItemsOutputColumnsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetDatasetItemsOutputColumnsRequest(c.Server, id, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetDatasetExperimentItemsStats Get experiment items stats for dataset
-//
-// Corresponds with GET /v1/private/datasets/{id}/items/experiments/items/stats (the `GetDatasetExperimentItemsStats` operationId).
-func (c *Client) GetDatasetExperimentItemsStats(ctx context.Context, id openapi_types.UUID, params *GetDatasetExperimentItemsStatsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetDatasetExperimentItemsStatsRequest(c.Server, id, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ListDatasetVersions List dataset versions
-//
-// Get paginated list of versions for a dataset, ordered by creation time (newest first)
-//
-// Corresponds with GET /v1/private/datasets/{id}/versions (the `ListDatasetVersions` operationId).
-func (c *Client) ListDatasetVersions(ctx context.Context, id openapi_types.UUID, params *ListDatasetVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListDatasetVersionsRequest(c.Server, id, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// CompareDatasetVersions Compare latest version with draft
-//
-// Compare the latest committed dataset version with the current draft state. This endpoint provides insights into changes made since the last version was committed. The comparison calculates additions, modifications, deletions, and unchanged items between the latest version snapshot and current draft.
-//
-// Corresponds with GET /v1/private/datasets/{id}/versions/diff (the `CompareDatasetVersions` operationId).
-func (c *Client) CompareDatasetVersions(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCompareDatasetVersionsRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GetDatasetVersionByHash Get dataset version by hash
-//
-// Get a specific version by its version hash.
-//
-// Corresponds with GET /v1/private/datasets/{id}/versions/hash/{versionHash} (the `GetDatasetVersionByHash` operationId).
-func (c *Client) GetDatasetVersionByHash(ctx context.Context, id openapi_types.UUID, versionHash string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetDatasetVersionByHashRequest(c.Server, id, versionHash)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// UpdateDatasetVersionWithBody Update dataset version
-//
-// Update a dataset version's change_description and/or add new tags.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with PATCH /v1/private/datasets/{id}/versions/hash/{versionHash} (the `UpdateDatasetVersion` operationId).
-func (c *Client) UpdateDatasetVersionWithBody(ctx context.Context, id openapi_types.UUID, versionHash string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateDatasetVersionRequestWithBody(c.Server, id, versionHash, contentType, body)
 	if err != nil {
 		return nil, err
 	}

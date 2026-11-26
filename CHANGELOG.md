@@ -2,6 +2,12 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.7.2, 2026-11-26
+
+- Added `RunAnalyticsQuery` and `RunAnalyticsQueryWithBody` to `Client` and `ClientWithResponses`, with `RunAnalyticsQueryWithResponse` and `RunAnalyticsQueryWithBodyWithResponse`. They call `POST /v1/private/analytics-queries` to run read-only analytics SQL scoped to the workspace. Added `RunAnalyticsQueryJSONRequestBody`, `RunAnalyticsQueryResponse`, `NewRunAnalyticsQueryRequest`, `NewRunAnalyticsQueryRequestWithBody` and `ParseRunAnalyticsQueryResponse`.
+- Added `RunProjectTopics` and `ResetProjectTopics`, with their `WithResponse` methods, to run a project's topic discovery now or forget its topic list. Added `RunProjectTopicsParams`, `ResetProjectTopicsParams`, `RunProjectTopicsResponse`, `ResetProjectTopicsResponse`, the `New...Request` builders and the `Parse...Response` functions.
+- Migration: the new methods are also on `ClientInterface` and `ClientWithResponsesInterface`. Code that implements either interface itself, for example a mock, must add them.
+
 ## v0.7.1, 2026-11-25
 
 - Added guardrail model methods `FindGuardrailModels`, `CreateGuardrailModelWithBody`, `GetGuardrailModelById`, `UpdateGuardrailModel`, `UpdateGuardrailModelWithBody`, `DeleteGuardrailModel` and `RetrainGuardrailModelWithBody` to `Client` and `ClientWithResponses`, with the matching `...WithResponse` methods, `New...Request` builders and `Parse...Response` functions.

@@ -2,6 +2,13 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.8.0, 2026-11-27
+
+- Added `RunProjectTopicsNight` and `RunProjectTopicsNightWithResponse` to `Client` and `ClientWithResponses`. They call `POST /v1/internal/topics/projects/{projectId}/night` to queue a project's nightly topics update now and return its run id.
+- Added `RunProjectTopicsNightParams`, `RunProjectTopicsNightResponse`, `NewRunProjectTopicsNightRequest` and `ParseRunProjectTopicsNightResponse`.
+- Migration: `RunProjectTopicsNight` is also on `ClientInterface`, and `RunProjectTopicsNightWithResponse` is on `ClientWithResponsesInterface`. Code that implements either interface itself, for example a mock, must add them.
+- Generated code moved between `client_001.gen.go` to `client_005.gen.go`, with a new `client_005.gen.go`. No other exported names changed.
+
 ## v0.7.2, 2026-11-26
 
 - Added `RunAnalyticsQuery` and `RunAnalyticsQueryWithBody` to `Client` and `ClientWithResponses`, with `RunAnalyticsQueryWithResponse` and `RunAnalyticsQueryWithBodyWithResponse`. They call `POST /v1/private/analytics-queries` to run read-only analytics SQL scoped to the workspace. Added `RunAnalyticsQueryJSONRequestBody`, `RunAnalyticsQueryResponse`, `NewRunAnalyticsQueryRequest`, `NewRunAnalyticsQueryRequestWithBody` and `ParseRunAnalyticsQueryResponse`.

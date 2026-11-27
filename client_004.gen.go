@@ -14,6 +14,168 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
+type FindAlertsByProjectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *AlertPagePublic
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessagePublic
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FindAlertsByProjectResponse) GetJSON200() *AlertPagePublic {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r FindAlertsByProjectResponse) GetJSON400() *ErrorMessagePublic {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r FindAlertsByProjectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FindAlertsByProjectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FindAlertsByProjectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FindAlertsByProjectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FindDashboardsByProjectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *DashboardPagePublic
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FindDashboardsByProjectResponse) GetJSON200() *DashboardPagePublic {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FindDashboardsByProjectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FindDashboardsByProjectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FindDashboardsByProjectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FindDashboardsByProjectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FindDatasetsByProjectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *DatasetPagePublic
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FindDatasetsByProjectResponse) GetJSON200() *DatasetPagePublic {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FindDatasetsByProjectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FindDatasetsByProjectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FindDatasetsByProjectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FindDatasetsByProjectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FindExperimentsByProjectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ExperimentPagePublic
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorMessagePublic
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FindExperimentsByProjectResponse) GetJSON200() *ExperimentPagePublic {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r FindExperimentsByProjectResponse) GetJSON400() *ErrorMessagePublic {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r FindExperimentsByProjectResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FindExperimentsByProjectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
 // StatusCode returns HTTPResponse.StatusCode
 func (r FindExperimentsByProjectResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
@@ -5022,6 +5184,21 @@ func (c *ClientWithResponses) GetDashboardSavedQueryWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseGetDashboardSavedQueryResponse(rsp)
+}
+
+// RunProjectTopicsNightWithResponse Run a project's nightly update now
+//
+// Queues the project's nightly update for the night date (UTC; default today, at most tomorrow, at least the vectors backfill window ago) and returns its run id; any pod runs it. Its window ends at the night's start. The run's outcome is on the project's topic_projects row while it is the project's latest run, and in the run's logs. The workspace is opted in to topics at stage nightly or later, the project has a list whose window ends before the night, its window holds topics.run.minVectors vectors, and it has no run in flight. topics.runs.maxInFlight and the night's budget do not apply, and the project's night fields are not written.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /v1/internal/topics/projects/{projectId}/night (the `RunProjectTopicsNight` operationId).
+func (c *ClientWithResponses) RunProjectTopicsNightWithResponse(ctx context.Context, projectId openapi_types.UUID, params *RunProjectTopicsNightParams, reqEditors ...RequestEditorFn) (*RunProjectTopicsNightResponse, error) {
+	rsp, err := c.RunProjectTopicsNight(ctx, projectId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRunProjectTopicsNightResponse(rsp)
 }
 
 // ResetProjectTopicsWithResponse Forget a project's topic list
@@ -12702,6 +12879,22 @@ func ParseGetDashboardSavedQueryResponse(rsp *http.Response) (*GetDashboardSaved
 	return response, nil
 }
 
+// ParseRunProjectTopicsNightResponse parses an HTTP response from a RunProjectTopicsNightWithResponse call
+func ParseRunProjectTopicsNightResponse(rsp *http.Response) (*RunProjectTopicsNightResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RunProjectTopicsNightResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseResetProjectTopicsResponse parses an HTTP response from a ResetProjectTopicsWithResponse call
 func ParseResetProjectTopicsResponse(rsp *http.Response) (*ResetProjectTopicsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -19824,204 +20017,6 @@ func ParseUpdateProjectResponse(rsp *http.Response) (*UpdateProjectResponse, err
 			return nil, err
 		}
 		response.JSON422 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetProjectKpiCardsResponse parses an HTTP response from a GetProjectKpiCardsWithResponse call
-func ParseGetProjectKpiCardsResponse(rsp *http.Response) (*GetProjectKpiCardsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetProjectKpiCardsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest KpiCardResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ErrorMessage
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetProjectMetricsResponse parses an HTTP response from a GetProjectMetricsWithResponse call
-func ParseGetProjectMetricsResponse(rsp *http.Response) (*GetProjectMetricsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetProjectMetricsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProjectMetricResponsePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ErrorMessagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest ErrorMessagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseFindTokenUsageNamesResponse parses an HTTP response from a FindTokenUsageNamesWithResponse call
-func ParseFindTokenUsageNamesResponse(rsp *http.Response) (*FindTokenUsageNamesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &FindTokenUsageNamesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TokenUsageNames
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRecentActivityResponse parses an HTTP response from a GetRecentActivityWithResponse call
-func ParseGetRecentActivityResponse(rsp *http.Response) (*GetRecentActivityResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRecentActivityResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RecentActivityPagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ErrorMessagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest ErrorMessagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseFindAlertsByProjectResponse parses an HTTP response from a FindAlertsByProjectWithResponse call
-func ParseFindAlertsByProjectResponse(rsp *http.Response) (*FindAlertsByProjectResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &FindAlertsByProjectResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AlertPagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ErrorMessagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseFindDashboardsByProjectResponse parses an HTTP response from a FindDashboardsByProjectWithResponse call
-func ParseFindDashboardsByProjectResponse(rsp *http.Response) (*FindDashboardsByProjectResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &FindDashboardsByProjectResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest DashboardPagePublic
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
 
 	}
 

@@ -10995,6 +10995,12 @@ type ValidateOAuthTokenParams struct {
 	Authorization *string `json:"Authorization,omitempty"`
 }
 
+// RunProjectTopicsNightParams defines parameters for RunProjectTopicsNight.
+type RunProjectTopicsNightParams struct {
+	WorkspaceId string  `form:"workspace_id" json:"workspace_id"`
+	Night       *string `form:"night,omitempty" json:"night,omitempty"`
+}
+
 // ResetProjectTopicsParams defines parameters for ResetProjectTopics.
 type ResetProjectTopicsParams struct {
 	WorkspaceId string `form:"workspace_id" json:"workspace_id"`
@@ -12970,6 +12976,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /v1/internal/dashboard-saved-queries/{id} (the `GetDashboardSavedQuery` operationId).
 	GetDashboardSavedQuery(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RunProjectTopicsNight Run a project's nightly update now
+	//
+	// Queues the project's nightly update for the night date (UTC; default today, at most tomorrow, at least the vectors backfill window ago) and returns its run id; any pod runs it. Its window ends at the night's start. The run's outcome is on the project's topic_projects row while it is the project's latest run, and in the run's logs. The workspace is opted in to topics at stage nightly or later, the project has a list whose window ends before the night, its window holds topics.run.minVectors vectors, and it has no run in flight. topics.runs.maxInFlight and the night's budget do not apply, and the project's night fields are not written.
+	//
+	// Corresponds with POST /v1/internal/topics/projects/{projectId}/night (the `RunProjectTopicsNight` operationId).
+	RunProjectTopicsNight(ctx context.Context, projectId openapi_types.UUID, params *RunProjectTopicsNightParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ResetProjectTopics Forget a project's topic list
 	//
@@ -17289,6 +17302,23 @@ func (c *Client) GetDashboardSavedQuery(ctx context.Context, id openapi_types.UU
 	return c.Client.Do(req)
 }
 
+// RunProjectTopicsNight Run a project's nightly update now
+//
+// Queues the project's nightly update for the night date (UTC; default today, at most tomorrow, at least the vectors backfill window ago) and returns its run id; any pod runs it. Its window ends at the night's start. The run's outcome is on the project's topic_projects row while it is the project's latest run, and in the run's logs. The workspace is opted in to topics at stage nightly or later, the project has a list whose window ends before the night, its window holds topics.run.minVectors vectors, and it has no run in flight. topics.runs.maxInFlight and the night's budget do not apply, and the project's night fields are not written.
+//
+// Corresponds with POST /v1/internal/topics/projects/{projectId}/night (the `RunProjectTopicsNight` operationId).
+func (c *Client) RunProjectTopicsNight(ctx context.Context, projectId openapi_types.UUID, params *RunProjectTopicsNightParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRunProjectTopicsNightRequest(c.Server, projectId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ResetProjectTopics Forget a project's topic list
 //
 // Deletes the project's topics and clears the list on its topic_projects row, in one transaction, so its next discovery run, planned or by hand, builds a new list. The row's run and vectors backfill state stay. The workspace is opted in to topics at stage build or later, and the project has a topic_projects row and no run in flight.
@@ -19982,37 +20012,6 @@ func (c *Client) GetDatasetItems(ctx context.Context, id openapi_types.UUID, par
 // Corresponds with POST /v1/private/datasets/{id}/items/changes (the `ApplyDatasetItemChanges` operationId).
 func (c *Client) ApplyDatasetItemChangesWithBody(ctx context.Context, id openapi_types.UUID, params *ApplyDatasetItemChangesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApplyDatasetItemChangesRequestWithBody(c.Server, id, params, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ApplyDatasetItemChanges Apply changes to dataset items
-//
-// Apply delta changes (add, edit, delete) to a dataset version with conflict detection.
-//
-// This endpoint:
-// - Creates a new version with the applied changes
-// - Validates that baseVersion matches the latest version (unless override=true)
-// - Returns 409 Conflict if baseVersion is stale and override is not set
-//
-// Use `override=true` query parameter to force version creation even with stale baseVersion.
-//
-// Set 'copy_from_dataset_id' and 'copy_from_version_id' together on the request body to read
-// carry-forward rows from the supplied (dataset, version) pair instead of the destination's
-// prior version. When the fields are null, carry-forward rows are read from the destination's
-// prior version.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /v1/private/datasets/{id}/items/changes (the `ApplyDatasetItemChanges` operationId).
-func (c *Client) ApplyDatasetItemChanges(ctx context.Context, id openapi_types.UUID, params *ApplyDatasetItemChangesParams, body ApplyDatasetItemChangesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewApplyDatasetItemChangesRequest(c.Server, id, params, body)
 	if err != nil {
 		return nil, err
 	}
